@@ -11,6 +11,12 @@
     "./package.json": "./package.json",
     "./components/ui/button": "./templates/components/ui/button.tsx",
     "./components/ui/button.tsx": "./templates/components/ui/button.tsx",
+    "./components/ui/copy-button": "./templates/components/ui/copy-button.tsx",
+    "./components/ui/copy-button.tsx": "./templates/components/ui/copy-button.tsx",
+    "./components/ui/spinner": "./templates/components/ui/spinner.tsx",
+    "./components/ui/spinner.tsx": "./templates/components/ui/spinner.tsx",
+    "./components/ui/link": "./templates/components/ui/link.tsx",
+    "./components/ui/link.tsx": "./templates/components/ui/link.tsx",
     "./styles/global.css": "./templates/styles/global.css",
     "./lib/utils": "./templates/lib/utils.ts",
     "./registry.json": "./registry.json"
@@ -30,7 +36,12 @@
     "node": ">=18"
   },
   "dependencies": {
-    "clsx": "^2.1.1"
+    "@base-ui/react": "^1.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.31.0",
+    "tailwind-merge": "^3.6.0",
+    "torph": "^0.1.0"
   },
   "peerDependencies": {
     "react": ">=18",

@@ -1,65 +1,87 @@
-import * as React from "react";
+import type { ReactNode } from "react";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cva, type VariantProps } from "class-variance-authority";
+
 import { cn } from "../../lib/utils";
+import { Spinner } from "./spinner";
 
-export type ButtonVariant = "default" | "outline" | "ghost" | "destructive";
-export type ButtonSize = "default" | "sm" | "lg" | "icon";
+const spinnerSizeBySize = {
+  default: "default",
+  xs: "xs",
+  sm: "sm",
+  lg: "lg",
+  icon: "default",
+  "icon-xs": "xs",
+  "icon-sm": "sm",
+  "icon-lg": "lg",
+} as const;
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-}
-
-/**
- * Button — componente base della libreria.
- *
- * Stile fatto SOLO con classi utility Tailwind (nessun CSS custom): i
- * colori vengono dai design token di styles/global.css tramite la
- * sintassi arbitraria di Tailwind, es. `bg-[var(--du-primary-bg)]`.
- *
- * Modello da seguire per i prossimi componenti:
- * - props tipizzate che estendono l'elemento HTML nativo
- * - varianti/dimensioni gestite come mappe di classi Tailwind
- * - cn() da lib/utils per unire le classi in modo sicuro
- */
-const baseClasses =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--du-radius)] border border-transparent text-sm font-medium cursor-pointer transition-colors disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--du-focus-ring)]";
-
-const variantClasses: Record<ButtonVariant, string> = {
-  default:
-    "bg-[var(--du-primary-bg)] text-[var(--du-primary-fg)] hover:bg-[var(--du-primary-bg-hover)]",
-  outline:
-    "bg-transparent border-[var(--du-outline-border)] text-[var(--du-outline-fg)] hover:bg-[var(--du-outline-bg-hover)]",
-  ghost:
-    "bg-transparent text-[var(--du-ghost-fg)] hover:bg-[var(--du-ghost-bg-hover)]",
-  destructive:
-    "bg-[var(--du-destructive-bg)] text-[var(--du-destructive-fg)] hover:bg-[var(--du-destructive-bg-hover)]",
-};
-
-const sizeClasses: Record<ButtonSize, string> = {
-  default: "h-10 px-4 py-2",
-  sm: "h-8 px-3 py-1.5 text-[0.8125rem]",
-  lg: "h-11 px-6 py-2.5 text-[0.9375rem]",
-  icon: "h-10 w-10 p-0",
-};
-
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={cn(
-          baseClasses,
-          variantClasses[variant],
-          sizeClasses[size],
-          className
-        )}
-        {...props}
-      />
-    );
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding font-sans text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 not-disabled:active:not-aria-[haspopup]:translate-y-px disabled:cursor-not-allowed aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground hover:bg-primary/80 disabled:bg-muted disabled:text-muted-foreground",
+        outline:
+          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 disabled:bg-muted disabled:text-muted-foreground disabled:hover:bg-muted",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground disabled:bg-muted disabled:text-muted-foreground",
+        ghost:
+          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 disabled:text-muted-foreground disabled:hover:bg-transparent",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 disabled:bg-muted disabled:text-muted-foreground",
+      },
+      size: {
+        default:
+          "h-8 gap-1.5 px-4 py-5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        xs: "h-6 gap-1 px-2 py-3 rounded-[min(var(--radius-md),10px)] text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 px-3 py-4 rounded-[min(var(--radius-md),12px)] text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 gap-1.5 px-5 py-6 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        icon: "size-8",
+        "icon-xs":
+          "size-6 p-2 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm":
+          "size-8 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
+        "icon-lg": "size-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
   }
 );
 
-Button.displayName = "Button";
+interface ButtonLoadingProps {
+  loading?: boolean;
+  loadingText?: ReactNode;
+}
 
-export default Button;
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  loading = false,
+  loadingText,
+  disabled,
+  children,
+  ...props
+}: ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> &
+  ButtonLoadingProps) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      disabled={disabled || loading}
+      aria-busy={loading || undefined}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    >
+      {loading && <Spinner size={spinnerSizeBySize[size ?? "default"]} />}
+      {loading ? loadingText ?? children : children}
+    </ButtonPrimitive>
+  );
+}
+
+export { Button, buttonVariants };

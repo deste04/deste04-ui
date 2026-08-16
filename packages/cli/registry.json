@@ -3,8 +3,8 @@
     {
       "name": "utils",
       "type": "lib",
-      "description": "Helper cn() per comporre le className dei componenti.",
-      "dependencies": ["clsx"],
+      "description": "Helper cn() per comporre le className dei componenti risolvendo i conflitti tra classi Tailwind.",
+      "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": [],
       "files": [
         { "path": "lib/utils.ts", "target": "lib/utils.ts" }
@@ -13,8 +13,8 @@
     {
       "name": "global",
       "type": "styles",
-      "description": "Foglio di stile unico per tutti i componenti: import di Tailwind + design token (colori, radius) come variabili CSS, con supporto automatico a tema chiaro/scuro. Nessun CSS custom per componente: lo stile dei componenti è fatto solo con classi utility Tailwind.",
-      "dependencies": ["tailwindcss"],
+      "description": "Foglio di stile unico per tutti i componenti: import di Tailwind + tw-animate-css, design token (colori, font, radius) come variabili CSS, dark mode a classe. Nessun CSS custom per componente: lo stile dei componenti è fatto solo con classi utility Tailwind.",
+      "dependencies": ["tailwindcss", "tw-animate-css", "lucide-react"],
       "registryDependencies": [],
       "files": [
         { "path": "styles/global.css", "target": "styles/global.css" }
@@ -23,15 +23,54 @@
   ],
   "components": [
     {
+      "name": "spinner",
+      "type": "components:ui",
+      "description": "Icona di caricamento animata (LoaderIcon di lucide-react + animate-spin) con varianti di dimensione (xs, sm, default, lg, xl).",
+      "dependencies": ["lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "target": "components/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "components:ui",
-      "description": "Un bottone con varianti (default, outline, ghost, destructive) e dimensioni (sm, default, lg, icon).",
-      "dependencies": ["clsx"],
-      "registryDependencies": ["utils", "global"],
+      "description": "Un bottone con varianti (default, outline, secondary, ghost, destructive) e dimensioni (xs, sm, default, lg, icon, icon-xs, icon-sm, icon-lg), basato su Base UI e class-variance-authority.",
+      "dependencies": ["class-variance-authority", "@base-ui/react"],
+      "registryDependencies": ["utils", "global", "spinner"],
       "files": [
         {
           "path": "components/ui/button.tsx",
           "target": "components/ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "link",
+      "type": "components:ui",
+      "description": "Anchor stilizzato (non un bottone) con varianti underline/no-underline e icona opzionale \"apri esterno\" (target=_blank automatico con external).",
+      "dependencies": ["lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/link.tsx",
+          "target": "components/ui/link.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "components:ui",
+      "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",
+      "dependencies": ["lucide-react", "torph"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "components/ui/copy-button.tsx",
+          "target": "components/ui/copy-button.tsx"
         }
       ]
     }

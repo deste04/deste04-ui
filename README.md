@@ -8,11 +8,16 @@ modificare liberamente.
 
 Lo stile è fatto **solo con classi utility Tailwind CSS** — nessun CSS
 custom per componente. `styles/global.css` è un unico file condiviso da
-tutti i componenti e contiene solo l'import di Tailwind e i design
-token (colori, radius) come variabili CSS con supporto automatico a
-tema chiaro/scuro; i componenti li usano con la sintassi arbitraria di
-Tailwind (es. `bg-[var(--du-primary-bg)]`). **Richiede che il progetto
-di chi lo usa abbia già Tailwind CSS (v4) configurato** — vedi
+tutti i componenti e contiene solo l'import di Tailwind (+
+`tw-animate-css`) e i design token (colori, font, radius) come
+variabili CSS in stile shadcn/ui, con dark mode a classe (`.dark` su
+`<html>`, non segue in automatico le preferenze di sistema). I
+componenti usano classi semantiche dirette (`bg-primary`,
+`text-primary-foreground`, ...) generate da quei token via
+[Base UI](https://base-ui.com) (primitive headless) e
+[class-variance-authority](https://cva.style) per le varianti.
+**Richiede che il progetto di chi lo usa abbia già Tailwind CSS (v4)
+configurato** — vedi
 [Setup Tailwind nel progetto che consuma i componenti](#setup-tailwind-nel-progetto-che-consuma-i-componenti).
 
 ## Struttura del monorepo
@@ -104,6 +109,61 @@ Con un bundler diverso da Vite (Next.js, webpack, ecc.) usa
 [documentazione ufficiale di Tailwind](https://tailwindcss.com/docs/installation)
 per il tuo caso specifico.
 
+## Font personalizzato
+
+Tutti i componenti prendono il font da 3 variabili definite dentro
+`@theme inline` in `packages/cli/templates/styles/global.css`:
+
+```css
+--font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+  sans-serif;
+--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+--font-heading: var(--font-sans);
+```
+
+`html { @apply font-sans; }` più sotto nel file applica `--font-sans` a
+tutta la pagina (bottoni compresi, per ereditarietà). Per cambiare
+font basta editare quei valori — due modi:
+
+**1. Google Fonts** — aggiungi il `<link>` nel tuo `index.html`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+```
+
+e cambia il token:
+
+```css
+--font-sans: "Poppins", system-ui, sans-serif;
+```
+
+**2. Font self-hosted** (file `.woff2` nel progetto) — nello stesso
+`global.css`, prima di `:root`:
+
+```css
+@font-face {
+  font-family: "MioFont";
+  src: url("/fonts/mio-font.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+```
+
+e poi:
+
+```css
+--font-sans: "MioFont", system-ui, sans-serif;
+```
+
+Non serve toccare nessun componente: `Button` (e ogni componente
+futuro) eredita il font dal `<html>` tramite `font-sans`, non lo
+hard-codifica.
+
 ## Sviluppo in locale
 
 Dalla root del monorepo:
@@ -131,15 +191,17 @@ npm run cli -- list          # elenca i componenti disponibili
 ## Come aggiungere un nuovo componente
 
 1. Crea il sorgente in `packages/cli/templates/components/ui/<nome>.tsx`,
-   seguendo lo stile di `button.tsx` (props tipizzate, `cn()` per le
-   classi, varianti come mappe di classi). **Stile solo con classi
-   utility Tailwind, mai CSS custom**: niente file `.css` per
-   componente, niente classi tipo `.du-btn` scritte a mano. Se ti serve
-   un colore/token nuovo che ancora non esiste, aggiungi la variabile
-   CSS (con la sua variante dark) dentro `:root` in
+   seguendo lo stile di `button.tsx`: primitiva headless da
+   [Base UI](https://base-ui.com) (`@base-ui/react/<componente>`) +
+   `cva()` per le varianti + `cn()` per unire le classi. **Stile solo
+   con classi utility Tailwind, mai CSS custom**: niente file `.css`
+   per componente. Usa i token semantici già definiti
+   (`bg-primary`, `text-muted-foreground`, `border-border`, ecc.). Se
+   ti serve un colore/token nuovo che ancora non esiste, aggiungilo
+   (con la sua variante dark dentro `.dark { }`) in
    `packages/cli/templates/styles/global.css` — quel file resta *solo*
-   variabili + `@import "tailwindcss"`, non deve mai contenere regole
-   di stile per un componente.
+   variabili + import Tailwind, non deve mai contenere regole di stile
+   per un componente.
 2. Aggiungi una voce in `packages/cli/registry.json` sotto
    `"components"`, con `files` (solo il `.tsx`), `dependencies` e
    `registryDependencies: ["utils", "global"]` (così chi installa il
