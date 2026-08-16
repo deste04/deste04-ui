@@ -1,0 +1,103 @@
+/**
+ * deste04-ui — global.css
+ *
+ * Foglio di stile UNICO per tutti i componenti della libreria (non uno
+ * per componente): viene installato automaticamente insieme al primo
+ * componente aggiunto con il CLI e va importato una sola volta nel tuo
+ * entrypoint (es. main.tsx):
+ *
+ *   import "./styles/global.css"; // path relativo tuo
+ *
+ * Lo stile dei componenti è fatto SOLO con classi utility Tailwind
+ * (nessun CSS custom nei componenti, niente file .css per componente).
+ * Qui dentro ci sono solo:
+ * - l'import di Tailwind;
+ * - i design token (colori, radius) come variabili CSS, che i
+ *   componenti usano con la sintassi arbitraria di Tailwind, es.
+ *   `bg-[var(--du-primary-bg)]`.
+ *
+ * Il progetto che consuma questo file deve avere Tailwind CSS
+ * installato e configurato (richiesto anche da `npx deste04-ui add`,
+ * che lo installa in automatico ma non configura il tuo bundler: vedi
+ * il README per il setup con Vite/Next/altro).
+ *
+ * `@source` dice a Tailwind dove cercare le classi usate dai
+ * componenti (che vivono fuori da `src/`, in `components/ui/`).
+ */
+@import "tailwindcss";
+@source "../components/ui";
+
+/* ---------- design token: tema chiaro (default) ---------- */
+:root {
+  --du-radius: 0.5rem;
+
+  --du-bg: #ffffff;
+  --du-fg: #111827;
+
+  --du-primary-bg: #111827;
+  --du-primary-bg-hover: #1f2937;
+  --du-primary-fg: #ffffff;
+
+  --du-outline-border: #d1d5db;
+  --du-outline-fg: #111827;
+  --du-outline-bg-hover: #f3f4f6;
+
+  --du-ghost-fg: #111827;
+  --du-ghost-bg-hover: #f3f4f6;
+
+  --du-destructive-bg: #dc2626;
+  --du-destructive-bg-hover: #b91c1c;
+  --du-destructive-fg: #ffffff;
+
+  --du-focus-ring: #2563eb;
+}
+
+/* ---------- design token: tema scuro via preferenze di sistema ----------
+   si applica solo se non è stato forzato il chiaro con data-theme="light" */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --du-bg: #0b0f19;
+    --du-fg: #f3f4f6;
+
+    --du-primary-bg: #f3f4f6;
+    --du-primary-bg-hover: #e5e7eb;
+    --du-primary-fg: #111827;
+
+    --du-outline-border: #374151;
+    --du-outline-fg: #f3f4f6;
+    --du-outline-bg-hover: #1f2937;
+
+    --du-ghost-fg: #f3f4f6;
+    --du-ghost-bg-hover: #1f2937;
+
+    --du-destructive-bg: #ef4444;
+    --du-destructive-bg-hover: #dc2626;
+    --du-destructive-fg: #111827;
+
+    --du-focus-ring: #60a5fa;
+  }
+}
+
+/* ---------- design token: tema scuro forzato manualmente ----------
+   <html data-theme="dark">, indipendentemente dal sistema */
+:root[data-theme="dark"] {
+  --du-bg: #0b0f19;
+  --du-fg: #f3f4f6;
+
+  --du-primary-bg: #f3f4f6;
+  --du-primary-bg-hover: #e5e7eb;
+  --du-primary-fg: #111827;
+
+  --du-outline-border: #374151;
+  --du-outline-fg: #f3f4f6;
+  --du-outline-bg-hover: #1f2937;
+
+  --du-ghost-fg: #f3f4f6;
+  --du-ghost-bg-hover: #1f2937;
+
+  --du-destructive-bg: #ef4444;
+  --du-destructive-bg-hover: #dc2626;
+  --du-destructive-fg: #111827;
+
+  --du-focus-ring: #60a5fa;
+}

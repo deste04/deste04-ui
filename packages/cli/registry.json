@@ -1,0 +1,39 @@
+{
+  "lib": [
+    {
+      "name": "utils",
+      "type": "lib",
+      "description": "Helper cn() per comporre le className dei componenti.",
+      "dependencies": ["clsx"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "lib/utils.ts", "target": "lib/utils.ts" }
+      ]
+    },
+    {
+      "name": "global",
+      "type": "styles",
+      "description": "Foglio di stile unico per tutti i componenti: import di Tailwind + design token (colori, radius) come variabili CSS, con supporto automatico a tema chiaro/scuro. Nessun CSS custom per componente: lo stile dei componenti è fatto solo con classi utility Tailwind.",
+      "dependencies": ["tailwindcss"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "styles/global.css", "target": "styles/global.css" }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "button",
+      "type": "components:ui",
+      "description": "Un bottone con varianti (default, outline, ghost, destructive) e dimensioni (sm, default, lg, icon).",
+      "dependencies": ["clsx"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "target": "components/ui/button.tsx"
+        }
+      ]
+    }
+  ]
+}

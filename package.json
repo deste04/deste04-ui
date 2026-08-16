@@ -1,0 +1,15 @@
+{
+  "name": "deste04-ui-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Monorepo della libreria deste04-ui: CLI per installare i componenti + sito che li mostra",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace apps/site",
+    "build": "npm run build --workspace apps/site",
+    "cli": "node packages/cli/src/cli.js"
+  }
+}
