@@ -33,6 +33,8 @@
     "./components/ui/checkbox.tsx": "./templates/components/ui/checkbox.tsx",
     "./components/ui/radio-group": "./templates/components/ui/radio-group.tsx",
     "./components/ui/radio-group.tsx": "./templates/components/ui/radio-group.tsx",
+    "./components/ui/badge": "./templates/components/ui/badge.tsx",
+    "./components/ui/badge.tsx": "./templates/components/ui/badge.tsx",
     "./styles/global.css": "./templates/styles/global.css",
     "./lib/utils": "./templates/lib/utils.ts",
     "./registry.json": "./registry.json"

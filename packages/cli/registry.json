@@ -166,6 +166,19 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "components:ui",
+      "description": "Badge/etichetta con varianti (solid, surface, subtle, outline) e dimensioni (sm, md, lg, xl, 2xl), basato su class-variance-authority.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "target": "components/ui/badge.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",

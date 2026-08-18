@@ -44,7 +44,7 @@ export function CopyButton({
     <Button
       type="button"
       variant={variant}
-      size={size ?? (label ? "default" : "icon")}
+      size={size ?? (label ? "md" : "icon-md")}
       onClick={handleCopy}
       aria-label={label ? undefined : copied ? copiedLabel : "Copia"}
       {...props}

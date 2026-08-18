@@ -77,6 +77,13 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add radio-group",
   },
   {
+    slug: "badge",
+    name: "Badge",
+    description:
+      "Badge/label with variants (solid, surface, subtle, outline) and sizes (sm, md, lg, xl, 2xl).",
+    install: "npx deste04-ui add badge",
+  },
+  {
     slug: "link",
     name: "Link",
     description:

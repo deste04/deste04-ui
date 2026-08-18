@@ -33,24 +33,49 @@ import { Checkbox } from "deste04-ui/components/ui/checkbox";
 import checkboxSource from "deste04-ui/components/ui/checkbox.tsx?raw";
 import { RadioGroup, RadioGroupItem } from "deste04-ui/components/ui/radio-group";
 import radioGroupSource from "deste04-ui/components/ui/radio-group.tsx?raw";
+import { Badge } from "deste04-ui/components/ui/badge";
+import badgeSource from "deste04-ui/components/ui/badge.tsx?raw";
 import { Trash, Users } from "lucide-react";
 
 const previews: Record<string, ReactNode> = {
   button: (
-    <div className="preview-row">
-      <Button>Default</Button>
-      <Button disabled>Disabled</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button size="xs">Extra small</Button>
-      <Button size="sm">Small</Button>
-      <Button>Default</Button>
-      <Button size="lg">Large</Button>
-      <Button size="icon-xs" variant="outline"><Users /></Button>
-      <Button size="icon-sm" variant="default"><Users /></Button>
-      <Button size="icon" variant="ghost"><Users /></Button>
-      <Button size="icon-lg" variant="destructive"><Trash /></Button>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row">
+          <Button variant="solid">Solid</Button>
+          <Button variant="surface">Surface</Button>
+          <Button variant="subtle">Subtle</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="plain">Plain</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button disabled>Disabled</Button>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row">
+          <Button size="2xs">2xs</Button>
+          <Button size="xs">Xs</Button>
+          <Button size="sm">Sm</Button>
+          <Button size="md">Md</Button>
+          <Button size="lg">Lg</Button>
+          <Button size="xl">Xl</Button>
+          <Button size="2xl">2xl</Button>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Icon only</p>
+        <div className="preview-row">
+          <Button size="icon-2xs" variant="outline"><Users /></Button>
+          <Button size="icon-xs" variant="outline"><Users /></Button>
+          <Button size="icon-sm" variant="surface"><Users /></Button>
+          <Button size="icon-md" variant="solid"><Users /></Button>
+          <Button size="icon-lg" variant="plain"><Users /></Button>
+          <Button size="icon-xl" variant="destructive"><Trash /></Button>
+          <Button size="icon-2xl" variant="destructive"><Trash /></Button>
+        </div>
+      </div>
     </div>
   ),
   "copy-button": (
@@ -65,20 +90,43 @@ const previews: Record<string, ReactNode> = {
         value="npx deste04-ui add copy-button"
         label="Copy"
         copiedLabel="Copied"
-        variant="ghost"
+        variant="plain"
       />
     </div>
   ),
   input: (
-    <div className="preview-row">
-      <Input placeholder="Outline" />
-      <Input placeholder="Surface" variant="surface" />
-      <Input placeholder="Subtle" variant="subtle" />
-      <Input placeholder="Flushed" variant="flushed" />
-      <Input placeholder="Disabled" disabled />
-      <Input placeholder="Invalid" aria-invalid />
-      <Input placeholder="Small" size="xs" />
-      <Input placeholder="Large" size="lg" />
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row">
+          <Input placeholder="Outline" variant="outline" style={{ width: "12rem" }} />
+          <Input placeholder="Surface" variant="surface" style={{ width: "12rem" }} />
+          <Input placeholder="Subtle" variant="subtle" style={{ width: "12rem" }} />
+          <Input placeholder="Flushed" variant="flushed" style={{ width: "12rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ alignItems: "flex-end" }}>
+          <Input placeholder="2xs" size="2xs" style={{ width: "8rem" }} />
+          <Input placeholder="xs" size="xs" style={{ width: "8rem" }} />
+          <Input placeholder="sm" size="sm" style={{ width: "8rem" }} />
+          <Input placeholder="md" size="md" style={{ width: "8rem" }} />
+          <Input placeholder="lg" size="lg" style={{ width: "8rem" }} />
+          <Input placeholder="xl" size="xl" style={{ width: "8rem" }} />
+          <Input placeholder="2xl" size="2xl" style={{ width: "8rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>States</p>
+        <div className="preview-row">
+          <Input placeholder="Default" style={{ width: "12rem" }} />
+          <Input defaultValue="Prefilled value" style={{ width: "12rem" }} />
+          <Input placeholder="Read only" readOnly defaultValue="Read only" style={{ width: "12rem" }} />
+          <Input placeholder="Disabled" disabled style={{ width: "12rem" }} />
+          <Input placeholder="Invalid" aria-invalid style={{ width: "12rem" }} />
+        </div>
+      </div>
     </div>
   ),
   label: (
@@ -125,13 +173,38 @@ const previews: Record<string, ReactNode> = {
     </div>
   ),
   textarea: (
-    <div className="preview-row">
-      <Textarea placeholder="Outline" variant="outline" />
-      <Textarea placeholder="Surface" />
-      <Textarea placeholder="Subtle" variant="subtle" />
-      <Textarea placeholder="Flushed" variant="flushed" />
-      <Textarea placeholder="Disabled" disabled />
-      <Textarea placeholder="Invalid" aria-invalid />
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row" style={{ alignItems: "flex-start" }}>
+          <Textarea placeholder="Outline" variant="outline" style={{ width: "12rem" }} />
+          <Textarea placeholder="Surface" variant="surface" style={{ width: "12rem" }} />
+          <Textarea placeholder="Subtle" variant="subtle" style={{ width: "12rem" }} />
+          <Textarea placeholder="Flushed" variant="flushed" style={{ width: "12rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ alignItems: "flex-start" }}>
+          <Textarea placeholder="xs" size="xs" style={{ width: "10rem" }} />
+          <Textarea placeholder="sm" size="sm" style={{ width: "10rem" }} />
+          <Textarea placeholder="md" size="md" style={{ width: "10rem" }} />
+          <Textarea placeholder="lg" size="lg" style={{ width: "10rem" }} />
+          <Textarea placeholder="xl" size="xl" style={{ width: "10rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>States</p>
+        <div className="preview-row" style={{ alignItems: "flex-start" }}>
+          <Textarea placeholder="Default" style={{ width: "12rem" }} />
+          <Textarea
+            defaultValue="Prefilled value that grows with the content."
+            style={{ width: "12rem" }}
+          />
+          <Textarea placeholder="Disabled" disabled style={{ width: "12rem" }} />
+          <Textarea placeholder="Invalid" aria-invalid style={{ width: "12rem" }} />
+        </div>
+      </div>
     </div>
   ),
   switch: (
@@ -145,13 +218,13 @@ const previews: Record<string, ReactNode> = {
   ),
   checkbox: (
     <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.75rem" }}>
-      <Label className="gap-2">
+      <Label className="gap-3">
         <Checkbox defaultChecked /> Email notifications
       </Label>
-      <Label className="gap-2">
+      <Label className="gap-3">
         <Checkbox /> Weekly newsletter
       </Label>
-      <Label className="gap-2">
+      <Label className="gap-3">
         <Checkbox disabled /> Disabled option
       </Label>
     </div>
@@ -170,7 +243,55 @@ const previews: Record<string, ReactNode> = {
         <RadioGroupItem value="compact" id="r3" />
         <Label htmlFor="r3">Compact</Label>
       </div>
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="disabled" id="r4" disabled />
+        <Label htmlFor="r4">Disabled</Label>
+      </div>
     </RadioGroup>
+  ),
+  badge: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Solid</p>
+        <div className="preview-row">
+          <Badge variant="solid" size="sm">Sm</Badge>
+          <Badge variant="solid" size="md">Md</Badge>
+          <Badge variant="solid" size="lg">Lg</Badge>
+          <Badge variant="solid" size="xl">Xl</Badge>
+          <Badge variant="solid" size="2xl">2xl</Badge>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Surface</p>
+        <div className="preview-row">
+          <Badge variant="surface" size="sm">Sm</Badge>
+          <Badge variant="surface" size="md">Md</Badge>
+          <Badge variant="surface" size="lg">Lg</Badge>
+          <Badge variant="surface" size="xl">Xl</Badge>
+          <Badge variant="surface" size="2xl">2xl</Badge>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Subtle</p>
+        <div className="preview-row">
+          <Badge variant="subtle" size="sm">Sm</Badge>
+          <Badge variant="subtle" size="md">Md</Badge>
+          <Badge variant="subtle" size="lg">Lg</Badge>
+          <Badge variant="subtle" size="xl">Xl</Badge>
+          <Badge variant="subtle" size="2xl">2xl</Badge>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Outline</p>
+        <div className="preview-row">
+          <Badge variant="outline" size="sm">Sm</Badge>
+          <Badge variant="outline" size="md">Md</Badge>
+          <Badge variant="outline" size="lg">Lg</Badge>
+          <Badge variant="outline" size="xl">Xl</Badge>
+          <Badge variant="outline" size="2xl">2xl</Badge>
+        </div>
+      </div>
+    </div>
   ),
   link: (
     <div className="preview-row">
@@ -198,7 +319,7 @@ const previews: Record<string, ReactNode> = {
       <Button loading loadingText="Saving..." variant="outline">
         Click me
       </Button>
-      <Button loading size="sm" variant="secondary">
+      <Button loading size="sm" variant="surface">
         Small
       </Button>
       <Button loading size="lg" variant="destructive">
@@ -225,6 +346,7 @@ const sources: Record<string, string> = {
   switch: switchSource,
   checkbox: checkboxSource,
   "radio-group": radioGroupSource,
+  badge: badgeSource,
 };
 
 export default function ComponentPage() {
