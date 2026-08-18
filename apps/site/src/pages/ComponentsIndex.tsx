@@ -4,9 +4,9 @@ import { components } from "../data/components";
 export default function ComponentsIndex() {
   return (
     <div className="page">
-      <h1>Componenti</h1>
-      <p className="muted">Ogni componente si installa singolarmente con il CLI.</p>
-      <div className="grid">
+      <h1>Components</h1>
+      <p className="muted">Each component installs individually via the CLI.</p>
+      <div className="components-grid">
         {components.map((c) => (
           <Link key={c.slug} to={`/components/${c.slug}`} className="card">
             <h3>{c.name}</h3>

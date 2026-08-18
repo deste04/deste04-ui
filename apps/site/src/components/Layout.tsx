@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           deste04-ui
         </Link>
         <nav>
-          <Link to="/components">Componenti</Link>
+          <Link to="/components">Components</Link>
         </nav>
       </header>
       <main className="main">{children}</main>

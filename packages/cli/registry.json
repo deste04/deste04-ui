@@ -62,6 +62,110 @@
       ]
     },
     {
+      "name": "input",
+      "type": "components:ui",
+      "description": "Campo di input con varianti (outline, surface, subtle, flushed) e dimensioni (2xs, xs, sm, md, lg, xl, 2xl), basato su Base UI e class-variance-authority.",
+      "dependencies": ["class-variance-authority", "@base-ui/react"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "target": "components/ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "components:ui",
+      "description": "Etichetta per campi di form (native <label>), con stile disabled coordinato via peer/group.",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "target": "components/ui/label.tsx"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "components:ui",
+      "description": "Linea divisoria orizzontale o verticale, basata su Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "target": "components/ui/separator.tsx"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "components:ui",
+      "description": "Set di primitive per costruire form (Field, FieldSet, FieldGroup, FieldLabel, FieldContent, FieldTitle, FieldDescription, FieldSeparator, FieldError, FieldLegend) con orientamento vertical/horizontal/responsive.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "label", "separator"],
+      "files": [
+        {
+          "path": "components/ui/field.tsx",
+          "target": "components/ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "components:ui",
+      "description": "Textarea multi-riga con varianti (outline, surface, subtle, flushed) e dimensioni (xs, sm, md, lg, xl), si autoespande al contenuto (field-sizing).",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "target": "components/ui/textarea.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "components:ui",
+      "description": "Toggle on/off con due dimensioni (sm, default), basato su Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "target": "components/ui/switch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "components:ui",
+      "description": "Checkbox singola con stato checked/unchecked, basata su Base UI.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "target": "components/ui/checkbox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "components:ui",
+      "description": "Gruppo di radio button (RadioGroup + RadioGroupItem), basato su Base UI.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "target": "components/ui/radio-group.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",

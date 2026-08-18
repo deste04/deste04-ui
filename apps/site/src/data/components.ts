@@ -6,37 +6,88 @@ export interface ComponentMeta {
 }
 
 /**
- * Elenco dei componenti mostrati sul sito.
- * Per aggiungerne uno nuovo: aggiungi qui i metadati, poi aggiungi
- * l'anteprima e il sorgente in ComponentPage.tsx (vedi i commenti lì).
+ * List of components shown on the site.
+ * To add a new one: add its metadata here, then add the preview and
+ * source in ComponentPage.tsx (see the comments there).
  */
 export const components: ComponentMeta[] = [
   {
     slug: "button",
     name: "Button",
     description:
-      "Bottone con varianti (default, outline, ghost, destructive) e dimensioni (sm, default, lg, icon).",
+      "Button with variants (default, outline, ghost, destructive) and sizes (sm, default, lg, icon).",
     install: "npx deste04-ui add button",
   },
   {
     slug: "copy-button",
     name: "Copy Button",
     description:
-      "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo) prima di tornare allo stato normale.",
+      "Button that copies a value to the clipboard and shows a temporary confirmation (checkmark icon, and optionally text) before returning to normal.",
     install: "npx deste04-ui add copy-button",
+  },
+  {
+    slug: "input",
+    name: "Input",
+    description:
+      "Input field with variants (outline, surface, subtle, flushed) and sizes (2xs, xs, sm, md, lg, xl, 2xl).",
+    install: "npx deste04-ui add input",
+  },
+  {
+    slug: "label",
+    name: "Label",
+    description: "Label for form fields, with coordinated disabled styling.",
+    install: "npx deste04-ui add label",
+  },
+  {
+    slug: "separator",
+    name: "Separator",
+    description: "Horizontal or vertical dividing line.",
+    install: "npx deste04-ui add separator",
+  },
+  {
+    slug: "field",
+    name: "Field",
+    description:
+      "Primitives for building forms (Field, FieldSet, FieldGroup, FieldLabel, FieldDescription, FieldError, ...) with vertical/horizontal/responsive orientation.",
+    install: "npx deste04-ui add field",
+  },
+  {
+    slug: "textarea",
+    name: "Textarea",
+    description:
+      "Multi-line textarea with variants (outline, surface, subtle, flushed) and sizes (xs, sm, md, lg, xl).",
+    install: "npx deste04-ui add textarea",
+  },
+  {
+    slug: "switch",
+    name: "Switch",
+    description: "On/off toggle with two sizes (sm, default).",
+    install: "npx deste04-ui add switch",
+  },
+  {
+    slug: "checkbox",
+    name: "Checkbox",
+    description: "Single checkbox with checked/unchecked state.",
+    install: "npx deste04-ui add checkbox",
+  },
+  {
+    slug: "radio-group",
+    name: "Radio Group",
+    description: "Group of radio buttons (RadioGroup + RadioGroupItem).",
+    install: "npx deste04-ui add radio-group",
   },
   {
     slug: "link",
     name: "Link",
     description:
-      "Anchor stilizzato (non un bottone) con varianti underline/no-underline e icona opzionale \"apri esterno\".",
+      "Styled anchor (not a button) with underline/no-underline variants and an optional \"open external\" icon.",
     install: "npx deste04-ui add link",
   },
   {
     slug: "spinner",
     name: "Spinner",
     description:
-      "Icona di caricamento animata con varianti di dimensione (xs, sm, default, lg, xl). Usata da Button per lo stato loading.",
+      "Animated loading icon with size variants (xs, sm, default, lg, xl). Used by Button for the loading state.",
     install: "npx deste04-ui add spinner",
   },
 ];
