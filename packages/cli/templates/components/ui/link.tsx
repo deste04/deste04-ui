@@ -34,7 +34,7 @@ function Link({
   target,
   rel,
   ...props
-}: LinkProps) {
+}: Readonly<LinkProps>) {
   return (
     <a
       className={cn(linkVariants({ variant }), className)}

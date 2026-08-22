@@ -22,7 +22,7 @@ export function CopyButton({
   size,
   variant = "outline",
   ...props
-}: CopyButtonProps) {
+}: Readonly<CopyButtonProps>) {
   const [copied, setCopied] = React.useState(false);
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
 

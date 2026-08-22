@@ -35,7 +35,7 @@ function Spinner({
   size,
   variant = "ticks",
   ...props
-}: SpinnerProps) {
+}: Readonly<SpinnerProps>) {
   const Icon = spinnerIcons[variant];
   return (
     <Icon
