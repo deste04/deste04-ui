@@ -4,18 +4,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const textareaVariants = cva(
-  "flex field-sizing-content min-h-16 w-full min-w-0 rounded-lg font-sans transition-colors outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+  "flex field-sizing-content min-h-16 w-full min-w-0 rounded-lg font-sans transition-colors outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:text-destructive",
   {
     variants: {
       variant: {
         outline:
-          "border border-input bg-transparent focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50",
+          "border border-input bg-transparent focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50",
         surface:
-          "border border-border bg-card focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive disabled:bg-muted",
+          "border border-border bg-card focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive disabled:bg-muted",
         subtle:
-          "border border-transparent bg-muted focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive",
+          "border border-transparent bg-muted focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive",
         flushed:
-          "rounded-none border-0 border-b border-input bg-transparent text-foreground focus-visible:border-ring focus-visible:ring-0 aria-invalid:border-destructive",
+          "rounded-none border-0 border-b border-input bg-transparent text-foreground focus-visible:border-b-2 focus-visible:border-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive",
       },
       size: {
         xs: "px-2 py-[5px] text-sm scroll-pb-[5px]",
