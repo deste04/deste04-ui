@@ -38,8 +38,8 @@
     {
       "name": "button",
       "type": "components:ui",
-      "description": "Un bottone con varianti (default, outline, secondary, ghost, destructive) e dimensioni (xs, sm, default, lg, icon, icon-xs, icon-sm, icon-lg), basato su Base UI e class-variance-authority.",
-      "dependencies": ["class-variance-authority", "@base-ui/react"],
+      "description": "Un bottone con varianti (default, outline, secondary, ghost, destructive) e dimensioni (xs, sm, default, lg, icon, icon-xs, icon-sm, icon-lg), basato su class-variance-authority.",
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": ["utils", "global", "spinner"],
       "files": [
         {
@@ -64,8 +64,8 @@
     {
       "name": "input",
       "type": "components:ui",
-      "description": "Campo di input con varianti (outline, surface, subtle, flushed) e dimensioni (2xs, xs, sm, md, lg, xl, 2xl), basato su Base UI e class-variance-authority.",
-      "dependencies": ["class-variance-authority", "@base-ui/react"],
+      "description": "Campo di input con varianti (outline, surface, subtle, flushed) e dimensioni (2xs, xs, sm, md, lg, xl, 2xl), basato su class-variance-authority.",
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": ["utils", "global"],
       "files": [
         {
@@ -90,8 +90,8 @@
     {
       "name": "separator",
       "type": "components:ui",
-      "description": "Linea divisoria orizzontale o verticale, basata su Base UI.",
-      "dependencies": ["@base-ui/react"],
+      "description": "Linea divisoria orizzontale o verticale (div nativo con role=separator).",
+      "dependencies": [],
       "registryDependencies": ["utils"],
       "files": [
         {
@@ -114,6 +114,19 @@
       ]
     },
     {
+      "name": "fieldset",
+      "type": "components:ui",
+      "description": "Sezione di form a due colonne responsive (Fieldset, FieldsetControl, FieldsetContent, FieldsetLegend, FieldsetHelperText, FieldsetErrorText): etichetta e testo di aiuto a sinistra, campi a destra (impilati su mobile).",
+      "dependencies": [],
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "components/ui/fieldset.tsx",
+          "target": "components/ui/fieldset.tsx"
+        }
+      ]
+    },
+    {
       "name": "textarea",
       "type": "components:ui",
       "description": "Textarea multi-riga con varianti (outline, surface, subtle, flushed) e dimensioni (xs, sm, md, lg, xl), si autoespande al contenuto (field-sizing).",
@@ -127,10 +140,23 @@
       ]
     },
     {
+      "name": "tags-input",
+      "type": "components:ui",
+      "description": "Campo per inserire più tag/etichette: digita e premi Invio per aggiungere, click sulla X per rimuovere un tag, doppio click per modificarlo. Varianti (outline, surface, subtle) e dimensioni (xs, sm, md, lg), basato su Ark UI.",
+      "dependencies": ["@ark-ui/react", "lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/tags-input.tsx",
+          "target": "components/ui/tags-input.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "components:ui",
-      "description": "Toggle on/off con due dimensioni (sm, default), basato su Base UI.",
-      "dependencies": ["@base-ui/react"],
+      "description": "Toggle on/off con due dimensioni (sm, default), basato su Ark UI. Il testo passato come children diventa l'etichetta cliccabile.",
+      "dependencies": ["@ark-ui/react"],
       "registryDependencies": ["utils"],
       "files": [
         {
@@ -142,8 +168,8 @@
     {
       "name": "checkbox",
       "type": "components:ui",
-      "description": "Checkbox singola con stato checked/unchecked, basata su Base UI.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "description": "Checkbox singola con stato checked/unchecked/indeterminate, basata su Ark UI. Il testo passato come children diventa l'etichetta cliccabile.",
+      "dependencies": ["@ark-ui/react", "lucide-react"],
       "registryDependencies": ["utils"],
       "files": [
         {
@@ -155,8 +181,8 @@
     {
       "name": "radio-group",
       "type": "components:ui",
-      "description": "Gruppo di radio button (RadioGroup + RadioGroupItem), basato su Base UI.",
-      "dependencies": ["@base-ui/react"],
+      "description": "Gruppo di radio button (RadioGroup + RadioGroupItem), basato su Ark UI. Il testo passato come children di RadioGroupItem diventa l'etichetta cliccabile.",
+      "dependencies": ["@ark-ui/react"],
       "registryDependencies": ["utils"],
       "files": [
         {

@@ -1,5 +1,4 @@
-import type { ReactNode } from "react";
-import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import type { ComponentProps, ReactNode } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../lib/utils";
@@ -81,11 +80,12 @@ function Button({
   disabled,
   children,
   ...props
-}: ButtonPrimitive.Props &
+}: ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> &
   ButtonLoadingProps) {
   return (
-    <ButtonPrimitive
+    <button
+      type="button"
       data-slot="button"
       disabled={disabled || loading}
       aria-busy={loading || undefined}
@@ -94,7 +94,7 @@ function Button({
     >
       {loading && <Spinner size={spinnerSizeBySize[size ?? "md"]} />}
       {loading ? loadingText ?? children : children}
-    </ButtonPrimitive>
+    </button>
   );
 }
 

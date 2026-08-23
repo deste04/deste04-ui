@@ -25,8 +25,12 @@
     "./components/ui/separator.tsx": "./templates/components/ui/separator.tsx",
     "./components/ui/field": "./templates/components/ui/field.tsx",
     "./components/ui/field.tsx": "./templates/components/ui/field.tsx",
+    "./components/ui/fieldset": "./templates/components/ui/fieldset.tsx",
+    "./components/ui/fieldset.tsx": "./templates/components/ui/fieldset.tsx",
     "./components/ui/textarea": "./templates/components/ui/textarea.tsx",
     "./components/ui/textarea.tsx": "./templates/components/ui/textarea.tsx",
+    "./components/ui/tags-input": "./templates/components/ui/tags-input.tsx",
+    "./components/ui/tags-input.tsx": "./templates/components/ui/tags-input.tsx",
     "./components/ui/switch": "./templates/components/ui/switch.tsx",
     "./components/ui/switch.tsx": "./templates/components/ui/switch.tsx",
     "./components/ui/checkbox": "./templates/components/ui/checkbox.tsx",
@@ -58,7 +62,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@base-ui/react": "^1.7.0",
+    "@ark-ui/react": "^5.39.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.31.0",

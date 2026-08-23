@@ -25,8 +25,19 @@ import {
   FieldLegend,
 } from "deste04-ui/components/ui/field";
 import fieldSource from "deste04-ui/components/ui/field.tsx?raw";
+import {
+  Fieldset,
+  FieldsetControl,
+  FieldsetContent,
+  FieldsetLegend,
+  FieldsetHelperText,
+  FieldsetErrorText,
+} from "deste04-ui/components/ui/fieldset";
+import fieldsetSource from "deste04-ui/components/ui/fieldset.tsx?raw";
 import { Textarea } from "deste04-ui/components/ui/textarea";
 import textareaSource from "deste04-ui/components/ui/textarea.tsx?raw";
+import { TagsInput } from "deste04-ui/components/ui/tags-input";
+import tagsInputSource from "deste04-ui/components/ui/tags-input.tsx?raw";
 import { Switch } from "deste04-ui/components/ui/switch";
 import switchSource from "deste04-ui/components/ui/switch.tsx?raw";
 import { Checkbox } from "deste04-ui/components/ui/checkbox";
@@ -47,7 +58,7 @@ import {
 import cardSource from "deste04-ui/components/ui/card.tsx?raw";
 import { CardLink } from "deste04-ui/components/ui/card-link";
 import cardLinkSource from "deste04-ui/components/ui/card-link.tsx?raw";
-import { Trash, Users, BookOpen, GitFork, History, KeyRound } from "lucide-react";
+import { Trash, Users, BookOpen, GitFork, History, KeyRound, CircleAlert } from "lucide-react";
 
 const previews: Record<string, ReactNode> = {
   button: (
@@ -184,6 +195,36 @@ const previews: Record<string, ReactNode> = {
       </FieldSet>
     </div>
   ),
+  fieldset: (
+    <div style={{ width: "100%" }}>
+      <Fieldset>
+        <FieldsetControl>
+          <FieldsetLegend>Public profile</FieldsetLegend>
+          <FieldsetHelperText>
+            Shown on your profile and in comments.
+          </FieldsetHelperText>
+        </FieldsetControl>
+        <FieldsetContent>
+          <Field>
+            <FieldLabel htmlFor="preview-fieldset-name">Name</FieldLabel>
+            <Input id="preview-fieldset-name" placeholder="Jane Doe" />
+          </Field>
+          <Field data-invalid={true}>
+            <FieldLabel htmlFor="preview-fieldset-email">Email</FieldLabel>
+            <Input
+              id="preview-fieldset-email"
+              aria-invalid
+              defaultValue="not-an-email"
+            />
+            <FieldsetErrorText>
+              <CircleAlert className="size-4" />
+              Enter a valid email address.
+            </FieldsetErrorText>
+          </Field>
+        </FieldsetContent>
+      </Fieldset>
+    </div>
+  ),
   textarea: (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       <div>
@@ -219,6 +260,72 @@ const previews: Record<string, ReactNode> = {
       </div>
     </div>
   ),
+  "tags-input": (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <TagsInput
+            variant="outline"
+            defaultValue={["React", "Solid", "Vue"]}
+            style={{ width: "20rem" }}
+          />
+          <TagsInput
+            variant="surface"
+            defaultValue={["React", "Solid", "Vue"]}
+            style={{ width: "20rem" }}
+          />
+          <TagsInput
+            variant="subtle"
+            defaultValue={["React", "Solid", "Vue"]}
+            style={{ width: "20rem" }}
+          />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <TagsInput size="xs" defaultValue={["Xs"]} style={{ width: "20rem" }} />
+          <TagsInput size="sm" defaultValue={["Sm"]} style={{ width: "20rem" }} />
+          <TagsInput size="md" defaultValue={["Md"]} style={{ width: "20rem" }} />
+          <TagsInput size="lg" defaultValue={["Lg"]} style={{ width: "20rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>States</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <TagsInput
+            defaultValue={["Read only"]}
+            readOnly
+            style={{ width: "20rem" }}
+          />
+          <TagsInput
+            defaultValue={["Disabled"]}
+            disabled
+            style={{ width: "20rem" }}
+          />
+          <TagsInput
+            defaultValue={["Invalid"]}
+            invalid
+            style={{ width: "20rem" }}
+          />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Full example</p>
+        <div style={{ width: "20rem" }}>
+          <TagsInput
+            label="Tags"
+            defaultValue={["React", "Solid", "Vue"]}
+            max={6}
+          />
+          <p className="muted" style={{ marginTop: "0.5rem", fontSize: "0.75rem" }}>
+            Press Enter to add a tag, double-click one to edit it.
+          </p>
+        </div>
+      </div>
+    </div>
+  ),
   switch: (
     <div className="preview-row">
       <Switch />
@@ -226,39 +333,23 @@ const previews: Record<string, ReactNode> = {
       <Switch disabled />
       <Switch size="sm" />
       <Switch size="sm" defaultChecked />
+      <Switch defaultChecked>Notifications</Switch>
     </div>
   ),
   checkbox: (
     <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.75rem" }}>
-      <Label className="gap-3">
-        <Checkbox defaultChecked /> Email notifications
-      </Label>
-      <Label className="gap-3">
-        <Checkbox /> Weekly newsletter
-      </Label>
-      <Label className="gap-3">
-        <Checkbox disabled /> Disabled option
-      </Label>
+      <Checkbox defaultChecked>Email notifications</Checkbox>
+      <Checkbox>Weekly newsletter</Checkbox>
+      <Checkbox defaultChecked="indeterminate">Select all (partial)</Checkbox>
+      <Checkbox disabled>Disabled option</Checkbox>
     </div>
   ),
   "radio-group": (
     <RadioGroup defaultValue="comfortable" className="w-fit">
-      <div className="flex items-center gap-3">
-        <RadioGroupItem value="default" id="r1" />
-        <Label htmlFor="r1">Default</Label>
-      </div>
-      <div className="flex items-center gap-3">
-        <RadioGroupItem value="comfortable" id="r2" />
-        <Label htmlFor="r2">Comfortable</Label>
-      </div>
-      <div className="flex items-center gap-3">
-        <RadioGroupItem value="compact" id="r3" />
-        <Label htmlFor="r3">Compact</Label>
-      </div>
-      <div className="flex items-center gap-3">
-        <RadioGroupItem value="disabled" id="r4" disabled />
-        <Label htmlFor="r4">Disabled</Label>
-      </div>
+      <RadioGroupItem value="default">Default</RadioGroupItem>
+      <RadioGroupItem value="comfortable">Comfortable</RadioGroupItem>
+      <RadioGroupItem value="compact">Compact</RadioGroupItem>
+      <RadioGroupItem value="disabled" disabled>Disabled</RadioGroupItem>
     </RadioGroup>
   ),
   badge: (
@@ -466,12 +557,12 @@ const previews: Record<string, ReactNode> = {
               <CardTitle>Built for React + Tailwind</CardTitle>
               <CardDescription>
                 Copy-paste components you fully own, styled with Tailwind and
-                Base UI underneath. No hidden abstractions to fight later.
+                Ark UI underneath. No hidden abstractions to fight later.
               </CardDescription>
             </CardHeader>
             <CardContent style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}>
               <Badge variant="subtle">Tailwind</Badge>
-              <Badge variant="subtle">Base UI</Badge>
+              <Badge variant="subtle">Ark UI</Badge>
             </CardContent>
             <CardFooter>
               <Button size="sm">Get started</Button>
@@ -561,7 +652,9 @@ const sources: Record<string, string> = {
   label: labelSource,
   separator: separatorSource,
   field: fieldSource,
+  fieldset: fieldsetSource,
   textarea: textareaSource,
+  "tags-input": tagsInputSource,
   switch: switchSource,
   checkbox: checkboxSource,
   "radio-group": radioGroupSource,

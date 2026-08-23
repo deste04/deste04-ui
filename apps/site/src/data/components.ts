@@ -52,11 +52,25 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add field",
   },
   {
+    slug: "fieldset",
+    name: "Fieldset",
+    description:
+      "Responsive two-column form section (Fieldset, FieldsetControl, FieldsetContent, FieldsetLegend, FieldsetHelperText, FieldsetErrorText): label and helper text on one side, fields on the other, stacked on mobile.",
+    install: "npx deste04-ui add fieldset",
+  },
+  {
     slug: "textarea",
     name: "Textarea",
     description:
       "Multi-line textarea with variants (outline, surface, subtle, flushed) and sizes (xs, sm, md, lg, xl).",
     install: "npx deste04-ui add textarea",
+  },
+  {
+    slug: "tags-input",
+    name: "Tags Input",
+    description:
+      "Type and press Enter to add a tag, click the X to remove one, double-click a tag to edit it. Variants (outline, surface, subtle) and sizes (xs, sm, md, lg).",
+    install: "npx deste04-ui add tags-input",
   },
   {
     slug: "switch",
