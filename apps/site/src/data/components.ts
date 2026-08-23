@@ -33,6 +33,20 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add file-upload",
   },
   {
+    slug: "theme-provider",
+    name: "Theme Provider",
+    description:
+      "Thin wrapper around next-themes' ThemeProvider: handles light/dark/system theme via the `.dark` class on `<html>`. Mount it once at the app entrypoint, wrapping the whole app.",
+    install: "npx deste04-ui add theme-provider",
+  },
+  {
+    slug: "theme-toggle",
+    name: "Theme Toggle",
+    description:
+      "Icon button that cycles through light/dark/system (sun/moon/monitor icon with a Swap transition), built on next-themes. Requires ThemeProvider mounted higher up the tree.",
+    install: "npx deste04-ui add theme-toggle",
+  },
+  {
     slug: "copy-button",
     name: "Copy Button",
     description:

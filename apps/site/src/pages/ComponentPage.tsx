@@ -22,6 +22,9 @@ import {
   FileUploadContext,
 } from "deste04-ui/components/ui/file-upload";
 import fileUploadSource from "deste04-ui/components/ui/file-upload.tsx?raw";
+import themeProviderSource from "deste04-ui/components/theme/theme-provider.tsx?raw";
+import { ThemeToggle } from "deste04-ui/components/theme/theme-toggle";
+import themeToggleSource from "deste04-ui/components/theme/theme-toggle.tsx?raw";
 import { CopyButton } from "deste04-ui/components/ui/copy-button";
 import copyButtonSource from "deste04-ui/components/ui/copy-button.tsx?raw";
 import { Spinner } from "deste04-ui/components/ui/spinner";
@@ -271,6 +274,28 @@ const previews: Record<string, ReactNode> = {
           <FileUploadHiddenInput />
         </FileUpload>
       </div>
+    </div>
+  ),
+  "theme-provider": (
+    <div>
+      <p className="muted">
+        Mount it once at the app entrypoint (e.g. <code>main.tsx</code>), wrapping the whole app:
+      </p>
+      <pre className="code-block" style={{ marginTop: "0.5rem" }}>
+        <code>{`<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <App />
+</ThemeProvider>`}</code>
+      </pre>
+      <p className="muted" style={{ marginTop: "0.75rem" }}>
+        This site uses it — try the theme toggle in the header, or the{" "}
+        <Link to="/components/theme-toggle">Theme Toggle</Link> preview.
+      </p>
+    </div>
+  ),
+  "theme-toggle": (
+    <div className="preview-row">
+      <ThemeToggle />
+      <p className="muted">Click to cycle light → dark → system.</p>
     </div>
   ),
   "copy-button": (
@@ -1172,6 +1197,8 @@ const sources: Record<string, string> = {
   button: buttonSource,
   swap: swapSource,
   "file-upload": fileUploadSource,
+  "theme-provider": themeProviderSource,
+  "theme-toggle": themeToggleSource,
   "copy-button": copyButtonSource,
   spinner: spinnerSource,
   link: linkSource,

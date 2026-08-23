@@ -335,6 +335,32 @@
       ]
     },
     {
+      "name": "theme-provider",
+      "type": "components:theme",
+      "description": "Wrapper attorno a `ThemeProvider` di next-themes: gestisce tema chiaro/scuro/sistema tramite la classe `.dark` su `<html>`. Da montare una volta sola nell'entrypoint (es. main.tsx), attorno a tutta l'app.",
+      "dependencies": ["next-themes"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/theme/theme-provider.tsx",
+          "target": "components/theme/theme-provider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "components:theme",
+      "description": "Bottone icona che cicla tra tema light/dark/system (icona sole/luna/monitor con transizione Swap), basato su next-themes. Richiede `ThemeProvider` montato più in alto nell'albero.",
+      "dependencies": ["next-themes", "lucide-react"],
+      "registryDependencies": ["utils", "global", "button", "swap"],
+      "files": [
+        {
+          "path": "components/theme/theme-toggle.tsx",
+          "target": "components/theme/theme-toggle.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata con dissolvenza, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",
