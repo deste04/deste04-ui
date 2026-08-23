@@ -105,6 +105,20 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add radio-group",
   },
   {
+    slug: "toggle",
+    name: "Toggle",
+    description:
+      "Two-state pressable button (built on Ark UI). Variants (outline, subtle) and sizes (sm, md, lg).",
+    install: "npx deste04-ui add toggle",
+  },
+  {
+    slug: "toggle-group",
+    name: "Toggle Group",
+    description:
+      "Group of Toggle buttons (ToggleGroup + ToggleGroupItem) reusing Toggle's variants/sizes, built on Ark UI. Single or multiple selection, horizontal or vertical.",
+    install: "npx deste04-ui add toggle-group",
+  },
+  {
     slug: "badge",
     name: "Badge",
     description:

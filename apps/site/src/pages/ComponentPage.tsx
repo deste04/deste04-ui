@@ -48,6 +48,10 @@ import { Checkbox } from "deste04-ui/components/ui/checkbox";
 import checkboxSource from "deste04-ui/components/ui/checkbox.tsx?raw";
 import { RadioGroup, RadioGroupItem } from "deste04-ui/components/ui/radio-group";
 import radioGroupSource from "deste04-ui/components/ui/radio-group.tsx?raw";
+import { Toggle } from "deste04-ui/components/ui/toggle";
+import toggleSource from "deste04-ui/components/ui/toggle.tsx?raw";
+import { ToggleGroup, ToggleGroupItem } from "deste04-ui/components/ui/toggle-group";
+import toggleGroupSource from "deste04-ui/components/ui/toggle-group.tsx?raw";
 import { Badge } from "deste04-ui/components/ui/badge";
 import badgeSource from "deste04-ui/components/ui/badge.tsx?raw";
 import {
@@ -62,7 +66,21 @@ import {
 import cardSource from "deste04-ui/components/ui/card.tsx?raw";
 import { CardLink } from "deste04-ui/components/ui/card-link";
 import cardLinkSource from "deste04-ui/components/ui/card-link.tsx?raw";
-import { Trash, Users, BookOpen, GitFork, History, KeyRound, CircleAlert } from "lucide-react";
+import {
+  Trash,
+  Users,
+  BookOpen,
+  GitFork,
+  History,
+  KeyRound,
+  CircleAlert,
+  Bold,
+  Italic,
+  Underline,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+} from "lucide-react";
 
 const frameworkItems = [
   { label: "React", value: "react" },
@@ -437,6 +455,98 @@ const previews: Record<string, ReactNode> = {
       <RadioGroupItem value="disabled" disabled>Disabled</RadioGroupItem>
     </RadioGroup>
   ),
+  toggle: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row">
+          <Toggle variant="outline" aria-label="Bold">
+            <Bold />
+          </Toggle>
+          <Toggle variant="outline" defaultPressed aria-label="Italic">
+            <Italic />
+          </Toggle>
+          <Toggle variant="subtle" aria-label="Underline">
+            <Underline />
+          </Toggle>
+          <Toggle variant="subtle" defaultPressed aria-label="Underline (on)">
+            <Underline />
+          </Toggle>
+          <Toggle variant="outline" disabled aria-label="Disabled">
+            <Bold />
+          </Toggle>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ alignItems: "center" }}>
+          <Toggle size="sm" defaultPressed aria-label="Bold small">
+            <Bold />
+          </Toggle>
+          <Toggle size="md" defaultPressed aria-label="Bold medium">
+            <Bold />
+          </Toggle>
+          <Toggle size="lg" defaultPressed aria-label="Bold large">
+            <Bold />
+          </Toggle>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>With text</p>
+        <div className="preview-row">
+          <Toggle defaultPressed>
+            <Bold /> Bold
+          </Toggle>
+        </div>
+      </div>
+    </div>
+  ),
+  "toggle-group": (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Single selection</p>
+        <ToggleGroup defaultValue={["center"]}>
+          <ToggleGroupItem value="left" aria-label="Align left">
+            <AlignLeft />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="center" aria-label="Align center">
+            <AlignCenter />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="right" aria-label="Align right">
+            <AlignRight />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Multiple selection</p>
+        <ToggleGroup multiple defaultValue={["bold"]}>
+          <ToggleGroupItem value="bold" variant="subtle" aria-label="Bold">
+            <Bold />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="italic" variant="subtle" aria-label="Italic">
+            <Italic />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="underline" variant="subtle" aria-label="Underline">
+            <Underline />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Vertical</p>
+        <ToggleGroup orientation="vertical" defaultValue={["center"]}>
+          <ToggleGroupItem value="left" aria-label="Align left">
+            <AlignLeft />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="center" aria-label="Align center">
+            <AlignCenter />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="right" aria-label="Align right">
+            <AlignRight />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    </div>
+  ),
   badge: (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       <div>
@@ -745,6 +855,8 @@ const sources: Record<string, string> = {
   switch: switchSource,
   checkbox: checkboxSource,
   "radio-group": radioGroupSource,
+  toggle: toggleSource,
+  "toggle-group": toggleGroupSource,
   badge: badgeSource,
   card: cardSource,
   "card-link": cardLinkSource,

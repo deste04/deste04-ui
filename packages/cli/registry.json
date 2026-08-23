@@ -257,6 +257,32 @@
       ]
     },
     {
+      "name": "toggle",
+      "type": "components:ui",
+      "description": "Bottone a due stati (on/off), basato su Ark UI. Varianti (outline, subtle) e dimensioni (sm, md, lg), basato su class-variance-authority.",
+      "dependencies": ["@ark-ui/react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "target": "components/ui/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "components:ui",
+      "description": "Gruppo di Toggle (ToggleGroup + ToggleGroupItem) che riusa le varianti/dimensioni di Toggle, basato su Ark UI. Selezione singola o multipla, orientamento orizzontale/verticale.",
+      "dependencies": ["@ark-ui/react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global", "toggle"],
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "target": "components/ui/toggle-group.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",

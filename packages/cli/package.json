@@ -47,6 +47,10 @@
     "./components/ui/card.tsx": "./templates/components/ui/card.tsx",
     "./components/ui/card-link": "./templates/components/ui/card-link.tsx",
     "./components/ui/card-link.tsx": "./templates/components/ui/card-link.tsx",
+    "./components/ui/toggle": "./templates/components/ui/toggle.tsx",
+    "./components/ui/toggle.tsx": "./templates/components/ui/toggle.tsx",
+    "./components/ui/toggle-group": "./templates/components/ui/toggle-group.tsx",
+    "./components/ui/toggle-group.tsx": "./templates/components/ui/toggle-group.tsx",
     "./styles/global.css": "./templates/styles/global.css",
     "./lib/utils": "./templates/lib/utils.ts",
     "./registry.json": "./registry.json"

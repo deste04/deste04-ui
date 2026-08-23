@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const editableFieldVariants = cva(
-  "rounded-lg font-sans transition-colors outline-none",
+  "rounded-lg font-sans transition-colors outline-none selection:bg-primary selection:text-primary-foreground",
   {
     variants: {
       size: {
