@@ -9,7 +9,7 @@ const cardVariants = cva(
     variants: {
       variant: {
         outline: "border border-border bg-transparent",
-        elevated: "border border-transparent bg-transparent shadow-lg",
+        elevated: "border border-transparent bg-card shadow-lg border-border",
         subtle: "border border-transparent bg-muted",
       },
       size: {

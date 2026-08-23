@@ -119,7 +119,7 @@ function TabsIndicator({ className, ...props }: Readonly<ArkTabs.IndicatorProps>
         "in-data-[variant=line]:data-[orientation=horizontal]:top-auto in-data-[variant=line]:data-[orientation=horizontal]:bottom-0 in-data-[variant=line]:data-[orientation=horizontal]:h-0.5 in-data-[variant=line]:data-[orientation=horizontal]:translate-y-px",
         "in-data-[variant=line]:data-[orientation=vertical]:left-0 in-data-[variant=line]:data-[orientation=vertical]:w-0.5 in-data-[variant=line]:data-[orientation=vertical]:-translate-x-px",
         "in-data-[variant=subtle]:rounded-md in-data-[variant=subtle]:bg-primary/10 in-data-[variant=subtle]:dark:bg-primary/15",
-        "in-data-[variant=enclosed]:rounded-md in-data-[variant=enclosed]:bg-card in-data-[variant=enclosed]:shadow-sm",
+        "in-data-[variant=enclosed]:rounded-md in-data-[variant=enclosed]:bg-card in-data-[variant=enclosed]:shadow-sm in-data-[variant=enclosed]:dark:bg-white/10",
         className
       )}
       {...props}

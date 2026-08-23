@@ -1,6 +1,8 @@
 import { useState, type ComponentType, type ReactNode } from "react";
 import { useParams, Link } from "react-router-dom";
 import { components } from "../data/components";
+import { linkVariants } from "deste04-ui/components/ui/link";
+import { cn } from "deste04-ui/lib/utils";
 import { Button } from "deste04-ui/components/ui/button";
 import buttonSource from "deste04-ui/components/ui/button.tsx?raw";
 import { Swap, SwapIndicator } from "deste04-ui/components/ui/swap";
@@ -114,6 +116,7 @@ import {
   VolumeX,
   Upload,
   FileText,
+  ArrowLeft,
 } from "lucide-react";
 
 function SwapDemo({
@@ -248,11 +251,10 @@ const previews: Record<string, ReactNode> = {
         </FileUpload>
       </div>
       <div style={{ width: "24rem" }}>
-        <p className="muted" style={{ marginBottom: "0.5rem" }}>Trigger only, with clear</p>
         <FileUpload maxFiles={3} size="sm">
           <FileUploadLabel>Documents</FileUploadLabel>
           <div className="preview-row">
-            <FileUploadTrigger>Choose file(s)</FileUploadTrigger>
+            <FileUploadTrigger><Upload />Choose file(s)</FileUploadTrigger>
             <FileUploadClearTrigger>Clear</FileUploadClearTrigger>
           </div>
           <FileUploadItemGroup>
@@ -1229,40 +1231,71 @@ export default function ComponentPage() {
 
   if (!meta) {
     return (
-      <div className="page">
-        <p>
+      <div className="mx-auto w-full max-w-3xl px-4 py-12">
+        <p className="text-foreground">
           Component not found.{" "}
-          <Link to="/components">Back to the list</Link>
+          <Link to="/components" className={cn(linkVariants(), "text-primary")}>
+            Back to the list
+          </Link>
         </p>
       </div>
     );
   }
 
   return (
-    <div className="page">
-      <Link to="/components" className="back-link">
-        ← All components
+    <div className="mx-auto w-full max-w-3xl px-4 py-12">
+      <Link
+        to="/components"
+        className={cn(
+          linkVariants({ variant: "no-underline" }),
+          "inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+        )}
+      >
+        <ArrowLeft className="size-3.5" /> All components
       </Link>
-      <h1>{meta.name}</h1>
-      <p className="muted">{meta.description}</p>
 
-      <section className="panel">
-        <h2>Preview</h2>
-        <div className="preview">{previews[slug]}</div>
+      <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground">{meta.name}</h1>
+      <p className="mt-1 max-w-xl text-muted-foreground">{meta.description}</p>
+
+      <section className="mt-10">
+        <h2 className="mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+          Preview
+        </h2>
+        <div className="rounded-xl border border-border bg-muted/40 p-8">{previews[slug]}</div>
       </section>
 
-      <section className="panel">
-        <h2>Installation</h2>
-        <pre className="code-block">
-          <code>{meta.install}</code>
-        </pre>
+      <section className="mt-10">
+        <h2 className="mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+          Installation
+        </h2>
+        <div className="relative">
+          <pre className="overflow-x-auto rounded-lg border border-border bg-muted px-5 py-4 pe-14 font-mono text-sm text-foreground">
+            <code>{meta.install}</code>
+          </pre>
+          <CopyButton
+            value={meta.install}
+            variant="plain"
+            size="icon-sm"
+            className="absolute end-2 top-2"
+          />
+        </div>
       </section>
 
-      <section className="panel">
-        <h2>Source code</h2>
-        <pre className="code-block">
-          <code>{sources[slug]}</code>
-        </pre>
+      <section className="mt-10">
+        <h2 className="mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+          Source code
+        </h2>
+        <div className="relative">
+          <pre className="max-h-[32rem] overflow-auto rounded-lg border border-border bg-muted px-5 py-4 pe-14 font-mono text-sm text-foreground">
+            <code>{sources[slug]}</code>
+          </pre>
+          <CopyButton
+            value={sources[slug]}
+            variant="plain"
+            size="icon-sm"
+            className="absolute end-2 top-2"
+          />
+        </div>
       </section>
     </div>
   );
