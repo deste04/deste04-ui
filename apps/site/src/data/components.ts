@@ -26,6 +26,13 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add swap",
   },
   {
+    slug: "file-upload",
+    name: "File Upload",
+    description:
+      "File upload with a drag-and-drop dropzone, a list of uploaded files with preview/name/size, single or clear-all delete, built on Ark UI. Sizes (sm, md, lg).",
+    install: "npx deste04-ui add file-upload",
+  },
+  {
     slug: "copy-button",
     name: "Copy Button",
     description:

@@ -322,6 +322,19 @@
       ]
     },
     {
+      "name": "file-upload",
+      "type": "components:ui",
+      "description": "Upload di file con dropzone drag-and-drop, lista file caricati con anteprima/nome/dimensione, eliminazione singola o di tutti i file, basato su Ark UI. Dimensioni (sm, md, lg).",
+      "dependencies": ["@ark-ui/react", "lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global", "button"],
+      "files": [
+        {
+          "path": "components/ui/file-upload.tsx",
+          "target": "components/ui/file-upload.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata con dissolvenza, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",

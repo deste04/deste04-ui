@@ -5,6 +5,23 @@ import { Button } from "deste04-ui/components/ui/button";
 import buttonSource from "deste04-ui/components/ui/button.tsx?raw";
 import { Swap, SwapIndicator } from "deste04-ui/components/ui/swap";
 import swapSource from "deste04-ui/components/ui/swap.tsx?raw";
+import {
+  FileUpload,
+  FileUploadLabel,
+  FileUploadDropzone,
+  FileUploadTrigger,
+  FileUploadClearTrigger,
+  FileUploadItemGroup,
+  FileUploadItem,
+  FileUploadItemPreview,
+  FileUploadItemPreviewImage,
+  FileUploadItemName,
+  FileUploadItemSizeText,
+  FileUploadItemDeleteTrigger,
+  FileUploadHiddenInput,
+  FileUploadContext,
+} from "deste04-ui/components/ui/file-upload";
+import fileUploadSource from "deste04-ui/components/ui/file-upload.tsx?raw";
 import { CopyButton } from "deste04-ui/components/ui/copy-button";
 import copyButtonSource from "deste04-ui/components/ui/copy-button.tsx?raw";
 import { Spinner } from "deste04-ui/components/ui/spinner";
@@ -92,6 +109,8 @@ import {
   Copy,
   Volume2,
   VolumeX,
+  Upload,
+  FileText,
 } from "lucide-react";
 
 function SwapDemo({
@@ -187,6 +206,70 @@ const previews: Record<string, ReactNode> = {
         <p className="muted" style={{ marginTop: "0.5rem", fontSize: "0.75rem" }}>
           Click a button to toggle the swap.
         </p>
+      </div>
+    </div>
+  ),
+  "file-upload": (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+      <div style={{ width: "24rem" }}>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Dropzone</p>
+        <FileUpload maxFiles={5}>
+          <FileUploadLabel>Attachments</FileUploadLabel>
+          <FileUploadDropzone>
+            <Upload />
+            <div>
+              <p style={{ fontWeight: 500 }}>Drag and drop files here</p>
+              <p className="muted" style={{ fontSize: "0.75rem" }}>or click to browse</p>
+            </div>
+          </FileUploadDropzone>
+          <FileUploadItemGroup>
+            <FileUploadContext>
+              {({ acceptedFiles }) =>
+                acceptedFiles.map((file) => (
+                  <FileUploadItem key={file.name} file={file}>
+                    <FileUploadItemPreview type="image/*">
+                      <FileUploadItemPreviewImage />
+                    </FileUploadItemPreview>
+                    <FileUploadItemPreview type=".*">
+                      <FileText />
+                    </FileUploadItemPreview>
+                    <FileUploadItemName />
+                    <FileUploadItemSizeText />
+                    <FileUploadItemDeleteTrigger />
+                  </FileUploadItem>
+                ))
+              }
+            </FileUploadContext>
+          </FileUploadItemGroup>
+          <FileUploadHiddenInput />
+        </FileUpload>
+      </div>
+      <div style={{ width: "24rem" }}>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Trigger only, with clear</p>
+        <FileUpload maxFiles={3} size="sm">
+          <FileUploadLabel>Documents</FileUploadLabel>
+          <div className="preview-row">
+            <FileUploadTrigger>Choose file(s)</FileUploadTrigger>
+            <FileUploadClearTrigger>Clear</FileUploadClearTrigger>
+          </div>
+          <FileUploadItemGroup>
+            <FileUploadContext>
+              {({ acceptedFiles }) =>
+                acceptedFiles.map((file) => (
+                  <FileUploadItem key={file.name} file={file}>
+                    <FileUploadItemPreview type=".*">
+                      <FileText />
+                    </FileUploadItemPreview>
+                    <FileUploadItemName />
+                    <FileUploadItemSizeText />
+                    <FileUploadItemDeleteTrigger />
+                  </FileUploadItem>
+                ))
+              }
+            </FileUploadContext>
+          </FileUploadItemGroup>
+          <FileUploadHiddenInput />
+        </FileUpload>
       </div>
     </div>
   ),
@@ -1088,6 +1171,7 @@ const previews: Record<string, ReactNode> = {
 const sources: Record<string, string> = {
   button: buttonSource,
   swap: swapSource,
+  "file-upload": fileUploadSource,
   "copy-button": copyButtonSource,
   spinner: spinnerSource,
   link: linkSource,

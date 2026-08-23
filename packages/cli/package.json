@@ -57,6 +57,8 @@
     "./components/ui/tabs.tsx": "./templates/components/ui/tabs.tsx",
     "./components/ui/swap": "./templates/components/ui/swap.tsx",
     "./components/ui/swap.tsx": "./templates/components/ui/swap.tsx",
+    "./components/ui/file-upload": "./templates/components/ui/file-upload.tsx",
+    "./components/ui/file-upload.tsx": "./templates/components/ui/file-upload.tsx",
     "./styles/global.css": "./templates/styles/global.css",
     "./lib/utils": "./templates/lib/utils.ts",
     "./registry.json": "./registry.json"
