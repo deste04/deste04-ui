@@ -10,9 +10,9 @@ const toggleVariants = cva(
     variants: {
       variant: {
         outline:
-          "border-border bg-transparent text-foreground hover:bg-muted data-[state=on]:border-primary/20 data-[state=on]:bg-primary/10 data-[state=on]:text-primary dark:border-input dark:hover:bg-input/50 dark:data-[state=on]:border-primary/25",
+          "border-border bg-transparent text-foreground hover:bg-muted data-[state=on]:border-primary/20 data-[state=on]:bg-primary/10 data-[state=on]:text-primary data-[state=on]:supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground dark:border-input dark:hover:bg-input/50 dark:data-[state=on]:border-primary/25",
         subtle:
-          "bg-transparent text-foreground hover:bg-muted data-[state=on]:bg-primary/10 data-[state=on]:text-primary dark:hover:bg-muted/50",
+          "bg-transparent text-foreground hover:bg-muted data-[state=on]:bg-primary/10 data-[state=on]:text-primary data-[state=on]:supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground dark:hover:bg-muted/50",
       },
       size: {
         sm: "h-8 min-w-8 px-2 text-sm [&_svg:not([class*='size-'])]:size-3.5",

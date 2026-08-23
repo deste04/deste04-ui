@@ -9,7 +9,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const tagsInputVariants = cva(
-  "flex w-full flex-wrap items-center gap-1.5 rounded-lg font-sans transition-colors outline-none min-h-(--tags-input-height) px-(--tags-input-px) py-1.5 data-focus:border-primary data-focus:ring-1 data-focus:ring-primary data-invalid:border-destructive data-invalid:ring-1 data-invalid:ring-destructive data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50",
+  "flex w-full items-start gap-1.5 rounded-lg font-sans transition-colors outline-none min-h-(--tags-input-height) px-(--tags-input-px) py-1.5 data-focus:border-primary data-focus:ring-1 data-focus:ring-primary data-invalid:border-destructive data-invalid:ring-1 data-invalid:ring-destructive data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -44,12 +44,14 @@ function TagsInputItems() {
     >
       <ArkTagsInput.ItemPreview
         data-slot="tags-input-item-preview"
-        className="inline-flex h-(--tags-input-item-height) max-w-full items-center gap-1 rounded-md bg-primary/10 px-(--tags-input-item-px) text-primary select-none dark:bg-primary/15"
+        className="inline-flex h-(--tags-input-item-height) max-w-full items-center gap-1 rounded-md bg-primary/10 px-(--tags-input-item-px) text-primary select-none supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground dark:bg-primary/15"
       >
         <ArkTagsInput.ItemText
           data-slot="tags-input-item-text"
           className="max-w-40 truncate"
-        />
+        >
+          {value}
+        </ArkTagsInput.ItemText>
         <ArkTagsInput.ItemDeleteTrigger
           data-slot="tags-input-item-delete-trigger"
           className="-me-1 flex size-4 shrink-0 items-center justify-center rounded-sm outline-none hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-ring/50"
@@ -98,15 +100,17 @@ function TagsInput({
         data-slot="tags-input-control"
         className={cn(tagsInputVariants({ variant, size }))}
       >
-        <TagsInputItems />
-        <ArkTagsInput.Input
-          data-slot="tags-input-input"
-          placeholder={placeholder}
-          className="h-(--tags-input-item-height) min-w-20 flex-1 bg-transparent px-1 text-inherit outline-none placeholder:text-muted-foreground data-readonly:hidden"
-        />
+        <div className="flex flex-1 flex-wrap items-center gap-1.5">
+          <TagsInputItems />
+          <ArkTagsInput.Input
+            data-slot="tags-input-input"
+            placeholder={placeholder}
+            className="h-(--tags-input-item-height) min-w-20 flex-1 bg-transparent px-1 text-inherit outline-none placeholder:text-muted-foreground data-readonly:hidden"
+          />
+        </div>
         <ArkTagsInput.ClearTrigger
           data-slot="tags-input-clear-trigger"
-          className="ms-auto flex size-5 shrink-0 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50 data-readonly:hidden"
+          className="flex size-5 shrink-0 items-center justify-center rounded-md text-muted-foreground outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50 data-readonly:hidden"
         >
           <X className="size-3.5" />
         </ArkTagsInput.ClearTrigger>

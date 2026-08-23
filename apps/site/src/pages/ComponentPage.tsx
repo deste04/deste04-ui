@@ -66,6 +66,8 @@ import {
 import cardSource from "deste04-ui/components/ui/card.tsx?raw";
 import { CardLink } from "deste04-ui/components/ui/card-link";
 import cardLinkSource from "deste04-ui/components/ui/card-link.tsx?raw";
+import { Toaster, toast } from "deste04-ui/components/ui/toast";
+import toastSource from "deste04-ui/components/ui/toast.tsx?raw";
 import {
   Trash,
   Users,
@@ -806,6 +808,93 @@ const previews: Record<string, ReactNode> = {
       </div>
     </div>
   ),
+  toast: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <Toaster />
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Types</p>
+        <div className="preview-row">
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.info({ title: "Heads up", description: "This is an info toast." })
+            }
+          >
+            Info
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.success({ title: "Saved", description: "Your changes were saved." })
+            }
+          >
+            Success
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.error({ title: "Something went wrong", description: "Please try again." })
+            }
+          >
+            Error
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.warning({ title: "Careful", description: "This action can't be undone." })
+            }
+          >
+            Warning
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.loading({ title: "Uploading...", description: "This can take a moment." })
+            }
+          >
+            Loading
+          </Button>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>With action</p>
+        <div className="preview-row">
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.create({
+                title: "File deleted",
+                description: "trash.txt was moved to the bin.",
+                action: { label: "Undo", onClick: () => toast.success({ title: "Restored" }) },
+              })
+            }
+          >
+            Delete file
+          </Button>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Promise</p>
+        <div className="preview-row">
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast.promise(
+                new Promise((resolve) => setTimeout(resolve, 2000)),
+                {
+                  loading: { title: "Loading...", description: "Fetching your data." },
+                  success: { title: "Done", description: "Data loaded successfully." },
+                  error: { title: "Error", description: "Could not load data." },
+                }
+              )
+            }
+          >
+            Run async task
+          </Button>
+        </div>
+      </div>
+    </div>
+  ),
   "card-link": (
     <div className="preview-row">
       <CardLink
@@ -859,6 +948,7 @@ const sources: Record<string, string> = {
   "toggle-group": toggleGroupSource,
   badge: badgeSource,
   card: cardSource,
+  toast: toastSource,
   "card-link": cardLinkSource,
 };
 

@@ -29,9 +29,9 @@ const buttonVariants = cva(
         solid:
           "bg-primary text-primary-foreground hover:bg-primary/80 disabled:bg-muted disabled:text-muted-foreground",
         surface:
-          "border-primary/20 bg-primary/10 text-primary hover:border-primary/40 hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:border-primary/25 dark:bg-primary/15 disabled:border-border disabled:bg-muted disabled:text-muted-foreground",
+          "border-primary/20 bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground hover:border-primary/40 hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:border-primary/25 dark:bg-primary/15 disabled:border-border disabled:bg-muted disabled:text-muted-foreground",
         subtle:
-          "bg-primary/10 text-primary hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:bg-primary/15 disabled:bg-muted disabled:text-muted-foreground",
+          "bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:bg-primary/15 disabled:bg-muted disabled:text-muted-foreground",
         outline:
           "border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 disabled:bg-muted disabled:text-muted-foreground disabled:hover:bg-muted",
         plain:

@@ -133,6 +133,13 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add card",
   },
   {
+    slug: "toast",
+    name: "Toast",
+    description:
+      "Toast notifications (Toaster + toast, built on Ark UI): call toast.success, toast.error, toast.info, toast.warning or toast.loading to create one, mount <Toaster /> once. Icon and color per type, optional action, auto-dismiss or manual close.",
+    install: "npx deste04-ui add toast",
+  },
+  {
     slug: "card-link",
     name: "Card Link",
     description:
