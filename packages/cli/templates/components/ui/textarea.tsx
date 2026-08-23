@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const textareaVariants = cva(
-  "flex field-sizing-content min-h-16 w-full min-w-0 rounded-lg font-sans transition-colors outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:text-destructive",
+  "flex field-sizing-content min-h-16 w-full min-w-0 rounded-lg font-sans text-foreground transition-colors outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -15,7 +15,7 @@ const textareaVariants = cva(
         subtle:
           "border border-transparent bg-muted focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive",
         flushed:
-          "rounded-none border-0 border-b border-input bg-transparent text-foreground focus-visible:border-b-2 focus-visible:border-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive",
+          "rounded-none border-0 border-b-2 border-input bg-transparent text-foreground focus-visible:border-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive",
       },
       size: {
         xs: "px-2 py-[5px] text-sm scroll-pb-[5px]",

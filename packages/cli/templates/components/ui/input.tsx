@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const inputVariants = cva(
-  "flex w-full items-center rounded-lg text-start font-sans transition-colors outline-none h-(--input-height) min-h-(--input-height) min-w-(--input-height) selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:text-destructive",
+  "flex w-full items-center rounded-lg text-start font-sans text-foreground transition-colors outline-none h-(--input-height) min-h-(--input-height) min-w-(--input-height) selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -16,7 +16,7 @@ const inputVariants = cva(
         subtle:
           "border border-transparent bg-muted focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive",
         flushed:
-          "rounded-none border-0 border-b border-input bg-transparent text-foreground focus-visible:border-b-2 focus-visible:border-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive",
+          "rounded-none border-0 border-b-2 border-input bg-transparent text-foreground focus-visible:border-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive",
       },
       size: {
         "2xs": "text-xs px-1.5 [--input-height:1.75rem]",

@@ -40,7 +40,7 @@ function Spinner({
   return (
     <Icon
       role="status"
-      aria-label="Loading"
+      aria-label="Caricamento"
       className={cn(spinnerVariants({ size }), className)}
       {...props}
     />
