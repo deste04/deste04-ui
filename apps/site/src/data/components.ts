@@ -19,10 +19,17 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add button",
   },
   {
+    slug: "swap",
+    name: "Swap",
+    description:
+      "Animates the transition between two elements stacked in the same cell (built on Ark UI): set `swap` to toggle between the `on` and `off` indicator. Variants (fade, scale, rotate).",
+    install: "npx deste04-ui add swap",
+  },
+  {
     slug: "copy-button",
     name: "Copy Button",
     description:
-      "Button that copies a value to the clipboard and shows a temporary confirmation (checkmark icon, and optionally text) before returning to normal.",
+      "Button that copies a value to the clipboard and shows a temporary confirmation (checkmark icon with a fade swap, and optionally text) before returning to normal.",
     install: "npx deste04-ui add copy-button",
   },
   {

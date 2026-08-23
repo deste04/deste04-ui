@@ -55,6 +55,8 @@
     "./components/ui/toast.tsx": "./templates/components/ui/toast.tsx",
     "./components/ui/tabs": "./templates/components/ui/tabs.tsx",
     "./components/ui/tabs.tsx": "./templates/components/ui/tabs.tsx",
+    "./components/ui/swap": "./templates/components/ui/swap.tsx",
+    "./components/ui/swap.tsx": "./templates/components/ui/swap.tsx",
     "./styles/global.css": "./templates/styles/global.css",
     "./lib/utils": "./templates/lib/utils.ts",
     "./registry.json": "./registry.json"

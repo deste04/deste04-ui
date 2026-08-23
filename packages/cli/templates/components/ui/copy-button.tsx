@@ -3,6 +3,7 @@ import { Check, Copy, X } from "lucide-react";
 import { TextMorph } from "torph/react";
 
 import { Button } from "./button";
+import { Swap, SwapIndicator } from "./swap";
 
 export interface CopyButtonProps
   extends Omit<React.ComponentProps<typeof Button>, "onClick" | "children"> {
@@ -50,7 +51,7 @@ export function CopyButton({
 
   const statusLabel =
     status === "copied" ? copiedLabel : status === "error" ? errorLabel : "Copia";
-  const Icon = status === "copied" ? Check : status === "error" ? X : Copy;
+  const IdleIcon = status === "error" ? X : Copy;
 
   return (
     <Button
@@ -61,7 +62,14 @@ export function CopyButton({
       aria-label={label ? undefined : statusLabel}
       {...props}
     >
-      <Icon />
+      <Swap swap={status === "copied"}>
+        <SwapIndicator type="on">
+          <Check />
+        </SwapIndicator>
+        <SwapIndicator type="off">
+          <IdleIcon />
+        </SwapIndicator>
+      </Swap>
       {label && <TextMorph as="span">{status === "idle" ? label : statusLabel}</TextMorph>}
       <span role="status" aria-live="polite" className="sr-only">
         {status !== "idle" ? statusLabel : ""}

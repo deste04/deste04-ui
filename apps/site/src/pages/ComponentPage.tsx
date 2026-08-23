@@ -1,8 +1,10 @@
-import type { ReactNode } from "react";
+import { useState, type ComponentType, type ReactNode } from "react";
 import { useParams, Link } from "react-router-dom";
 import { components } from "../data/components";
 import { Button } from "deste04-ui/components/ui/button";
 import buttonSource from "deste04-ui/components/ui/button.tsx?raw";
+import { Swap, SwapIndicator } from "deste04-ui/components/ui/swap";
+import swapSource from "deste04-ui/components/ui/swap.tsx?raw";
 import { CopyButton } from "deste04-ui/components/ui/copy-button";
 import copyButtonSource from "deste04-ui/components/ui/copy-button.tsx?raw";
 import { Spinner } from "deste04-ui/components/ui/spinner";
@@ -84,7 +86,44 @@ import {
   AlignLeft,
   AlignCenter,
   AlignRight,
+  Sun,
+  Moon,
+  Check,
+  Copy,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
+
+function SwapDemo({
+  variant,
+  iconOn: IconOn,
+  iconOff: IconOff,
+  label,
+}: {
+  variant: "fade" | "scale" | "rotate";
+  iconOn: ComponentType;
+  iconOff: ComponentType;
+  label: string;
+}) {
+  const [on, setOn] = useState(false);
+  return (
+    <Button
+      variant="outline"
+      size="icon-md"
+      aria-label={label}
+      onClick={() => setOn((v) => !v)}
+    >
+      <Swap swap={on}>
+        <SwapIndicator type="on" variant={variant}>
+          <IconOn />
+        </SwapIndicator>
+        <SwapIndicator type="off" variant={variant}>
+          <IconOff />
+        </SwapIndicator>
+      </Swap>
+    </Button>
+  );
+}
 
 const frameworkItems = [
   { label: "React", value: "react" },
@@ -133,6 +172,21 @@ const previews: Record<string, ReactNode> = {
           <Button size="icon-xl" variant="destructive"><Trash /></Button>
           <Button size="icon-2xl" variant="destructive"><Trash /></Button>
         </div>
+      </div>
+    </div>
+  ),
+  swap: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row">
+          <SwapDemo variant="fade" iconOn={Check} iconOff={Copy} label="Fade" />
+          <SwapDemo variant="scale" iconOn={Volume2} iconOff={VolumeX} label="Scale" />
+          <SwapDemo variant="rotate" iconOn={Moon} iconOff={Sun} label="Rotate" />
+        </div>
+        <p className="muted" style={{ marginTop: "0.5rem", fontSize: "0.75rem" }}>
+          Click a button to toggle the swap.
+        </p>
       </div>
     </div>
   ),
@@ -1033,6 +1087,7 @@ const previews: Record<string, ReactNode> = {
  */
 const sources: Record<string, string> = {
   button: buttonSource,
+  swap: swapSource,
   "copy-button": copyButtonSource,
   spinner: spinnerSource,
   link: linkSource,
