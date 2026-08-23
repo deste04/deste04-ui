@@ -119,6 +119,13 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add toggle-group",
   },
   {
+    slug: "tabs",
+    name: "Tabs",
+    description:
+      "Tabs (Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator), built on Ark UI. Variants (line, subtle, enclosed), sizes (xs, sm, md, lg), fitted and horizontal/vertical orientation. The indicator animates to the selected tab automatically.",
+    install: "npx deste04-ui add tabs",
+  },
+  {
     slug: "badge",
     name: "Badge",
     description:

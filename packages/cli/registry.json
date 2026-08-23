@@ -296,6 +296,19 @@
       ]
     },
     {
+      "name": "tabs",
+      "type": "components:ui",
+      "description": "Tabs (Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator), basato su Ark UI. Varianti (line, subtle, enclosed), dimensioni (xs, sm, md, lg), fitted e orientamento orizzontale/verticale. L'indicatore anima automaticamente verso il tab selezionato.",
+      "dependencies": ["@ark-ui/react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "target": "components/ui/tabs.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",

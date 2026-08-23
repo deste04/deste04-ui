@@ -52,6 +52,8 @@ import { Toggle } from "deste04-ui/components/ui/toggle";
 import toggleSource from "deste04-ui/components/ui/toggle.tsx?raw";
 import { ToggleGroup, ToggleGroupItem } from "deste04-ui/components/ui/toggle-group";
 import toggleGroupSource from "deste04-ui/components/ui/toggle-group.tsx?raw";
+import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator } from "deste04-ui/components/ui/tabs";
+import tabsSource from "deste04-ui/components/ui/tabs.tsx?raw";
 import { Badge } from "deste04-ui/components/ui/badge";
 import badgeSource from "deste04-ui/components/ui/badge.tsx?raw";
 import {
@@ -549,6 +551,108 @@ const previews: Record<string, ReactNode> = {
       </div>
     </div>
   ),
+  tabs: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Line</p>
+        <Tabs defaultValue="account" variant="line">
+          <TabsList>
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <TabsTrigger value="password">Password</TabsTrigger>
+            <TabsTrigger value="team" disabled>Team</TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContent value="account">Manage your account settings here.</TabsContent>
+          <TabsContent value="password">Change your password here.</TabsContent>
+          <TabsContent value="team">Invite and manage your team members.</TabsContent>
+        </Tabs>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Subtle</p>
+        <Tabs defaultValue="overview" variant="subtle">
+          <TabsList>
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="reports">Reports</TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContent value="overview">A quick summary of your workspace.</TabsContent>
+          <TabsContent value="analytics">Traffic, conversions and trends.</TabsContent>
+          <TabsContent value="reports">Download and schedule reports.</TabsContent>
+        </Tabs>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Enclosed, fitted</p>
+        <div style={{ width: "22rem" }}>
+          <Tabs defaultValue="day" variant="enclosed" fitted>
+            <TabsList>
+              <TabsTrigger value="day">Day</TabsTrigger>
+              <TabsTrigger value="week">Week</TabsTrigger>
+              <TabsTrigger value="month">Month</TabsTrigger>
+              <TabsIndicator />
+            </TabsList>
+            <TabsContent value="day">Showing data for today.</TabsContent>
+            <TabsContent value="week">Showing data for this week.</TabsContent>
+            <TabsContent value="month">Showing data for this month.</TabsContent>
+          </Tabs>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <Tabs defaultValue="a" size="xs">
+            <TabsList>
+              <TabsTrigger value="a">Xs</TabsTrigger>
+              <TabsTrigger value="b">Tab</TabsTrigger>
+              <TabsIndicator />
+            </TabsList>
+          </Tabs>
+          <Tabs defaultValue="a" size="sm">
+            <TabsList>
+              <TabsTrigger value="a">Sm</TabsTrigger>
+              <TabsTrigger value="b">Tab</TabsTrigger>
+              <TabsIndicator />
+            </TabsList>
+          </Tabs>
+          <Tabs defaultValue="a" size="lg">
+            <TabsList>
+              <TabsTrigger value="a">Lg</TabsTrigger>
+              <TabsTrigger value="b">Tab</TabsTrigger>
+              <TabsIndicator />
+            </TabsList>
+          </Tabs>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Vertical, line</p>
+        <Tabs defaultValue="general" orientation="vertical" variant="line" style={{ height: "10rem" }}>
+          <TabsList>
+            <TabsTrigger value="general">General</TabsTrigger>
+            <TabsTrigger value="security">Security</TabsTrigger>
+            <TabsTrigger value="billing">Billing</TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContent value="general">General settings for your account.</TabsContent>
+          <TabsContent value="security">Two-factor auth and sessions.</TabsContent>
+          <TabsContent value="billing">Plan, invoices and payment method.</TabsContent>
+        </Tabs>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Vertical, enclosed</p>
+        <Tabs defaultValue="general" orientation="vertical" variant="enclosed" style={{ height: "10rem" }}>
+          <TabsList>
+            <TabsTrigger value="general">General</TabsTrigger>
+            <TabsTrigger value="security">Security</TabsTrigger>
+            <TabsTrigger value="billing">Billing</TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContent value="general">General settings for your account.</TabsContent>
+          <TabsContent value="security">Two-factor auth and sessions.</TabsContent>
+          <TabsContent value="billing">Plan, invoices and payment method.</TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  ),
   badge: (
     <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       <div>
@@ -946,6 +1050,7 @@ const sources: Record<string, string> = {
   "radio-group": radioGroupSource,
   toggle: toggleSource,
   "toggle-group": toggleGroupSource,
+  tabs: tabsSource,
   badge: badgeSource,
   card: cardSource,
   toast: toastSource,
