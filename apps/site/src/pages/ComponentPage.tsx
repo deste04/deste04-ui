@@ -38,6 +38,10 @@ import { Textarea } from "deste04-ui/components/ui/textarea";
 import textareaSource from "deste04-ui/components/ui/textarea.tsx?raw";
 import { TagsInput } from "deste04-ui/components/ui/tags-input";
 import tagsInputSource from "deste04-ui/components/ui/tags-input.tsx?raw";
+import { Combobox } from "deste04-ui/components/ui/combobox";
+import comboboxSource from "deste04-ui/components/ui/combobox.tsx?raw";
+import { Editable } from "deste04-ui/components/ui/editable";
+import editableSource from "deste04-ui/components/ui/editable.tsx?raw";
 import { Switch } from "deste04-ui/components/ui/switch";
 import switchSource from "deste04-ui/components/ui/switch.tsx?raw";
 import { Checkbox } from "deste04-ui/components/ui/checkbox";
@@ -59,6 +63,15 @@ import cardSource from "deste04-ui/components/ui/card.tsx?raw";
 import { CardLink } from "deste04-ui/components/ui/card-link";
 import cardLinkSource from "deste04-ui/components/ui/card-link.tsx?raw";
 import { Trash, Users, BookOpen, GitFork, History, KeyRound, CircleAlert } from "lucide-react";
+
+const frameworkItems = [
+  { label: "React", value: "react" },
+  { label: "Vue", value: "vue" },
+  { label: "Svelte", value: "svelte" },
+  { label: "Solid", value: "solid" },
+  { label: "Angular", value: "angular" },
+  { label: "Astro", value: "astro" },
+];
 
 const previews: Record<string, ReactNode> = {
   button: (
@@ -256,6 +269,78 @@ const previews: Record<string, ReactNode> = {
           />
           <Textarea placeholder="Disabled" disabled style={{ width: "12rem" }} />
           <Textarea placeholder="Invalid" aria-invalid style={{ width: "12rem" }} />
+        </div>
+      </div>
+    </div>
+  ),
+  editable: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <Editable size="xs" defaultValue="Extra small" style={{ width: "16rem" }} />
+          <Editable size="sm" defaultValue="Small" style={{ width: "16rem" }} />
+          <Editable size="md" defaultValue="Medium" style={{ width: "16rem" }} />
+          <Editable size="lg" defaultValue="Large" style={{ width: "16rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Full example</p>
+        <Editable
+          label="Project name"
+          defaultValue="Untitled project"
+          placeholder="Enter a name..."
+          style={{ width: "18rem" }}
+        />
+      </div>
+    </div>
+  ),
+  combobox: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <Combobox
+            variant="outline"
+            label="Framework"
+            placeholder="Search framework..."
+            items={frameworkItems}
+            style={{ width: "20rem" }}
+          />
+          <Combobox
+            variant="surface"
+            label="Framework"
+            placeholder="Search framework..."
+            items={frameworkItems}
+            style={{ width: "20rem" }}
+          />
+          <Combobox
+            variant="subtle"
+            label="Framework"
+            placeholder="Search framework..."
+            items={frameworkItems}
+            style={{ width: "20rem" }}
+          />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ flexDirection: "column", alignItems: "flex-start" }}>
+          <Combobox size="xs" placeholder="Xs" items={frameworkItems} style={{ width: "20rem" }} />
+          <Combobox size="sm" placeholder="Sm" items={frameworkItems} style={{ width: "20rem" }} />
+          <Combobox size="md" placeholder="Md" items={frameworkItems} style={{ width: "20rem" }} />
+          <Combobox size="lg" placeholder="Lg" items={frameworkItems} style={{ width: "20rem" }} />
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Full example</p>
+        <div style={{ width: "20rem" }}>
+          <Combobox
+            label="Framework"
+            groupLabel="Frameworks"
+            placeholder="Search framework..."
+            items={frameworkItems}
+          />
         </div>
       </div>
     </div>
@@ -655,6 +740,8 @@ const sources: Record<string, string> = {
   fieldset: fieldsetSource,
   textarea: textareaSource,
   "tags-input": tagsInputSource,
+  combobox: comboboxSource,
+  editable: editableSource,
   switch: switchSource,
   checkbox: checkboxSource,
   "radio-group": radioGroupSource,

@@ -140,6 +140,32 @@
       ]
     },
     {
+      "name": "editable",
+      "type": "components:ui",
+      "description": "Testo modificabile inline (Editable, basato su Ark UI): click sull'anteprima per iniziare la modifica, matita/spunta/X per modificare/salvare/annullare. Dimensioni (2xs, xs, sm, md, lg).",
+      "dependencies": ["@ark-ui/react", "lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/editable.tsx",
+          "target": "components/ui/editable.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "components:ui",
+      "description": "Campo di ricerca con menu a tendina filtrabile (Combobox, useListCollection di Ark UI): riusa le stesse varianti/dimensioni di Input per il campo di testo. Frecce per navigare, Invio per selezionare, X per pulire.",
+      "dependencies": ["@ark-ui/react", "lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global", "input"],
+      "files": [
+        {
+          "path": "components/ui/combobox.tsx",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
       "name": "tags-input",
       "type": "components:ui",
       "description": "Campo per inserire più tag/etichette: digita e premi Invio per aggiungere, click sulla X per rimuovere un tag, doppio click per modificarlo. Varianti (outline, surface, subtle) e dimensioni (xs, sm, md, lg), basato su Ark UI.",

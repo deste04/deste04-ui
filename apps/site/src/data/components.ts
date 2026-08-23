@@ -66,6 +66,20 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add textarea",
   },
   {
+    slug: "editable",
+    name: "Editable",
+    description:
+      "Inline-editable text (built on Ark UI): click the preview to start editing, pencil/check/X to edit/save/cancel. Sizes (2xs, xs, sm, md, lg).",
+    install: "npx deste04-ui add editable",
+  },
+  {
+    slug: "combobox",
+    name: "Combobox",
+    description:
+      "Searchable dropdown (Combobox, built on Ark UI's useListCollection) that reuses Input's own variants/sizes for the text field. Arrow keys to navigate, Enter to select, X to clear.",
+    install: "npx deste04-ui add combobox",
+  },
+  {
     slug: "tags-input",
     name: "Tags Input",
     description:
