@@ -84,6 +84,20 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add badge",
   },
   {
+    slug: "card",
+    name: "Card",
+    description:
+      "Container for grouping content (Card, CardHeader, CardTitle, CardDescription, CardAction, CardContent, CardFooter) with variants (outline, elevated, subtle), sizes (sm, md, lg) and an orientation (vertical, horizontal) to place an image alongside the content.",
+    install: "npx deste04-ui add card",
+  },
+  {
+    slug: "card-link",
+    name: "Card Link",
+    description:
+      "Clickable card (anchor) with a hover micro-interaction: the icon, title and description fade out and a call-to-action appears centered.",
+    install: "npx deste04-ui add card-link",
+  },
+  {
     slug: "link",
     name: "Link",
     description:

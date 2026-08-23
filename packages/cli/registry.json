@@ -179,6 +179,32 @@
       ]
     },
     {
+      "name": "card",
+      "type": "components:ui",
+      "description": "Contenitore per raggruppare contenuti (Card, CardHeader, CardTitle, CardDescription, CardAction, CardContent, CardFooter) con varianti (outline, elevated, subtle), dimensioni (sm, md, lg) e orientamento (vertical, horizontal) per affiancare un'immagine, basato su class-variance-authority.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "target": "components/ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card-link",
+      "type": "components:ui",
+      "description": "Card cliccabile (anchor) con micro-interazione al passaggio del mouse: icona, titolo e descrizione sfumano e al centro compare una call-to-action.",
+      "dependencies": [],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/card-link.tsx",
+          "target": "components/ui/card-link.tsx"
+        }
+      ]
+    },
+    {
       "name": "copy-button",
       "type": "components:ui",
       "description": "Bottone che copia un valore negli appunti e mostra una conferma temporanea (icona spuntata, ed eventualmente il testo copy/copiato) prima di tornare allo stato normale. Solo icona se non passi `label`, icona+testo altrimenti.",

@@ -35,7 +35,19 @@ import { RadioGroup, RadioGroupItem } from "deste04-ui/components/ui/radio-group
 import radioGroupSource from "deste04-ui/components/ui/radio-group.tsx?raw";
 import { Badge } from "deste04-ui/components/ui/badge";
 import badgeSource from "deste04-ui/components/ui/badge.tsx?raw";
-import { Trash, Users } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardAction,
+  CardContent,
+  CardFooter,
+} from "deste04-ui/components/ui/card";
+import cardSource from "deste04-ui/components/ui/card.tsx?raw";
+import { CardLink } from "deste04-ui/components/ui/card-link";
+import cardLinkSource from "deste04-ui/components/ui/card-link.tsx?raw";
+import { Trash, Users, BookOpen, GitFork, History, KeyRound } from "lucide-react";
 
 const previews: Record<string, ReactNode> = {
   button: (
@@ -327,6 +339,213 @@ const previews: Record<string, ReactNode> = {
       </Button>
     </div>
   ),
+  card: (
+    <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Variants</p>
+        <div className="preview-row" style={{ alignItems: "flex-start" }}>
+          <Card style={{ width: "16rem" }}>
+            <CardHeader>
+              <CardTitle>Outline</CardTitle>
+              <CardDescription>Just a border, no background.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="muted">The default variant.</p>
+            </CardContent>
+          </Card>
+          <Card variant="elevated" style={{ width: "16rem" }}>
+            <CardHeader>
+              <CardTitle>Elevated</CardTitle>
+              <CardDescription>No border, drop shadow instead.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="muted">Stands out from the page.</p>
+            </CardContent>
+          </Card>
+          <Card variant="subtle" style={{ width: "16rem" }}>
+            <CardHeader>
+              <CardTitle>Subtle</CardTitle>
+              <CardDescription>Muted background, no border.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="muted">For less prominent surfaces.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sizes</p>
+        <div className="preview-row" style={{ alignItems: "flex-start" }}>
+          <Card size="sm" style={{ width: "14rem" }}>
+            <CardHeader>
+              <CardTitle>Sm</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="muted">Compact spacing.</p>
+            </CardContent>
+          </Card>
+          <Card size="md" style={{ width: "14rem" }}>
+            <CardHeader>
+              <CardTitle>Md</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="muted">Default spacing.</p>
+            </CardContent>
+          </Card>
+          <Card size="lg" style={{ width: "14rem" }}>
+            <CardHeader>
+              <CardTitle>Lg</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="muted">Roomy spacing.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Full example</p>
+        <Card style={{ width: "22rem" }}>
+          <CardHeader>
+            <CardTitle>Notifications</CardTitle>
+            <CardDescription>Choose how you want to be notified.</CardDescription>
+            <CardAction>
+              <Badge variant="subtle">New</Badge>
+            </CardAction>
+          </CardHeader>
+          <CardContent style={{ gap: "0.75rem" }}>
+            <div className="preview-row" style={{ justifyContent: "space-between" }}>
+              <Label htmlFor="card-preview-switch">Email notifications</Label>
+              <Switch id="card-preview-switch" defaultChecked />
+            </div>
+            <Separator />
+            <div className="preview-row" style={{ justifyContent: "space-between" }}>
+              <Label htmlFor="card-preview-checkbox">Weekly newsletter</Label>
+              <Checkbox id="card-preview-checkbox" />
+            </div>
+          </CardContent>
+          <CardFooter className="border-t">
+            <Button variant="plain" size="sm">Cancel</Button>
+            <Button size="sm">Save</Button>
+          </CardFooter>
+        </Card>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Product card</p>
+        <Card style={{ width: "20rem" }}>
+          <img
+            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=60"
+            alt="Lines of code on a dark screen"
+            style={{ width: "100%", height: "10rem", objectFit: "cover" }}
+          />
+          <CardHeader>
+            <CardTitle>New in v0.2</CardTitle>
+            <CardDescription>
+              Card and Card Link join the library, plus refreshed inputs,
+              switches and checkboxes.
+            </CardDescription>
+          </CardHeader>
+          <CardContent />
+          <CardFooter>
+            <Button variant="outline">Changelog</Button>
+            <Button>Install now</Button>
+          </CardFooter>
+        </Card>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>
+          Horizontal orientation
+        </p>
+        <Card orientation="horizontal" style={{ width: "38rem" }}>
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60"
+            alt="Laptop showing lines of code"
+            style={{ width: "12rem", height: "auto", objectFit: "cover" }}
+          />
+          <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+            <CardHeader>
+              <CardTitle>Built for React + Tailwind</CardTitle>
+              <CardDescription>
+                Copy-paste components you fully own, styled with Tailwind and
+                Base UI underneath. No hidden abstractions to fight later.
+              </CardDescription>
+            </CardHeader>
+            <CardContent style={{ display: "flex", flexDirection: "row", gap: "0.5rem" }}>
+              <Badge variant="subtle">Tailwind</Badge>
+              <Badge variant="subtle">Base UI</Badge>
+            </CardContent>
+            <CardFooter>
+              <Button size="sm">Get started</Button>
+            </CardFooter>
+          </div>
+        </Card>
+      </div>
+      <div>
+        <p className="muted" style={{ marginBottom: "0.5rem" }}>Sign-up form</p>
+        <Card style={{ width: "22rem" }}>
+          <CardHeader>
+            <CardTitle>Sign up</CardTitle>
+            <CardDescription>
+              Create an account to start using deste04-ui.
+            </CardDescription>
+          </CardHeader>
+          <CardContent style={{ gap: "1rem" }}>
+            <div className="preview-row" style={{ gap: "0.5rem" }}>
+              <Button variant="outline" style={{ flex: 1 }}>
+                <KeyRound /> GitLab
+              </Button>
+              <Button variant="outline" style={{ flex: 1 }}>
+                <KeyRound /> GitHub
+              </Button>
+            </div>
+            <div className="preview-row" style={{ alignItems: "center", gap: "0.75rem" }}>
+              <Separator style={{ flex: 1 }} />
+              <span className="muted" style={{ fontSize: "0.75rem", whiteSpace: "nowrap" }}>
+                or sign up with
+              </span>
+              <Separator style={{ flex: 1 }} />
+            </div>
+            <Field>
+              <FieldLabel htmlFor="card-preview-email">Email</FieldLabel>
+              <Input id="card-preview-email" type="email" placeholder="you@example.com" />
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="card-preview-password">Password</FieldLabel>
+              <Input id="card-preview-password" type="password" placeholder="••••••••" />
+            </Field>
+          </CardContent>
+          <CardFooter>
+            <Button style={{ width: "100%" }}>Create account</Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
+  ),
+  "card-link": (
+    <div className="preview-row">
+      <CardLink
+        href="/components"
+        icon={<BookOpen />}
+        title="Documentation"
+        description="Browse every component, its variants and how to install it."
+        cta="Browse"
+      />
+      <CardLink
+        href="https://github.com"
+        icon={<GitFork />}
+        title="GitHub"
+        description="Source code, issues and releases."
+        cta="Open"
+        external
+      />
+      <CardLink
+        href="#"
+        icon={<History />}
+        title="Changelog"
+        description="What changed in the latest release."
+        cta="Read"
+      />
+    </div>
+  ),
 };
 
 /**
@@ -347,6 +566,8 @@ const sources: Record<string, string> = {
   checkbox: checkboxSource,
   "radio-group": radioGroupSource,
   badge: badgeSource,
+  card: cardSource,
+  "card-link": cardLinkSource,
 };
 
 export default function ComponentPage() {
