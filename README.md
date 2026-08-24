@@ -1,316 +1,101 @@
 # deste04-ui
 
-Libreria di componenti React in stile "copia-incolla" (come shadcn/ui):
-i componenti **non sono una dipendenza runtime**. Si installano uno alla
-volta con un CLI che copia il codice sorgente dentro il progetto di chi lo
-usa, in `components/ui/`. Da quel momento il codice è suo: lo può
-modificare liberamente.
+A React component library in the copy and paste style, the same idea used by
+shadcn/ui. Components are not a runtime dependency. A small CLI copies the
+actual source code into your project, under `components/ui/`, so you own it
+from that moment on.
 
-Lo stile è fatto **solo con classi utility Tailwind CSS** — nessun CSS
-custom per componente. `styles/global.css` è un unico file condiviso da
-tutti i componenti e contiene solo l'import di Tailwind (+
-`tw-animate-css`) e i design token (colori, font, radius) come
-variabili CSS in stile shadcn/ui, con dark mode a classe (`.dark` su
-`<html>`, non segue in automatico le preferenze di sistema). I
-componenti usano classi semantiche dirette (`bg-primary`,
-`text-primary-foreground`, ...) generate da quei token via
-[Base UI](https://base-ui.com) (primitive headless) e
-[class-variance-authority](https://cva.style) per le varianti.
-**Richiede che il progetto di chi lo usa abbia già Tailwind CSS (v4)
-configurato** — vedi
-[Setup Tailwind nel progetto che consuma i componenti](#setup-tailwind-nel-progetto-che-consuma-i-componenti).
+Styling uses only Tailwind CSS utility classes, no per-component CSS file.
+Behavior comes from [Base UI](https://base-ui.com) and
+[Ark UI](https://ark-ui.com), variants from
+[class-variance-authority](https://cva.style). Requires a project with
+Tailwind CSS v4 already configured.
 
-## Struttura del monorepo
+Full documentation, with a live preview and the source of every component, is
+in the `web` app (see [Development](#development) below to run it locally).
+
+## Monorepo structure
 
 ```
 deste04-ui/
-├── apps/
-│   └── site/                 # Sito che mostra tutti i componenti (Vite + React)
+├── web/                     # Documentation site (Vite + React + React Router)
+│   └── src/
+│       ├── pages/           # Routes: home, guides, components overview, component page
+│       ├── registry/        # Demo for every component, mapped to its real source
+│       ├── components/      # Site chrome: header, sidebar, search, code blocks
+│       └── data/            # Component metadata (name, category, install command)
 └── packages/
-    └── cli/                  # Il pacchetto pubblicato su npm come "deste04-ui"
-        ├── registry.json     # Indice: quali file/dipendenze ha ogni componente
-        ├── templates/        # Sorgente reale (quello che il CLI copia)
-        │   ├── components/ui/button.tsx
-        │   ├── styles/global.css   # UNICO foglio di stile, non uno per componente
+    └── cli/                 # Published on npm as "deste04-ui"
+        ├── registry.json    # Index: which files and dependencies each component needs
+        ├── templates/       # Real source, what the CLI actually copies
+        │   ├── components/ui/*.tsx
+        │   ├── styles/global.css   # The one shared stylesheet, no per-component CSS
         │   └── lib/utils.ts
-        └── src/cli.js        # Il comando `deste04-ui add <componente>`
+        └── src/cli.js       # The `deste04-ui add <component>` command
 ```
 
-Sono due progetti con scopi diversi ma nello stesso repo (workspaces npm):
+Two projects, two purposes, one repo via npm workspaces:
 
-- **`packages/cli`** → è tutto ciò che finisce su npm. Quando qualcuno fa
-  `npx deste04-ui add button`, il CLI legge `registry.json`, trova la voce
-  `button`, e copia i file da `templates/` dentro il progetto dell'utente
-  (`components/ui/button.tsx`, `lib/utils.ts`, `styles/global.css`),
-  installando poi con npm le eventuali dipendenze npm richieste (es.
-  `clsx`).
-- **`apps/site`** → è la vetrina: mostra ogni componente con anteprima
-  live, comando di installazione e codice sorgente. Il sito **non viene
-  pubblicato su npm**, resta solo un sito (da hostare dove vuoi: Vercel,
-  Netlify, GitHub Pages...). Non tiene una copia duplicata dei
-  componenti: grazie ai workspace npm, `apps/site` dichiara `deste04-ui`
-  come dipendenza normale nel suo `package.json` e npm la collega con un
-  symlink a `packages/cli` — il sito importa i componenti direttamente
-  da lì (`import { Button } from "deste04-ui/components/ui/button"`),
-  quindi ogni modifica a `packages/cli/templates/` si vede subito nel
-  sito, senza copiare nulla a mano e senza pubblicare su npm.
+- **`packages/cli`** is everything that ships to npm. `npx deste04-ui add
+  button` reads `registry.json`, finds the `button` entry, copies its files
+  from `templates/` into the user's project, then installs any npm
+  dependency it declares.
+- **`web`** is the documentation site. It never ships to npm. It declares
+  `deste04-ui` as a normal dependency, so npm workspaces symlink it to
+  `packages/cli`: the site imports components straight from there
+  (`deste04-ui/components/ui/button`), so any change to
+  `packages/cli/templates/` shows up on the site immediately, with no manual
+  copying.
 
-## Come funziona il CLI (il meccanismo "one component at a time")
+## Development
 
-1. `npx deste04-ui add button`
-2. Il CLI apre `packages/cli/registry.json` e cerca la voce `"button"`.
-3. Ogni voce del registry elenca:
-   - `files`: quali file copiare e dove (target relativo alla cartella
-     da cui lanci il comando, es. `components/ui/button.tsx`);
-   - `registryDependencies`: altre voci del registry da cui dipende (es.
-     `button` dipende da `utils`, quindi installa anche `lib/utils.ts`);
-   - `dependencies`: pacchetti npm richiesti (es. `clsx`), installati in
-     automatico con `npm install` (o `pnpm add` / `yarn add` se rileva
-     quel lockfile) nel progetto dell'utente.
-4. Se un file esiste già, il CLI non lo sovrascrive (per non perdere
-   modifiche che l'utente ha già fatto al componente).
-
-Perché funziona "un componente alla volta": ogni voce del registry è
-indipendente, quindi installare `button` non tocca né richiede altri
-componenti a parte le sue dipendenze dichiarate.
-
-## Setup Tailwind nel progetto che consuma i componenti
-
-`npx deste04-ui add button` installa il pacchetto npm `tailwindcss`
-(dichiarato tra le `dependencies` della voce `global` nel registry), ma
-**non può collegarlo al bundler del progetto** — quello è manuale, una
-tantum, la prima volta che aggiungi un componente in un progetto nuovo.
-
-Con Vite (come fa `apps/site` in questo repo):
+From the repo root:
 
 ```bash
-npm install -D @tailwindcss/vite
+npm install       # installs every workspace
+npm run dev        # starts the documentation site
+npm run build       # builds the documentation site
 ```
 
-```ts
-// vite.config.ts
-import { defineConfig } from "vite";
-import tailwindcss from "@tailwindcss/vite";
-
-export default defineConfig({
-  plugins: [tailwindcss() /* , ...altri plugin */],
-});
-```
-
-Poi importa `styles/global.css` una volta sola nel tuo entrypoint (es.
-`main.tsx`):
-
-```ts
-import "./styles/global.css";
-```
-
-Con un bundler diverso da Vite (Next.js, webpack, ecc.) usa
-`@tailwindcss/postcss` al posto di `@tailwindcss/vite` — vedi la
-[documentazione ufficiale di Tailwind](https://tailwindcss.com/docs/installation)
-per il tuo caso specifico.
-
-## Font personalizzato
-
-Tutti i componenti prendono il font da 3 variabili definite dentro
-`@theme inline` in `packages/cli/templates/styles/global.css`:
-
-```css
---font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-  sans-serif;
---font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
---font-heading: var(--font-sans);
-```
-
-`html { @apply font-sans; }` più sotto nel file applica `--font-sans` a
-tutta la pagina (bottoni compresi, per ereditarietà). Per cambiare
-font basta editare quei valori — due modi:
-
-**1. Google Fonts** — aggiungi il `<link>` nel tuo `index.html`:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
-/>
-```
-
-e cambia il token:
-
-```css
---font-sans: "Poppins", system-ui, sans-serif;
-```
-
-**2. Font self-hosted** (file `.woff2` nel progetto) — nello stesso
-`global.css`, prima di `:root`:
-
-```css
-@font-face {
-  font-family: "MioFont";
-  src: url("/fonts/mio-font.woff2") format("woff2");
-  font-weight: 400 700;
-  font-display: swap;
-}
-```
-
-e poi:
-
-```css
---font-sans: "MioFont", system-ui, sans-serif;
-```
-
-Non serve toccare nessun componente: `Button` (e ogni componente
-futuro) eredita il font dal `<html>` tramite `font-sans`, non lo
-hard-codifica.
-
-## Sviluppo in locale
-
-Dalla root del monorepo:
+Try the CLI locally without publishing it:
 
 ```bash
-npm install          # installa le dipendenze di tutti i workspace
-npm run dev           # avvia il sito (apps/site) in locale
+npm run cli -- list          # list available components
+npm run cli -- add button    # install one into the current directory
 ```
 
-Per testare il CLI senza pubblicarlo su npm, lancialo direttamente con
-Node dentro una cartella di prova:
+## Adding a new component
+
+1. Add the source in `packages/cli/templates/components/ui/<name>.tsx`.
+   Follow `button.tsx`: a headless primitive from Base UI or Ark UI, `cva()`
+   for variants, `cn()` to merge classes. Style with Tailwind utilities only.
+   Reuse existing tokens (`bg-primary`, `text-muted-foreground`, ...); add a
+   new one to `packages/cli/templates/styles/global.css` (with its dark
+   variant) only if none of the existing tokens fit.
+2. Add an entry under `"components"` in `packages/cli/registry.json`, with
+   `files`, `dependencies` and `registryDependencies: ["utils", "global"]`.
+3. Add the matching pair of exports in `packages/cli/package.json`, under
+   `"exports"` (with and without the `.tsx` extension, the second is used by
+   the site's `?raw` import).
+4. Add its metadata (slug, name, category, description, install command) to
+   `web/src/data/components.ts`.
+5. Add its demo and its `?raw` source import in `web/src/registry/`.
+
+Nothing needs copying into `web`: it reads the real source from
+`packages/cli/templates/` through the workspace link, so the new component is
+installable via the CLI and visible on the site right away.
+
+## Publishing the CLI to npm
+
+Only `packages/cli` gets published.
 
 ```bash
-mkdir /tmp/progetto-di-prova && cd /tmp/progetto-di-prova
-node /percorso/assoluto/deste04-ui/packages/cli/src/cli.js add button
-```
-
-oppure, dalla root del monorepo:
-
-```bash
-npm run cli -- add button    # esegue packages/cli/src/cli.js nella cwd corrente
-npm run cli -- list          # elenca i componenti disponibili
-```
-
-## Come aggiungere un nuovo componente
-
-1. Crea il sorgente in `packages/cli/templates/components/ui/<nome>.tsx`,
-   seguendo lo stile di `button.tsx`: primitiva headless da
-   [Base UI](https://base-ui.com) (`@base-ui/react/<componente>`) +
-   `cva()` per le varianti + `cn()` per unire le classi. **Stile solo
-   con classi utility Tailwind, mai CSS custom**: niente file `.css`
-   per componente. Usa i token semantici già definiti
-   (`bg-primary`, `text-muted-foreground`, `border-border`, ecc.). Se
-   ti serve un colore/token nuovo che ancora non esiste, aggiungilo
-   (con la sua variante dark dentro `.dark { }`) in
-   `packages/cli/templates/styles/global.css` — quel file resta *solo*
-   variabili + import Tailwind, non deve mai contenere regole di stile
-   per un componente.
-2. Aggiungi una voce in `packages/cli/registry.json` sotto
-   `"components"`, con `files` (solo il `.tsx`), `dependencies` e
-   `registryDependencies: ["utils", "global"]` (così chi installa il
-   componente riceve anche `lib/utils.ts` e `styles/global.css` in
-   automatico).
-3. In `packages/cli/package.json`, sotto `"exports"`, aggiungi le due
-   voci per il nuovo componente (con e senza estensione `.tsx`, la
-   seconda serve per l'import `?raw` usato dal sito):
-   ```json
-   "./components/ui/<nome>": "./templates/components/ui/<nome>.tsx",
-   "./components/ui/<nome>.tsx": "./templates/components/ui/<nome>.tsx"
-   ```
-4. In `apps/site/src/data/components.ts` aggiungi i metadati (slug,
-   nome, descrizione, comando di installazione).
-5. In `apps/site/src/pages/ComponentPage.tsx` importa il componente da
-   `deste04-ui/components/ui/<nome>` (più il sorgente con `?raw` da
-   `deste04-ui/components/ui/<nome>.tsx`), poi aggiungi una entry in
-   `previews` e in `sources`.
-
-Non serve copiare nessun file dentro `apps/site`: essendo collegato via
-workspace npm, il sito legge sempre il sorgente vero in
-`packages/cli/templates/`. Fatto: il componente è installabile via CLI e
-visibile sul sito.
-
-## Pubblicare il CLI su npm
-
-Solo `packages/cli` viene pubblicato — il sito no.
-
-### 1. Prerequisiti (una tantum)
-
-```bash
-npm login
-```
-
-Ti chiede username, password/OTP dell'account npm (creane uno gratis su
-npmjs.com se non l'hai già).
-
-### 2. Controlla che il nome sia libero
-
-```bash
-npm view deste04-ui
-```
-
-Se risponde "404 Not Found" il nome è libero. Se è già preso, cambia
-`"name"` in `packages/cli/package.json` (es. uno scoped package tipo
-`@giarnera/deste04-ui`, sempre disponibile perché legato al tuo account).
-
-### 3. Controlla cosa finirà nel pacchetto
-
-Il campo `"files"` in `packages/cli/package.json` include già solo
-`src/`, `templates/` e `registry.json` (nessun file di sviluppo). Verifica
-con:
-
-```bash
+npm login                        # once, if not already logged in
+npm view deste04-ui               # check the name is free (404 = free)
 cd packages/cli
-npm pack --dry-run
+npm pack --dry-run                # preview what would be published
+npm version patch                 # or: minor / major
+npm publish                       # add --access public for a scoped name
 ```
 
-Ti mostra l'elenco esatto dei file che finirebbero nel tarball, senza
-pubblicare nulla.
-
-### 4. Pubblica
-
-Sempre da dentro `packages/cli`:
-
-```bash
-npm publish
-```
-
-Se usi un nome con scope (`@tuoaccount/pacchetto`) ed è la prima
-pubblicazione, aggiungi `--access public` (di default gli scoped
-package sono privati e privati richiede un piano a pagamento):
-
-```bash
-npm publish --access public
-```
-
-Da quel momento chiunque può fare:
-
-```bash
-npx deste04-ui add button
-```
-
-### 5. Aggiornare una versione già pubblicata
-
-Ogni volta che cambi qualcosa in `packages/cli` (nuovo componente, fix),
-prima di ripubblicare aggiorna la versione (segue semver: patch per fix,
-minor per nuovi componenti/feature retrocompatibili, major per breaking
-change):
-
-```bash
-cd packages/cli
-npm version patch   # oppure: minor / major
-npm publish
-```
-
-`npm version` aggiorna `package.json` e crea un tag git con quella
-versione (se il repo è già un progetto git).
-
-### Note
-
-- Il comando `deste04-ui add` in sé (`src/cli.js`) usa solo moduli
-  nativi di Node, quindi `npx deste04-ui add button` resta istantaneo.
-  Il pacchetto dichiara comunque `clsx` come `dependencies` e `react`
-  come `peerDependencies`: servono perché ora `packages/cli` è anche
-  importabile come libreria (via `exports` in `package.json`) — è così
-  che `apps/site` consuma i componenti direttamente dal workspace,
-  senza copie duplicate.
-- Per provare il pacchetto pubblicato prima di fidarti al 100%, puoi
-  anche testarlo in locale con `npm link` da `packages/cli`, poi
-  `deste04-ui add button` in un altro progetto, prima ancora di fare
-  `npm publish`.
+From then on, anyone can run `npx deste04-ui add button`.

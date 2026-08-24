@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "description": "Monorepo della libreria deste04-ui: CLI per installare i componenti + sito che li mostra",
   "workspaces": [
-    "apps/*",
+    "web",
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace apps/site",
-    "build": "npm run build --workspace apps/site",
+    "dev": "npm run dev --workspace web",
+    "build": "npm run build --workspace web",
     "cli": "node packages/cli/src/cli.js"
   }
 }

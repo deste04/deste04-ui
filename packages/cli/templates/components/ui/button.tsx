@@ -33,7 +33,7 @@ const buttonVariants = cva(
         subtle:
           "bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:bg-primary/15 disabled:bg-muted disabled:text-muted-foreground",
         outline:
-          "border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50 disabled:bg-muted disabled:text-muted-foreground disabled:hover:bg-muted",
+          "border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:hover:bg-input/50 disabled:bg-muted disabled:text-muted-foreground disabled:hover:bg-muted",
         plain:
           "text-foreground hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 disabled:text-muted-foreground disabled:hover:bg-transparent",
         destructive:
