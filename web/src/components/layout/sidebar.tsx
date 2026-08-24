@@ -19,9 +19,9 @@ export function Sidebar({ className }: Readonly<{ className?: string }>) {
                 to={item.path}
                 className={({ isActive }) =>
                   cn(
-                    "-ms-px border-s-2 px-3 py-1.5 text-sm no-underline transition-colors",
+                    "-ms-px block border-s-2 px-3 py-1.5 text-sm no-underline transition-colors",
                     isActive
-                      ? "border-primary font-medium text-primary"
+                      ? "border-primary bg-primary/10 font-medium text-primary dark:bg-primary/15"
                       : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
                   )
                 }

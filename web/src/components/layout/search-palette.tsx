@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { Search, CornerDownLeft } from "lucide-react";
 import { Input } from "deste04-ui/components/ui/input";
@@ -68,7 +69,7 @@ export function SearchPalette({ open, onClose }: { open: boolean; onClose: () =>
 
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/70 px-4 pt-24 backdrop-blur-sm">
       <button
         type="button"
@@ -116,6 +117,7 @@ export function SearchPalette({ open, onClose }: { open: boolean; onClose: () =>
           <CornerDownLeft className="size-3.5" /> to select, Esc to close
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

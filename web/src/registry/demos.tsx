@@ -562,6 +562,19 @@ export const demos: Record<string, () => JSX.Element> = {
           <TabsContent value="team">Invite and manage your team members.</TabsContent>
         </Tabs>
       </PreviewGroup>
+      <PreviewGroup label="Subtle" column className="w-full">
+        <Tabs defaultValue="overview" variant="subtle" className="w-full">
+          <TabsList>
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            <TabsTrigger value="reports">Reports</TabsTrigger>
+            <TabsIndicator />
+          </TabsList>
+          <TabsContent value="overview">A summary of your workspace activity.</TabsContent>
+          <TabsContent value="analytics">Traffic and usage broken down by day.</TabsContent>
+          <TabsContent value="reports">Export and schedule recurring reports.</TabsContent>
+        </Tabs>
+      </PreviewGroup>
       <PreviewGroup label="Enclosed, fitted" column className="w-full">
         <Tabs defaultValue="day" variant="enclosed" fitted className="w-full">
           <TabsList>
