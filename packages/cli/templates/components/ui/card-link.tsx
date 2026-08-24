@@ -28,7 +28,7 @@ function CardLink({
       target={external ? (target ?? "_blank") : target}
       rel={external ? (rel ?? "noopener noreferrer") : rel}
       className={cn(
-        "group/card-link relative flex w-64 flex-col items-center overflow-hidden rounded-2xl border border-transparent bg-muted px-5 py-10 text-center text-foreground no-underline outline-none transition-colors select-none hover:border-primary/20 hover:bg-primary/10 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:hover:border-primary/25 dark:hover:bg-primary/15",
+        "group/card-link relative flex w-64 flex-col items-center justify-center overflow-hidden rounded-2xl border border-transparent bg-muted px-5 py-10 text-center text-foreground no-underline outline-none transition-colors select-none hover:border-primary/20 hover:bg-primary/10 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:hover:border-primary/25 dark:hover:bg-primary/15",
         className
       )}
       {...props}

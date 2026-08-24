@@ -3,6 +3,7 @@ import { linkVariants } from "deste04-ui/components/ui/link";
 import { cn } from "deste04-ui/lib/utils";
 import { PageHeader } from "../components/docs/page-header";
 import { CodeBlock } from "../components/docs/code-block";
+import { DocsPagination } from "../components/docs/docs-pagination";
 
 export default function Installation() {
   return (
@@ -124,6 +125,8 @@ import "./styles/global.css";`}
           to see what is available, each with a live preview and its source code.
         </p>
       </section>
+
+      <DocsPagination />
     </div>
   );
 }

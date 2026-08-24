@@ -44,3 +44,19 @@ export function getSearchItems(): { title: string; group: string; path: string }
     group.items.map((item) => ({ title: item.title, group: group.title, path: item.path }))
   );
 }
+
+/** Every guide and component page, in the order they appear in the sidebar. */
+export function getFlatNavItems(): { title: string; path: string }[] {
+  return getNavGroups().flatMap((group) => group.items);
+}
+
+/** The pages right before and after `path` in the sidebar order, for prev/next links. */
+export function getAdjacentPages(path: string): {
+  prev?: { title: string; path: string };
+  next?: { title: string; path: string };
+} {
+  const items = getFlatNavItems();
+  const index = items.findIndex((item) => item.path === path);
+  if (index === -1) return {};
+  return { prev: items[index - 1], next: items[index + 1] };
+}

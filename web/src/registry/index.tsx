@@ -63,8 +63,8 @@ const sources: Record<string, string> = {
 };
 
 export function getRegistryEntry(slug: string) {
-  const Demo = demos[slug];
+  const examples = demos[slug];
   const source = sources[slug];
-  if (!Demo || !source) return null;
-  return { Demo, source };
+  if (!examples || !source) return null;
+  return { examples, source };
 }

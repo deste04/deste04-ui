@@ -4,6 +4,7 @@ import { Card, CardContent } from "deste04-ui/components/ui/card";
 import { cn } from "deste04-ui/lib/utils";
 import { PageHeader } from "../components/docs/page-header";
 import { CodeBlock } from "../components/docs/code-block";
+import { DocsPagination } from "../components/docs/docs-pagination";
 
 export default function Introduction() {
   return (
@@ -91,6 +92,8 @@ export default function Introduction() {
         </p>
         <CodeBlock code="npx deste04-ui add button" />
       </section>
+
+      <DocsPagination />
     </div>
   );
 }

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, Code2, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { Button } from "deste04-ui/components/ui/button";
 import { ThemeToggle } from "deste04-ui/components/theme/theme-toggle";
 import { cn } from "deste04-ui/lib/utils";
+import { GithubIcon } from "../icons/github";
 import { SearchPalette, SearchTrigger } from "./search-palette";
 
-const GITHUB_URL = "https://github.com";
+const GITHUB_URL = "https://github.com/deste04/deste04-ui";
 
 export function SiteHeader({ onMenuClick }: { onMenuClick?: () => void }) {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -48,7 +49,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick?: () => void }) {
         <HeaderLink to="/docs/components">Components</HeaderLink>
       </nav>
 
-      <div className="ms-auto flex items-center gap-2">
+      <div className="ms-auto flex items-center gap-2 sm:gap-3">
         <div className="hidden sm:block">
           <SearchTrigger onOpen={() => setSearchOpen(true)} />
         </div>
@@ -61,15 +62,20 @@ export function SiteHeader({ onMenuClick }: { onMenuClick?: () => void }) {
         >
           <Search />
         </Button>
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View source on GitHub"
-          className="text-muted-foreground transition-colors hover:text-foreground"
+        <Button
+          variant="outline"
+          size="icon-md"
+          aria-label="GitHub"
         >
-          <Code2 className="size-5" />
-        </a>
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View source on GitHub"
+          >
+            <GithubIcon className="size-5" />
+          </a>
+        </Button>
         <ThemeToggle />
       </div>
 

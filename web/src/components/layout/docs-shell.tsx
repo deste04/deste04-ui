@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 import { Button } from "deste04-ui/components/ui/button";
+import { Separator } from "deste04-ui/components/ui/separator";
 import { SiteHeader } from "./site-header";
 import { Sidebar } from "./sidebar";
 
@@ -17,8 +18,13 @@ export function DocsShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen flex-col">
       <SiteHeader onMenuClick={() => setMobileNavOpen(true)} />
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 items-start gap-8 px-4 py-8 sm:px-6">
-        <Sidebar className="sticky top-20 hidden h-[calc(100vh-6rem)] w-56 shrink-0 md:flex" />
+      <div className="mx-auto flex w-full max-w-[100rem] flex-1 items-start gap-6 px-4 py-8 sm:px-6">
+        <Sidebar className="sticky top-20 hidden h-[calc(100vh-6rem)] w-64 shrink-0 md:flex" />
+
+        <Separator
+          orientation="vertical"
+          className="sticky top-20 hidden data-[orientation=vertical]:h-[calc(100vh-6rem)] md:block"
+        />
 
         {mobileNavOpen && (
           <div className="fixed inset-0 z-40 md:hidden">

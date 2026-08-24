@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { GithubIcon } from "../icons/github";
 
 export function Footer() {
   return (
@@ -16,9 +17,9 @@ export function Footer() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="no-underline hover:text-foreground"
+            className="inline-flex items-center gap-1.5 no-underline hover:text-foreground"
           >
-            GitHub
+            <GithubIcon className="size-4" /> GitHub
           </a>
         </nav>
       </div>
