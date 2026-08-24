@@ -42,15 +42,6 @@ export default function Introduction() {
         <p className="leading-relaxed text-foreground">
           Behavior comes from{" "}
           <a
-            href="https://base-ui.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(linkVariants())}
-          >
-            Base UI
-          </a>{" "}
-          and{" "}
-          <a
             href="https://ark-ui.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -58,7 +49,7 @@ export default function Introduction() {
           >
             Ark UI
           </a>
-          , two headless, accessible primitive libraries. Variants are built with{" "}
+          , a headless, accessible primitive library. Variants are built with{" "}
           <a
             href="https://cva.style"
             target="_blank"

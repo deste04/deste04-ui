@@ -6,8 +6,7 @@ actual source code into your project, under `components/ui/`, so you own it
 from that moment on.
 
 Styling uses only Tailwind CSS utility classes, no per-component CSS file.
-Behavior comes from [Base UI](https://base-ui.com) and
-[Ark UI](https://ark-ui.com), variants from
+Behavior comes from [Ark UI](https://ark-ui.com), variants from
 [class-variance-authority](https://cva.style). Requires a project with
 Tailwind CSS v4 already configured.
 
@@ -67,7 +66,7 @@ npm run cli -- add button    # install one into the current directory
 ## Adding a new component
 
 1. Add the source in `packages/cli/templates/components/ui/<name>.tsx`.
-   Follow `button.tsx`: a headless primitive from Base UI or Ark UI, `cva()`
+   Follow `button.tsx`: a headless primitive from Ark UI, `cva()`
    for variants, `cn()` to merge classes. Style with Tailwind utilities only.
    Reuse existing tokens (`bg-primary`, `text-muted-foreground`, ...); add a
    new one to `packages/cli/templates/styles/global.css` (with its dark

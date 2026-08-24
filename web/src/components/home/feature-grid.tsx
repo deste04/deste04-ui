@@ -19,7 +19,7 @@ const features: { icon: ComponentType; title: string; description: string }[] = 
     icon: Unlock,
     title: "No lock-in",
     description:
-      "Built on Base UI and Ark UI for accessible behavior, and class-variance-authority for variants. Swap any piece out whenever your project needs something different.",
+      "Built on Ark UI for accessible behavior, and class-variance-authority for variants. Swap any piece out whenever your project needs something different.",
   },
 ];
 
