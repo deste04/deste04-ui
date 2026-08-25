@@ -1,9 +1,13 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { linkVariants } from "deste04-ui/components/ui/link";
 import { CopyButton } from "deste04-ui/components/ui/copy-button";
+import { buttonVariants } from "deste04-ui/components/ui/button";
 import { cn } from "deste04-ui/lib/utils";
-import { getComponent } from "../data/components";
+import { getComponent, type ComponentMeta } from "../data/components";
 import { getRegistryEntry } from "../registry";
+import { getAdjacentPages } from "../data/nav";
+import type { DemoExample } from "../registry/demos";
 import { PageHeader } from "../components/docs/page-header";
 import { ComponentDemo } from "../components/docs/preview-frame";
 import { CodeBlock } from "../components/docs/code-block";
@@ -18,8 +22,27 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+/** Full page content as markdown: titles, explanations and code, no navbars/chrome. */
+function buildMarkdown(meta: ComponentMeta, examples: DemoExample[], source: string) {
+  const sections = [
+    `# ${meta.name}`,
+    meta.description,
+    ...examples.flatMap((example) => [
+      `## ${example.title}`,
+      example.description,
+      "```tsx\n" + example.code + "\n```",
+    ]),
+    "## Source",
+    "```tsx\n" + source + "\n```",
+    "## Installation",
+    "```bash\n" + meta.install + "\n```",
+  ];
+  return sections.join("\n\n") + "\n";
+}
+
 export default function ComponentPage() {
   const { slug = "" } = useParams();
+  const location = useLocation();
   const meta = getComponent(slug);
   const entry = getRegistryEntry(slug);
 
@@ -28,7 +51,8 @@ export default function ComponentPage() {
   }
 
   const { examples, source } = entry;
-  const markdown = "```tsx\n" + source + "\n```\n";
+  const markdown = buildMarkdown(meta, examples, source);
+  const { prev, next } = getAdjacentPages(location.pathname);
 
   const tocItems = [
     ...examples.map((example) => ({ id: slugify(example.title), label: example.title })),
@@ -39,15 +63,54 @@ export default function ComponentPage() {
   return (
     <div className="flex items-start gap-10 xl:gap-12">
       <div className="mx-auto flex min-w-0 max-w-4xl flex-1 flex-col gap-10 pb-24">
-        <Link
-          to="/docs/components"
-          className={cn(
-            linkVariants({ variant: "no-underline" }),
-            "inline-flex w-fit items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
-          )}
-        >
-          &larr; All components
-        </Link>
+        <div className="flex items-center justify-between gap-4">
+          <Link
+            to="/docs/components"
+            className={cn(
+              linkVariants({ variant: "no-underline" }),
+              "inline-flex w-fit items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+            )}
+          >
+            &larr; All components
+          </Link>
+
+          <div className="flex items-center gap-2">
+            {prev ? (
+              <Link
+                to={prev.path}
+                aria-label={`Previous: ${prev.title}`}
+                title={prev.title}
+                className={cn(buttonVariants({ variant: "outline", size: "icon-xs" }))}
+              >
+                <ChevronLeft />
+              </Link>
+            ) : (
+              <span
+                aria-hidden="true"
+                className={cn(buttonVariants({ variant: "outline", size: "icon-xs" }), "opacity-40")}
+              >
+                <ChevronLeft />
+              </span>
+            )}
+            {next ? (
+              <Link
+                to={next.path}
+                aria-label={`Next: ${next.title}`}
+                title={next.title}
+                className={cn(buttonVariants({ variant: "outline", size: "icon-xs" }))}
+              >
+                <ChevronRight />
+              </Link>
+            ) : (
+              <span
+                aria-hidden="true"
+                className={cn(buttonVariants({ variant: "outline", size: "icon-xs" }), "opacity-40")}
+              >
+                <ChevronRight />
+              </span>
+            )}
+          </div>
+        </div>
 
         <PageHeader
           title={meta.name}
