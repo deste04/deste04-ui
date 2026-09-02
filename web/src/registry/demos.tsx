@@ -86,6 +86,26 @@ import {
 } from "deste04-ui/components/ui/card";
 import { CardLink } from "deste04-ui/components/ui/card-link";
 import { toast } from "deste04-ui/components/ui/toast";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogCloseTrigger,
+} from "deste04-ui/components/ui/dialog";
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+} from "deste04-ui/components/ui/drawer";
+import { buttonVariants } from "deste04-ui/components/ui/button";
+import { cn } from "deste04-ui/lib/utils";
 
 import { PreviewGroup, PreviewNote } from "../components/docs/preview-parts";
 import { GithubIcon } from "../components/icons/github";
@@ -110,6 +130,31 @@ const frameworkItems = [
   { label: "Angular", value: "angular" },
   { label: "Astro", value: "astro" },
 ];
+
+const TERMS_SECTIONS = [
+  {
+    title: "1. Acceptance of Terms.",
+    body: "By accessing and using this service, you accept and agree to be bound by the terms of this agreement.",
+  },
+  {
+    title: "2. Use License.",
+    body: "Permission is granted to temporarily use this service for personal, non-commercial purposes only.",
+  },
+  {
+    title: "3. User Responsibilities.",
+    body: "You are responsible for maintaining the confidentiality of your account and all activity under it.",
+  },
+  {
+    title: "4. Privacy Policy.",
+    body: "Your use of this service is also governed by our Privacy Policy.",
+  },
+  {
+    title: "5. Changes to Terms.",
+    body: "We may revise these terms at any time. Continued use means you accept the current version.",
+  },
+];
+
+const DRAWER_ITEMS = Array.from({ length: 50 }, (_, i) => i + 1);
 
 function SwapButton({
   variant,
@@ -1690,6 +1735,319 @@ toast.loading({ title: "Uploading...", description: "This can take a moment." })
             Run async task
           </Button>
         </PreviewGroup>
+      ),
+    },
+  ],
+
+  dialog: [
+    {
+      title: "Variants",
+      description:
+        "A regular dialog with a footer, and an alertdialog for destructive confirmations that can't be dismissed by clicking outside.",
+      code: `<Dialog>
+  <DialogTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+    Edit profile
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Edit profile</DialogTitle>
+      <DialogDescription>
+        Make changes to your profile here. Click save when you're done.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogCloseTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+        Cancel
+      </DialogCloseTrigger>
+      <DialogCloseTrigger className={cn(buttonVariants({ size: "sm" }))}>
+        Save changes
+      </DialogCloseTrigger>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+
+<Dialog role="alertdialog">
+  <DialogTrigger className={cn(buttonVariants({ variant: "destructive" }))}>
+    Delete account
+  </DialogTrigger>
+  <DialogContent size="sm">
+    <DialogHeader>
+      <DialogTitle>Are you absolutely sure?</DialogTitle>
+      <DialogDescription>
+        This action cannot be undone. This will permanently delete your account and remove your
+        data from our servers.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogCloseTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+        Cancel
+      </DialogCloseTrigger>
+      <DialogCloseTrigger className={cn(buttonVariants({ variant: "destructive", size: "sm" }))}>
+        Delete account
+      </DialogCloseTrigger>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`,
+      render: () => (
+        <PreviewGroup>
+          <Dialog>
+            <DialogTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+              Edit profile
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Edit profile</DialogTitle>
+                <DialogDescription>
+                  Make changes to your profile here. Click save when you're done.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogCloseTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                  Cancel
+                </DialogCloseTrigger>
+                <DialogCloseTrigger className={cn(buttonVariants({ size: "sm" }))}>
+                  Save changes
+                </DialogCloseTrigger>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          <Dialog role="alertdialog">
+            <DialogTrigger className={cn(buttonVariants({ variant: "destructive" }))}>
+              Delete account
+            </DialogTrigger>
+            <DialogContent size="sm">
+              <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete your account and remove
+                  your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogCloseTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                  Cancel
+                </DialogCloseTrigger>
+                <DialogCloseTrigger
+                  className={cn(buttonVariants({ variant: "destructive", size: "sm" }))}
+                >
+                  Delete account
+                </DialogCloseTrigger>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </PreviewGroup>
+      ),
+    },
+    {
+      title: "Sizes",
+      description: "sm, md (default), lg, xl and full, controlling the content's max width.",
+      code: `<Dialog>
+  <DialogTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>Sm</DialogTrigger>
+  <DialogContent size="sm">
+    <DialogHeader>
+      <DialogTitle>Small dialog</DialogTitle>
+      <DialogDescription>max-w-sm.</DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>`,
+      render: () => (
+        <PreviewGroup>
+          {(["sm", "md", "lg", "xl", "full"] as const).map((size) => (
+            <Dialog key={size}>
+              <DialogTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                {size}
+              </DialogTrigger>
+              <DialogContent size={size}>
+                <DialogHeader>
+                  <DialogTitle className="capitalize">{size} dialog</DialogTitle>
+                  <DialogDescription>size=&quot;{size}&quot;</DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
+          ))}
+        </PreviewGroup>
+      ),
+    },
+    {
+      title: "Scrollable content",
+      description:
+        "Give DialogContent a maxHeight and let the body scroll while the header and footer stay put.",
+      code: `<Dialog>
+  <DialogTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+    Terms of Service
+  </DialogTrigger>
+  <DialogContent style={{ maxHeight: "min(28rem, calc(100vh - 4rem))" }}>
+    <DialogHeader>
+      <DialogTitle>Terms of Service</DialogTitle>
+      <DialogDescription>Please review our terms before continuing.</DialogDescription>
+    </DialogHeader>
+    <div className="flex-1 overflow-y-auto pe-1 text-sm text-muted-foreground">
+      {sections.map((s) => (
+        <p key={s.title} className="mb-3">
+          <strong className="text-foreground">{s.title}</strong> {s.body}
+        </p>
+      ))}
+    </div>
+    <DialogFooter>
+      <DialogCloseTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+        Decline
+      </DialogCloseTrigger>
+      <DialogCloseTrigger className={cn(buttonVariants({ size: "sm" }))}>Accept</DialogCloseTrigger>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`,
+      render: () => (
+        <Dialog>
+          <DialogTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+            Terms of Service
+          </DialogTrigger>
+          <DialogContent style={{ maxHeight: "min(28rem, calc(100vh - 4rem))" }}>
+            <DialogHeader>
+              <DialogTitle>Terms of Service</DialogTitle>
+              <DialogDescription>Please review our terms before continuing.</DialogDescription>
+            </DialogHeader>
+            <div className="flex-1 overflow-y-auto pe-1 text-sm text-muted-foreground">
+              {TERMS_SECTIONS.map((s) => (
+                <p key={s.title} className="mb-3">
+                  <strong className="text-foreground">{s.title}</strong> {s.body}
+                </p>
+              ))}
+            </div>
+            <DialogFooter>
+              <DialogCloseTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                Decline
+              </DialogCloseTrigger>
+              <DialogCloseTrigger className={cn(buttonVariants({ size: "sm" }))}>
+                Accept
+              </DialogCloseTrigger>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      ),
+    },
+  ],
+
+  drawer: [
+    {
+      title: "Variants",
+      description:
+        "Docks to whichever edge swipeDirection resolves to: a bottom sheet by default, or \"end\" for a side panel.",
+      code: `<Drawer>
+  <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+    Open bottom sheet
+  </DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Notifications</DrawerTitle>
+      <DrawerDescription>You're all caught up. Good job!</DrawerDescription>
+    </DrawerHeader>
+  </DrawerContent>
+</Drawer>
+
+<Drawer swipeDirection="end">
+  <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+    Open side panel
+  </DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Settings</DrawerTitle>
+      <DrawerDescription>Manage your account preferences.</DrawerDescription>
+    </DrawerHeader>
+  </DrawerContent>
+</Drawer>`,
+      render: () => (
+        <PreviewGroup>
+          <Drawer>
+            <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+              Open bottom sheet
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Notifications</DrawerTitle>
+                <DrawerDescription>You're all caught up. Good job!</DrawerDescription>
+              </DrawerHeader>
+            </DrawerContent>
+          </Drawer>
+          <Drawer swipeDirection="end">
+            <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+              Open side panel
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Settings</DrawerTitle>
+                <DrawerDescription>Manage your account preferences.</DrawerDescription>
+              </DrawerHeader>
+            </DrawerContent>
+          </Drawer>
+        </PreviewGroup>
+      ),
+    },
+    {
+      title: "Snap points",
+      description:
+        "Snap heights are a share of the content's own height, so give it room to snap into: drag the grabber to move between 25%, 50% and 100%, or swipe further to dismiss.",
+      code: `<Drawer snapPoints={[0.25, 0.5, 1]} defaultSnapPoint={0.5}>
+  <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>Open</DrawerTrigger>
+  <DrawerContent className="min-h-[90vh]">
+    <DrawerHeader>
+      <DrawerTitle>Drag me</DrawerTitle>
+      <DrawerDescription>Drag the grabber above to snap between different heights.</DrawerDescription>
+    </DrawerHeader>
+    <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed border-border text-sm text-muted-foreground">
+      Drag area
+    </div>
+  </DrawerContent>
+</Drawer>`,
+      render: () => (
+        <Drawer snapPoints={[0.25, 0.5, 1]} defaultSnapPoint={0.5}>
+          <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>Open</DrawerTrigger>
+          <DrawerContent className="min-h-[90vh]">
+            <DrawerHeader>
+              <DrawerTitle>Drag me</DrawerTitle>
+              <DrawerDescription>
+                Drag the grabber above to snap between different heights.
+              </DrawerDescription>
+            </DrawerHeader>
+          </DrawerContent>
+        </Drawer>
+      ),
+    },
+    {
+      title: "Scrollable content",
+      description: "The header and grabber stay put while a long list scrolls in between.",
+      code: `<Drawer>
+  <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>Open list</DrawerTrigger>
+  <DrawerContent style={{ maxHeight: "min(28rem, 85vh)" }}>
+    <DrawerHeader>
+      <DrawerTitle>50 items</DrawerTitle>
+    </DrawerHeader>
+    <div className="flex-1 overflow-y-auto">
+      {items.map((item) => (
+        <div key={item} className="border-b border-border py-2 text-sm last:border-0">
+          Item {item}
+        </div>
+      ))}
+    </div>
+  </DrawerContent>
+</Drawer>`,
+      render: () => (
+        <Drawer>
+          <DrawerTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+            Open list
+          </DrawerTrigger>
+          <DrawerContent style={{ maxHeight: "min(28rem, 85vh)" }}>
+            <DrawerHeader>
+              <DrawerTitle>50 items</DrawerTitle>
+            </DrawerHeader>
+            <div className="flex-1 overflow-y-auto">
+              {DRAWER_ITEMS.map((item) => (
+                <div key={item} className="border-b border-border py-2 text-sm last:border-0">
+                  Item {item}
+                </div>
+              ))}
+            </div>
+          </DrawerContent>
+        </Drawer>
       ),
     },
   ],

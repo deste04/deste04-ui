@@ -11,7 +11,7 @@ const textareaVariants = cva(
         outline:
           "border border-input bg-transparent focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50",
         surface:
-          "border border-border bg-card focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive disabled:bg-muted",
+          "border border-accent/15 bg-accent/10 focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive disabled:bg-muted",
         subtle:
           "border border-transparent bg-muted focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary aria-invalid:border-destructive aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-destructive",
         flushed:

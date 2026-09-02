@@ -14,8 +14,7 @@ const tagsInputVariants = cva(
     variants: {
       variant: {
         outline: "border border-input bg-transparent dark:bg-input/30",
-        surface:
-          "border border-primary/15 bg-primary/5 dark:border-primary/20 dark:bg-primary/10",
+        surface: "border border-accent/15 bg-accent/5",
         subtle: "border border-transparent bg-muted",
       },
       size: {
@@ -44,7 +43,7 @@ function TagsInputItems() {
     >
       <ArkTagsInput.ItemPreview
         data-slot="tags-input-item-preview"
-        className="inline-flex h-(--tags-input-item-height) max-w-full items-center gap-1 rounded-md bg-primary/10 px-(--tags-input-item-px) text-primary select-none supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground dark:bg-primary/15"
+        className="inline-flex h-(--tags-input-item-height) max-w-full items-center gap-1 rounded-md bg-accent/10 px-(--tags-input-item-px) text-accent select-none supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground"
       >
         <ArkTagsInput.ItemText
           data-slot="tags-input-item-text"
@@ -54,7 +53,7 @@ function TagsInputItems() {
         </ArkTagsInput.ItemText>
         <ArkTagsInput.ItemDeleteTrigger
           data-slot="tags-input-item-delete-trigger"
-          className="-me-1 flex size-4 shrink-0 items-center justify-center rounded-sm outline-none hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-ring/50"
+          className="-me-1 flex size-4 shrink-0 items-center justify-center rounded-sm outline-none hover:bg-accent/20 focus-visible:ring-2 focus-visible:ring-ring/50"
         >
           <X className="size-3" />
         </ArkTagsInput.ItemDeleteTrigger>

@@ -335,6 +335,32 @@
       ]
     },
     {
+      "name": "dialog",
+      "type": "components:ui",
+      "description": "Modale (Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogCloseTrigger), basato su Ark UI e portato fuori dal DOM con Portal. Backdrop e contenuto animati in ingresso/uscita, focus trap, chiusura con Escape o click fuori, dimensioni sm/md/lg/xl/full. DialogTrigger e DialogCloseTrigger sono senza stile: passa asChild con un tuo Button oppure applica direttamente la className.",
+      "dependencies": ["@ark-ui/react", "lucide-react", "class-variance-authority"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "target": "components/ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "components:ui",
+      "description": "Pannello a scomparsa (Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerCloseTrigger), basato su Ark UI e portato fuori dal DOM con Portal. Si aggancia al bordo indicato da swipeDirection (down/up/left/right/start/end, default down) con grabber trascinabile, snap point, animazione di ingresso/uscita coerente col lato. DrawerTrigger e DrawerCloseTrigger sono senza stile: passa asChild con un tuo Button oppure applica direttamente la className.",
+      "dependencies": ["@ark-ui/react", "lucide-react"],
+      "registryDependencies": ["utils", "global"],
+      "files": [
+        {
+          "path": "components/ui/drawer.tsx",
+          "target": "components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
       "name": "theme-provider",
       "type": "components:theme",
       "description": "Wrapper attorno a `ThemeProvider` di next-themes: gestisce tema chiaro/scuro/sistema tramite la classe `.dark` su `<html>`. Da montare una volta sola nell'entrypoint (es. main.tsx), attorno a tutta l'app.",

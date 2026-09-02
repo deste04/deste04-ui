@@ -22,6 +22,8 @@ import cardSource from "deste04-ui/components/ui/card.tsx?raw";
 import toastSource from "deste04-ui/components/ui/toast.tsx?raw";
 import spinnerSource from "deste04-ui/components/ui/spinner.tsx?raw";
 import fileUploadSource from "deste04-ui/components/ui/file-upload.tsx?raw";
+import dialogSource from "deste04-ui/components/ui/dialog.tsx?raw";
+import drawerSource from "deste04-ui/components/ui/drawer.tsx?raw";
 import swapSource from "deste04-ui/components/ui/swap.tsx?raw";
 import themeProviderSource from "deste04-ui/components/theme/theme-provider.tsx?raw";
 import themeToggleSource from "deste04-ui/components/theme/theme-toggle.tsx?raw";
@@ -57,6 +59,8 @@ const sources: Record<string, string> = {
   toast: toastSource,
   spinner: spinnerSource,
   "file-upload": fileUploadSource,
+  dialog: dialogSource,
+  drawer: drawerSource,
   swap: swapSource,
   "theme-provider": themeProviderSource,
   "theme-toggle": themeToggleSource,

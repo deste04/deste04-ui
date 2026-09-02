@@ -199,6 +199,22 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add spinner",
   },
   {
+    slug: "dialog",
+    name: "Dialog",
+    category: "Feedback",
+    description:
+      "Modal dialog (Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogCloseTrigger) built on Ark UI and portalled out of the DOM. Animated backdrop and content, focus trap, closes on Escape or outside click, sizes sm to full. Trigger and close trigger are unstyled: pass asChild with your own Button, or style them directly.",
+    install: "npx deste04-ui add dialog",
+  },
+  {
+    slug: "drawer",
+    name: "Drawer",
+    category: "Feedback",
+    description:
+      "Sliding panel (Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerCloseTrigger) built on Ark UI and portalled out of the DOM. Docks to the edge set by swipeDirection (down, up, left or right) with a draggable grabber, snap points and a direction aware slide animation. Trigger and close trigger are unstyled: pass asChild with your own Button, or style them directly.",
+    install: "npx deste04-ui add drawer",
+  },
+  {
     slug: "file-upload",
     name: "File Upload",
     category: "Media",

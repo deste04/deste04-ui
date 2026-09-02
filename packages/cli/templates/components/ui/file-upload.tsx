@@ -56,7 +56,7 @@ function FileUploadDropzone({ className, ...props }: Readonly<FileUploadDropzone
     <ArkFileUpload.Dropzone
       data-slot="file-upload-dropzone"
       className={cn(
-        "flex w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/40 text-center font-sans text-muted-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-dragging:border-primary data-dragging:bg-primary/5 data-invalid:border-destructive data-invalid:bg-destructive/5 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-6",
+        "flex w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-muted/40 text-center font-sans text-muted-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-dragging:border-accent data-dragging:bg-accent/5 data-invalid:border-destructive data-invalid:bg-destructive/5 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg:not([class*='size-'])]:size-6",
         "in-data-[size=sm]:min-h-32 in-data-[size=sm]:gap-1 in-data-[size=sm]:p-4 in-data-[size=sm]:text-xs",
         "in-data-[size=md]:min-h-40 in-data-[size=md]:gap-2 in-data-[size=md]:p-6 in-data-[size=md]:text-sm",
         "in-data-[size=lg]:min-h-48 in-data-[size=lg]:gap-3 in-data-[size=lg]:p-8 in-data-[size=lg]:text-base",
