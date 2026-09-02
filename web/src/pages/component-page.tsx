@@ -13,14 +13,8 @@ import { ComponentDemo } from "../components/docs/preview-frame";
 import { CodeBlock } from "../components/docs/code-block";
 import { TableOfContents } from "../components/docs/table-of-contents";
 import { DocsPagination } from "../components/docs/docs-pagination";
+import { slugify } from "../lib/slugify";
 import NotFound from "./not-found";
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
 
 /** Full page content as markdown: titles, explanations and code, no navbars/chrome. */
 function buildMarkdown(meta: ComponentMeta, examples: DemoExample[], source: string) {
@@ -62,7 +56,7 @@ export default function ComponentPage() {
 
   return (
     <div className="flex items-start gap-10 xl:gap-12">
-      <div className="mx-auto flex min-w-0 max-w-4xl flex-1 flex-col gap-10 pb-24">
+      <div className="mx-auto flex min-w-0 flex-1 flex-col gap-10 pb-24">
         <div className="flex items-center justify-between gap-4">
           <Link
             to="/docs/components"

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
-import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { Search, CornerDownLeft } from "lucide-react";
+import { Dialog, DialogContent } from "deste04-ui/components/ui/dialog";
 import { Input } from "deste04-ui/components/ui/input";
 import { Badge } from "deste04-ui/components/ui/badge";
 import { getSearchItems } from "../../data/nav";
@@ -24,6 +24,7 @@ export function SearchTrigger({ onOpen }: Readonly<{ onOpen: () => void }>) {
   );
 }
 
+/** Command palette (⌘K): built on the library's own Dialog. */
 export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClose: () => void }>) {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -54,9 +55,7 @@ export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClo
   }
 
   function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Escape") {
-      onClose();
-    } else if (e.key === "ArrowDown") {
+    if (e.key === "ArrowDown") {
       e.preventDefault();
       setActive((i) => Math.min(i + 1, results.length - 1));
     } else if (e.key === "ArrowUp") {
@@ -67,17 +66,14 @@ export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClo
     }
   }
 
-  if (!open) return null;
-
-  return createPortal(
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/70 px-4 pt-24 backdrop-blur-sm">
-      <button
-        type="button"
-        aria-label="Close search"
-        className="fixed inset-0 cursor-default"
-        onClick={onClose}
-      />
-      <div className="relative flex w-full max-w-lg flex-col overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+  return (
+    <Dialog open={open} onOpenChange={(details) => !details.open && onClose()}>
+      <DialogContent
+        size="lg"
+        hideCloseTrigger
+        aria-label="Search components and guides"
+        className="gap-0 overflow-hidden p-0"
+      >
         <div className="flex items-center gap-2 border-b border-border px-4">
           <Search className="size-4 text-muted-foreground" />
           <Input
@@ -116,8 +112,7 @@ export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClo
         <div className="flex items-center gap-1.5 border-t border-border px-4 py-2 text-xs text-muted-foreground">
           <CornerDownLeft className="size-3.5" /> to select, Esc to close
         </div>
-      </div>
-    </div>,
-    document.body
+      </DialogContent>
+    </Dialog>
   );
 }

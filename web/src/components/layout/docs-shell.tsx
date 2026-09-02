@@ -18,7 +18,7 @@ export function DocsShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen flex-col">
       <SiteHeader onMenuClick={() => setMobileNavOpen(true)} />
 
-      <div className="mx-auto flex w-full max-w-[100rem] flex-1 items-start gap-6 px-4 py-8 sm:px-6">
+      <div className="mx-auto flex w-full flex-1 items-start gap-6 px-4 py-8 sm:px-6">
         <Sidebar className="sticky top-20 hidden h-[calc(100vh-6rem)] w-64 shrink-0 md:flex" />
 
         <Separator
