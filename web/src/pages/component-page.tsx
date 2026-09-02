@@ -1,5 +1,5 @@
 import { useParams, useLocation, Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { linkVariants } from "deste04-ui/components/ui/link";
 import { CopyButton } from "deste04-ui/components/ui/copy-button";
 import { buttonVariants } from "deste04-ui/components/ui/button";
@@ -71,7 +71,8 @@ export default function ComponentPage() {
               "inline-flex w-fit items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
             )}
           >
-            &larr; All components
+            <ArrowLeft className="size-4" />
+            All components
           </Link>
 
           <div className="flex items-center gap-2">

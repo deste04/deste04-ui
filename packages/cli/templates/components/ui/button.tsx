@@ -27,17 +27,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         solid:
-          "bg-primary text-primary-foreground hover:bg-primary/80 disabled:bg-muted disabled:text-muted-foreground",
+          "bg-primary text-primary-foreground hover:bg-primary/80 not-data-loading:disabled:bg-muted not-data-loading:disabled:text-muted-foreground",
         surface:
-          "border-primary/20 bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground hover:border-primary/40 hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:border-primary/25 dark:bg-primary/15 disabled:border-border disabled:bg-muted disabled:text-muted-foreground",
+          "border-accent/20 bg-accent/10 text-accent supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground hover:border-accent/40 hover:bg-accent/15 active:bg-accent/20 aria-expanded:bg-accent/15 not-data-loading:disabled:border-border not-data-loading:disabled:bg-muted not-data-loading:disabled:text-muted-foreground",
         subtle:
-          "bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground hover:bg-primary/15 active:bg-primary/20 aria-expanded:bg-primary/15 dark:bg-primary/15 disabled:bg-muted disabled:text-muted-foreground",
+          "bg-accent/10 text-accent supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground hover:bg-accent/15 active:bg-accent/20 aria-expanded:bg-accent/15 not-data-loading:disabled:bg-muted not-data-loading:disabled:text-muted-foreground",
         outline:
-          "border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:hover:bg-input/50 disabled:bg-muted disabled:text-muted-foreground disabled:hover:bg-muted",
+          "border-border bg-transparent hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:hover:bg-input/50 not-data-loading:disabled:bg-muted not-data-loading:disabled:text-muted-foreground not-data-loading:disabled:hover:bg-muted",
         plain:
-          "text-foreground hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 disabled:text-muted-foreground disabled:hover:bg-transparent",
+          "text-foreground hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50 not-data-loading:disabled:text-muted-foreground not-data-loading:disabled:hover:bg-transparent",
         destructive:
-          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 disabled:bg-muted disabled:text-muted-foreground",
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40 not-data-loading:disabled:bg-muted not-data-loading:disabled:text-muted-foreground",
       },
       size: {
         "2xs":
@@ -87,6 +87,7 @@ function Button({
     <button
       type="button"
       data-slot="button"
+      data-loading={loading || undefined}
       disabled={disabled || loading}
       aria-busy={loading || undefined}
       className={cn(buttonVariants({ variant, size, className }))}

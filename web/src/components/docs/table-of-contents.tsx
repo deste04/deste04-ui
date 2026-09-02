@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Tabs, TabsList, TabsTrigger } from "deste04-ui/components/ui/tabs";
 import { cn } from "deste04-ui/lib/utils";
 
 export interface TocItem {
@@ -8,15 +9,16 @@ export interface TocItem {
 
 /**
  * Sticky "on this page" outline for a docs page, e.g. every example title
- * on a component page. Highlights whichever section is currently in view.
+ * on a component page. Highlights whichever section is currently in view,
+ * built with the library's own vertical Tabs.
  */
 export function TableOfContents({
   items,
   className,
-}: {
+}: Readonly<{
   items: TocItem[];
   className?: string;
-}) {
+}>) {
   const [activeId, setActiveId] = useState<string | undefined>(items[0]?.id);
 
   useEffect(() => {
@@ -65,23 +67,24 @@ export function TableOfContents({
       <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
         On this page
       </p>
-      <ul className="flex flex-col border-s border-border text-sm">
-        {items.map((item) => (
-          <li key={item.id}>
-            <a
-              href={`#${item.id}`}
-              className={cn(
-                "-ms-px block border-s-2 px-3 py-1.5 no-underline transition-colors",
-                activeId === item.id
-                  ? "border-primary font-medium text-primary"
-                  : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
-              )}
-            >
+      <Tabs
+        value={activeId}
+        onValueChange={({ value }) => {
+          setActiveId(value);
+          document.getElementById(value)?.scrollIntoView({ block: "start" });
+        }}
+        orientation="vertical"
+        variant="line"
+        size="sm"
+      >
+        <TabsList>
+          {items.map((item) => (
+            <TabsTrigger key={item.id} value={item.id}>
               {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
     </nav>
   );
 }

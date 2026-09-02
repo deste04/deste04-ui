@@ -10,10 +10,10 @@ const badgeVariants = cva(
       variant: {
         solid: "border border-transparent bg-primary text-primary-foreground",
         surface:
-          "border border-primary/20 bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground dark:border-primary/25 dark:bg-primary/15",
+          "border border-accent/20 bg-accent/10 text-accent supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground",
         subtle:
-          "border border-transparent bg-primary/10 text-primary supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground dark:bg-primary/15",
-        outline: "border border-primary/30 bg-transparent text-primary",
+          "border border-transparent bg-accent/10 text-accent supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground",
+        outline: "border border-accent/30 bg-transparent text-accent",
       },
       size: {
         sm: "h-4.5 gap-0.5 px-1.5 text-xs [&_svg:not([class*='size-'])]:size-2.5",

@@ -89,7 +89,8 @@ function TabsList({ className, ...props }: Readonly<ArkTabs.ListProps>) {
       className={cn(
         "relative isolate flex gap-1 bg-transparent data-[orientation=horizontal]:flex-row data-[orientation=vertical]:flex-col",
         "data-[variant=line]:data-[orientation=horizontal]:border-b data-[variant=line]:data-[orientation=vertical]:border-s data-[variant=line]:border-border",
-        "data-[variant=enclosed]:rounded-lg data-[variant=enclosed]:bg-muted data-[variant=enclosed]:p-1",
+        "data-[variant=line]:data-[orientation=vertical]:gap-0",
+        "data-[variant=enclosed]:rounded-lg data-[variant=enclosed]:bg-muted-foreground/10 data-[variant=enclosed]:p-1",
         className
       )}
       {...props}
@@ -108,16 +109,22 @@ function TabsTrigger({ className, ...props }: Readonly<TabsTriggerProps>) {
       data-size={size}
       data-fitted={fitted}
       className={cn(
-        "relative z-0 inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg font-sans font-semibold whitespace-nowrap text-muted-foreground outline-none transition-colors select-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-ring/50 data-disabled:pointer-events-none data-disabled:opacity-50",
+        "relative z-0 inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg font-sans font-normal whitespace-nowrap text-muted-foreground outline-none transition-colors select-none focus-visible:z-10 focus-visible:ring-2 focus-visible:ring-ring/50 data-disabled:pointer-events-none data-disabled:opacity-50",
         "data-[size=xs]:h-8 data-[size=xs]:min-w-8 data-[size=xs]:px-3 data-[size=xs]:text-xs",
         "data-[size=sm]:h-9 data-[size=sm]:min-w-9 data-[size=sm]:px-3.5 data-[size=sm]:text-sm",
         "data-[size=md]:h-10 data-[size=md]:min-w-10 data-[size=md]:px-4 data-[size=md]:text-sm",
         "data-[size=lg]:h-11 data-[size=lg]:min-w-11 data-[size=lg]:px-4.5 data-[size=lg]:text-base",
         "data-[fitted=true]:flex-1",
         "data-[variant=line]:rounded-none",
-        "data-[variant=line]:data-selected:bg-primary/10 data-[variant=line]:data-selected:text-primary data-[variant=line]:dark:data-selected:bg-primary/15 data-[variant=line]:data-selected:supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground",
-        "data-[variant=subtle]:data-selected:text-primary data-[variant=subtle]:data-selected:supports-[not(color:color-mix(in_oklab,red,red))]:text-primary-foreground",
-        "data-[variant=enclosed]:data-selected:text-foreground",
+        "data-[variant=line]:data-selected:bg-accent/10 data-[variant=line]:data-selected:font-medium data-[variant=line]:data-selected:text-accent data-[variant=line]:data-selected:supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground",
+        "data-[variant=subtle]:data-selected:font-medium data-[variant=subtle]:data-selected:text-accent data-[variant=subtle]:data-selected:supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground",
+        "data-[variant=enclosed]:data-selected:font-medium data-[variant=enclosed]:data-selected:text-foreground",
+        // Line tabs double as a nav list: compact rows with their own rail
+        // instead of relying on the shared sliding indicator. Hover only
+        // affects tabs that aren't already selected.
+        "data-[variant=line]:h-auto data-[variant=line]:min-w-0 data-[variant=line]:px-3 data-[variant=line]:py-1.5 data-[variant=line]:not-data-selected:hover:text-foreground",
+        "data-[variant=line]:data-[orientation=vertical]:-ms-px data-[variant=line]:data-[orientation=vertical]:w-full data-[variant=line]:data-[orientation=vertical]:justify-start data-[variant=line]:data-[orientation=vertical]:border-s-2 data-[variant=line]:data-[orientation=vertical]:border-transparent data-[variant=line]:data-[orientation=vertical]:not-data-selected:hover:border-border data-[variant=line]:data-[orientation=vertical]:data-selected:border-accent",
+        "data-[variant=line]:data-[orientation=horizontal]:-mb-px data-[variant=line]:data-[orientation=horizontal]:border-b data-[variant=line]:data-[orientation=horizontal]:border-transparent data-[variant=line]:data-[orientation=horizontal]:not-data-selected:hover:border-border data-[variant=line]:data-[orientation=horizontal]:data-selected:border-accent",
         className
       )}
       {...props}
@@ -148,10 +155,10 @@ function TabsIndicator({ className, ...props }: Readonly<ArkTabs.IndicatorProps>
       data-variant={variant}
       className={cn(
         "absolute z-[-1] h-(--height) w-(--width) [--transition-duration:200ms] [--transition-timing-function:cubic-bezier(0.4,0,0.2,1)]",
-        "data-[variant=line]:bg-primary",
+        "data-[variant=line]:bg-accent",
         "data-[variant=line]:data-[orientation=horizontal]:top-auto data-[variant=line]:data-[orientation=horizontal]:bottom-0 data-[variant=line]:data-[orientation=horizontal]:h-0.5 data-[variant=line]:data-[orientation=horizontal]:translate-y-px",
         "data-[variant=line]:data-[orientation=vertical]:left-0 data-[variant=line]:data-[orientation=vertical]:w-0.5 data-[variant=line]:data-[orientation=vertical]:-translate-x-px",
-        "data-[variant=subtle]:rounded-md data-[variant=subtle]:bg-primary/10 data-[variant=subtle]:dark:bg-primary/15",
+        "data-[variant=subtle]:rounded-md data-[variant=subtle]:bg-accent/10",
         "data-[variant=enclosed]:rounded-md data-[variant=enclosed]:bg-card data-[variant=enclosed]:shadow-sm data-[variant=enclosed]:dark:bg-white/10",
         className
       )}

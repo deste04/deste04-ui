@@ -28,7 +28,7 @@ function CardLink({
       target={external ? (target ?? "_blank") : target}
       rel={external ? (rel ?? "noopener noreferrer") : rel}
       className={cn(
-        "group/card-link relative flex w-64 flex-col items-center justify-center overflow-hidden rounded-2xl border border-transparent bg-muted px-5 py-10 text-center text-foreground no-underline outline-none transition-colors select-none hover:border-primary/20 hover:bg-primary/10 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:hover:border-primary/25 dark:hover:bg-primary/15",
+        "group/card-link relative flex w-64 flex-col items-center justify-center overflow-hidden rounded-2xl border border-transparent bg-muted px-5 py-10 text-center text-foreground no-underline outline-none transition-colors select-none hover:border-accent/20 hover:bg-accent/10 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
         className
       )}
       {...props}
@@ -45,7 +45,7 @@ function CardLink({
         )}
         {children}
       </div>
-      <span className="absolute top-full left-1/2 -translate-x-1/2 translate-y-0 font-sans text-2xl leading-none font-bold text-primary opacity-0 transition-all duration-200 group-hover/card-link:top-1/2 group-hover/card-link:-translate-y-1/2 group-hover/card-link:opacity-100">
+      <span className="absolute top-full left-1/2 -translate-x-1/2 translate-y-0 font-sans text-2xl leading-none font-bold text-accent opacity-0 transition-all duration-200 group-hover/card-link:top-1/2 group-hover/card-link:-translate-y-1/2 group-hover/card-link:opacity-100">
         {cta}
       </span>
     </a>

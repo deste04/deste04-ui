@@ -8,12 +8,12 @@ import { getSearchItems } from "../../data/nav";
 
 const items = getSearchItems();
 
-export function SearchTrigger({ onOpen }: { onOpen: () => void }) {
+export function SearchTrigger({ onOpen }: Readonly<{ onOpen: () => void }>) {
   return (
     <button
       type="button"
       onClick={onOpen}
-      className="flex w-full max-w-56 items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+      className="flex w-full max-w-56 items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
     >
       <Search className="size-4" />
       <span className="flex-1 text-start">Search components</span>
@@ -24,7 +24,7 @@ export function SearchTrigger({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-export function SearchPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClose: () => void }>) {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const navigate = useNavigate();
