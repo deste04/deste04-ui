@@ -21,7 +21,7 @@ export function Sidebar({ className }: Readonly<{ className?: string }>) {
                   cn(
                     "-ms-px block border-s-2 px-3 py-1.5 text-sm no-underline transition-colors",
                     isActive
-                      ? "border-primary bg-primary/10 font-medium text-primary dark:bg-primary/15"
+                      ? "border-accent bg-accent/10 font-medium text-accent supports-[not(color:color-mix(in_oklab,red,red))]:text-accent-foreground dark:bg-accent/15"
                       : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
                   )
                 }
