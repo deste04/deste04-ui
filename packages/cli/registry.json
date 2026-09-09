@@ -425,5 +425,21 @@
         }
       ]
     }
+  ],
+  "blocks": [
+    {
+      "name": "login-form",
+      "type": "blocks",
+      "description": "Card di login completa: bottone OAuth, campi email/password, link \"password dimenticata\" e \"registrati\". Componi tu la logica di autenticazione nell'onSubmit.",
+      "category": "Authentication",
+      "dependencies": [],
+      "registryDependencies": ["utils", "global", "button", "card", "field", "input", "link"],
+      "files": [
+        {
+          "path": "components/blocks/login-form.tsx",
+          "target": "components/blocks/login-form.tsx"
+        }
+      ]
+    }
   ]
 }

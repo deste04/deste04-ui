@@ -13,7 +13,8 @@ const registry = JSON.parse(
 function findEntry(name) {
   return (
     registry.components.find((c) => c.name === name) ||
-    registry.lib.find((c) => c.name === name)
+    registry.lib.find((c) => c.name === name) ||
+    (registry.blocks ?? []).find((c) => c.name === name)
   );
 }
 
@@ -21,6 +22,12 @@ function listAll() {
   console.log("\nComponenti disponibili:\n");
   for (const c of registry.components) {
     console.log(`  ${c.name.padEnd(12)} ${c.description}`);
+  }
+  if (registry.blocks?.length) {
+    console.log("\nBlocks disponibili:\n");
+    for (const b of registry.blocks) {
+      console.log(`  ${b.name.padEnd(12)} ${b.description}`);
+    }
   }
   console.log("");
 }
@@ -94,7 +101,7 @@ function add(name) {
     }
   }
 
-  console.log(`\n"${name}" installato in components/ui/`);
+  console.log(`\n"${name}" installato.`);
 
   if (fs.existsSync(path.join(process.cwd(), "styles/global.css"))) {
     console.log(

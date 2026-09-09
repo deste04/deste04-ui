@@ -4,7 +4,6 @@ import {
   Users,
   BookOpen,
   History,
-  KeyRound,
   CircleAlert,
   Bold,
   Italic,
@@ -1660,82 +1659,6 @@ export const demos: Record<string, DemoExample[]> = {
                 <Button size="sm">Get started</Button>
               </CardFooter>
             </div>
-          </Card>
-        </PreviewGroup>
-      ),
-    },
-    {
-      title: "Sign up form",
-      description: "A realistic composition: header, OAuth buttons, separator, fields and a footer button.",
-      code: `<Card>
-  <CardHeader>
-    <CardTitle>Sign up</CardTitle>
-    <CardDescription>Create an account to start using deste04-ui.</CardDescription>
-  </CardHeader>
-  <CardContent className="gap-4">
-    <div className="flex gap-2">
-      <Button variant="outline" className="flex-1">
-        <KeyRound /> GitLab
-      </Button>
-      <Button variant="outline" className="flex-1">
-        <KeyRound /> GitHub
-      </Button>
-    </div>
-    <div className="flex items-center gap-3">
-      <Separator className="flex-1" />
-      <span className="text-xs whitespace-nowrap text-muted-foreground">
-        or sign up with
-      </span>
-      <Separator className="flex-1" />
-    </div>
-    <Field>
-      <FieldLabel htmlFor="email">Email</FieldLabel>
-      <Input id="email" type="email" placeholder="you@example.com" />
-    </Field>
-    <Field>
-      <FieldLabel htmlFor="password">Password</FieldLabel>
-      <Input id="password" type="password" placeholder="********" />
-    </Field>
-  </CardContent>
-  <CardFooter>
-    <Button className="w-full">Create account</Button>
-  </CardFooter>
-</Card>`,
-      render: () => (
-        <PreviewGroup>
-          <Card className="w-80">
-            <CardHeader>
-              <CardTitle>Sign up</CardTitle>
-              <CardDescription>Create an account to start using deste04-ui.</CardDescription>
-            </CardHeader>
-            <CardContent className="gap-4">
-              <div className="flex gap-2">
-                <Button variant="outline" className="flex-1">
-                  <KeyRound /> GitLab
-                </Button>
-                <Button variant="outline" className="flex-1">
-                  <KeyRound /> GitHub
-                </Button>
-              </div>
-              <div className="flex items-center gap-3">
-                <Separator className="flex-1" />
-                <span className="text-xs whitespace-nowrap text-muted-foreground">
-                  or sign up with
-                </span>
-                <Separator className="flex-1" />
-              </div>
-              <Field>
-                <FieldLabel htmlFor="card-preview-email">Email</FieldLabel>
-                <Input id="card-preview-email" type="email" placeholder="you@example.com" />
-              </Field>
-              <Field>
-                <FieldLabel htmlFor="card-preview-password">Password</FieldLabel>
-                <Input id="card-preview-password" type="password" placeholder="********" />
-              </Field>
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full">Create account</Button>
-            </CardFooter>
           </Card>
         </PreviewGroup>
       ),

@@ -47,6 +47,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick?: () => void }) {
       <nav className="ms-2 hidden items-center gap-1 sm:flex">
         <HeaderLink to="/docs/introduction">Docs</HeaderLink>
         <HeaderLink to="/docs/components">Components</HeaderLink>
+        <HeaderLink to="/docs/blocks">Blocks</HeaderLink>
       </nav>
 
       <div className="ms-auto flex items-center gap-2 sm:gap-3">

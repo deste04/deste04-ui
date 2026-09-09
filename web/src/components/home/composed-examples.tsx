@@ -16,7 +16,7 @@ import { Switch } from "deste04-ui/components/ui/switch";
 import { Badge } from "deste04-ui/components/ui/badge";
 import { CopyButton } from "deste04-ui/components/ui/copy-button";
 import { ToggleGroup, ToggleGroupItem } from "deste04-ui/components/ui/toggle-group";
-import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator } from "deste04-ui/components/ui/tabs";
+import { LoginForm } from "deste04-ui/components/blocks/login-form";
 import { cn } from "deste04-ui/lib/utils";
 import { GithubIcon } from "../icons/github";
 
@@ -200,51 +200,8 @@ export function ComposedExamples() {
           </CardFooter>
         </Card>
 
-        <Card variant="outline">
-          <Tabs defaultValue="login" variant="line" fitted>
-            <CardHeader className="pb-0">
-              <TabsList>
-                <TabsTrigger value="login">Log in</TabsTrigger>
-                <TabsTrigger value="register">Register</TabsTrigger>
-                <TabsIndicator />
-              </TabsList>
-            </CardHeader>
-            <TabsContent value="login">
-              <CardContent className="gap-4">
-                <Field>
-                  <FieldLabel htmlFor="hero-login-email">Email</FieldLabel>
-                  <Input id="hero-login-email" type="email" placeholder="you@example.com" />
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="hero-login-password">Password</FieldLabel>
-                  <Input id="hero-login-password" type="password" placeholder="********" />
-                </Field>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">
-                  Log in
-                </Button>
-              </CardFooter>
-            </TabsContent>
-            <TabsContent value="register">
-              <CardContent className="gap-4">
-                <Field>
-                  <FieldLabel htmlFor="hero-register-name">Name</FieldLabel>
-                  <Input id="hero-register-name" placeholder="Jane Doe" />
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="hero-register-email">Email</FieldLabel>
-                  <Input id="hero-register-email" type="email" placeholder="you@example.com" />
-                </Field>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full">
-                  Create account
-                </Button>
-              </CardFooter>
-            </TabsContent>
-          </Tabs>
-        </Card>
+        {/* A real Block, not a one-off mockup: see /docs/blocks/login-form. */}
+        <LoginForm className="max-w-none" onSubmit={() => {}} />
       </div>
     </div>
   );

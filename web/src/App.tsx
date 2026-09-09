@@ -5,6 +5,8 @@ import Introduction from "./pages/introduction";
 import Installation from "./pages/installation";
 import ComponentsOverview from "./pages/components-overview";
 import ComponentPage from "./pages/component-page";
+import BlocksOverview from "./pages/blocks-overview";
+import BlockPage from "./pages/block-page";
 import NotFound from "./pages/not-found";
 
 export default function App() {
@@ -20,6 +22,8 @@ export default function App() {
               <Route path="installation" element={<Installation />} />
               <Route path="components" element={<ComponentsOverview />} />
               <Route path="components/:slug" element={<ComponentPage />} />
+              <Route path="blocks" element={<BlocksOverview />} />
+              <Route path="blocks/:slug" element={<BlockPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </DocsShell>

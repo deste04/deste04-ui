@@ -1,4 +1,5 @@
 import { componentsByCategory } from "./components";
+import { blocksByCategory } from "./blocks";
 
 export interface GuideLink {
   slug: string;
@@ -34,6 +35,13 @@ export function getNavGroups(): NavGroup[] {
       })),
     });
   }
+
+  groups.push({
+    title: "Blocks",
+    items: blocksByCategory().flatMap(({ items }) =>
+      items.map((b) => ({ title: b.name, path: `/docs/blocks/${b.slug}` }))
+    ),
+  });
 
   return groups;
 }

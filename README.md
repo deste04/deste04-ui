@@ -19,19 +19,26 @@ in the `web` app (see [Development](#development) below to run it locally).
 deste04-ui/
 ├── web/                     # Documentation site (Vite + React + React Router)
 │   └── src/
-│       ├── pages/           # Routes: home, guides, components overview, component page
-│       ├── registry/        # Demo for every component, mapped to its real source
+│       ├── pages/           # Routes: home, guides, components/blocks overview and detail pages
+│       ├── registry/        # Demo/preview for every component and block, mapped to its real source
 │       ├── components/      # Site chrome: header, sidebar, search, code blocks
-│       └── data/            # Component metadata (name, category, install command)
+│       └── data/            # Component and block metadata (name, category, install command)
 └── packages/
     └── cli/                 # Published on npm as "deste04-ui"
-        ├── registry.json    # Index: which files and dependencies each component needs
+        ├── registry.json    # Index: which files and dependencies each component/block needs
         ├── templates/       # Real source, what the CLI actually copies
         │   ├── components/ui/*.tsx
+        │   ├── components/blocks/*.tsx  # Bigger, ready-to-use compositions (e.g. a login form)
         │   ├── styles/global.css   # The one shared stylesheet, no per-component CSS
         │   └── lib/utils.ts
-        └── src/cli.js       # The `deste04-ui add <component>` command
+        └── src/cli.js       # The `deste04-ui add <component|block>` command
 ```
+
+Components are single primitives (`Button`, `Input`); blocks are bigger
+compositions of them (a whole login card) meant to be opened and adapted
+once installed, not used as-is. Both are installed the same way and share
+the same registry, just under different top-level keys (`"components"` vs
+`"blocks"`).
 
 Two projects, two purposes, one repo via npm workspaces:
 
@@ -83,6 +90,25 @@ npm run cli -- add button    # install one into the current directory
 Nothing needs copying into `web`: it reads the real source from
 `packages/cli/templates/` through the workspace link, so the new component is
 installable via the CLI and visible on the site right away.
+
+## Adding a new block
+
+Same idea, a few different files since a block is one composed component,
+not a small primitive with variants:
+
+1. Add the source in `packages/cli/templates/components/blocks/<name>.tsx`.
+   Import the ui components it needs the same way `theme-toggle.tsx` imports
+   from `ui/` (`../ui/button`, `../../lib/utils`), so the relative paths
+   still resolve once the file is copied into a consumer's
+   `components/blocks/`. Inline anything a generic project wouldn't already
+   have (e.g. a brand icon) instead of adding a new dependency.
+2. Add an entry under `"blocks"` in `packages/cli/registry.json`, with
+   `files`, `category` and `registryDependencies` listing every `ui/*`
+   component it uses.
+3. Add the matching pair of exports in `packages/cli/package.json`, under
+   `"exports"` (with and without `.tsx`).
+4. Add its metadata to `web/src/data/blocks.ts`.
+5. Add its `?raw` source import and live preview to `web/src/registry/blocks.tsx`.
 
 ## Publishing the CLI to npm
 
