@@ -4,23 +4,25 @@ import { Search, CornerDownLeft } from "lucide-react";
 import { Dialog, DialogContent } from "deste04-ui/components/ui/dialog";
 import { Input } from "deste04-ui/components/ui/input";
 import { Badge } from "deste04-ui/components/ui/badge";
+import { Button } from "deste04-ui/components/ui/button";
+import { Kbd } from "deste04-ui/components/ui/kbd";
+import { cn } from "deste04-ui/lib/utils";
 import { getSearchItems } from "../../data/nav";
 
 const items = getSearchItems();
 
 export function SearchTrigger({ onOpen }: Readonly<{ onOpen: () => void }>) {
   return (
-    <button
-      type="button"
+    <Button
+      variant="outline"
+      size="sm"
       onClick={onOpen}
-      className="flex w-full max-w-56 items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 py-2 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+      className="w-full max-w-56 justify-start gap-2 bg-muted/60 px-3 font-normal text-muted-foreground hover:border-primary/40 hover:text-foreground"
     >
       <Search className="size-4" />
       <span className="flex-1 text-start">Search components</span>
-      <kbd className="rounded border border-border bg-background px-1.5 py-0.5 font-mono text-[10px]">
-        &#8984;K
-      </kbd>
-    </button>
+      <Kbd size="sm">&#8984;K</Kbd>
+    </Button>
   );
 }
 
@@ -93,24 +95,31 @@ export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClo
             </p>
           )}
           {results.map((item, index) => (
-            <button
+            <Button
               key={item.path}
-              type="button"
+              variant="plain"
+              size="sm"
               onClick={() => select(item.path)}
               onMouseEnter={() => setActive(index)}
-              className={`flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm transition-colors ${
+              className={cn(
+                "w-full justify-between gap-2 px-3 text-start font-normal",
                 index === active ? "bg-primary/10 text-foreground" : "text-foreground/90"
-              }`}
+              )}
             >
               <span>{item.title}</span>
               <Badge variant="subtle" size="sm">
                 {item.group}
               </Badge>
-            </button>
+            </Button>
           ))}
         </div>
         <div className="flex items-center gap-1.5 border-t border-border px-4 py-2 text-xs text-muted-foreground">
-          <CornerDownLeft className="size-3.5" /> to select, Esc to close
+          <Kbd size="sm">
+            <CornerDownLeft className="size-3" />
+          </Kbd>
+          to select
+          <Kbd size="sm">Esc</Kbd>
+          to close
         </div>
       </DialogContent>
     </Dialog>

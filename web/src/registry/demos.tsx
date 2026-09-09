@@ -1,4 +1,4 @@
-import { useState, type ComponentType } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import {
   Trash,
   Users,
@@ -20,6 +20,13 @@ import {
   VolumeX,
   Upload,
   FileText,
+  Calendar,
+  Smile,
+  Calculator,
+  User,
+  CreditCard,
+  Settings,
+  CornerDownLeft,
 } from "lucide-react";
 
 import { Button } from "deste04-ui/components/ui/button";
@@ -73,6 +80,8 @@ import { Checkbox } from "deste04-ui/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "deste04-ui/components/ui/radio-group";
 import { Toggle } from "deste04-ui/components/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "deste04-ui/components/ui/toggle-group";
+import { Command, CommandDialog, type CommandItemData } from "deste04-ui/components/ui/command";
+import { Kbd, KbdGroup } from "deste04-ui/components/ui/kbd";
 import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator } from "deste04-ui/components/ui/tabs";
 import { Badge } from "deste04-ui/components/ui/badge";
 import {
@@ -155,6 +164,57 @@ const TERMS_SECTIONS = [
 ];
 
 const DRAWER_ITEMS = Array.from({ length: 50 }, (_, i) => i + 1);
+
+const COMMAND_ITEMS: CommandItemData[] = [
+  { value: "calendar", label: "Calendar", group: "Suggestions", icon: <Calendar /> },
+  { value: "emoji", label: "Search Emoji", group: "Suggestions", icon: <Smile /> },
+  { value: "calculator", label: "Calculator", group: "Suggestions", icon: <Calculator /> },
+  { value: "profile", label: "Profile", group: "Settings", icon: <User />, shortcut: "⌘P" },
+  { value: "billing", label: "Billing", group: "Settings", icon: <CreditCard />, shortcut: "⌘B" },
+  { value: "settings", label: "Settings", group: "Settings", icon: <Settings />, shortcut: "⌘S" },
+];
+
+function CommandDialogDemo() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setOpen((v) => !v);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open command menu <Kbd size="sm">⌘K</Kbd>
+      </Button>
+      <CommandDialog
+        open={open}
+        onOpenChange={(details) => setOpen(details.open)}
+        items={COMMAND_ITEMS}
+        onSelect={(item) => {
+          setOpen(false);
+          toast.info({ title: `Ran "${item.label}"` });
+        }}
+        footer={
+          <>
+            <Kbd size="sm">
+              <CornerDownLeft className="size-3" />
+            </Kbd>
+            to select
+            <Kbd size="sm">Esc</Kbd>
+            to close
+          </>
+        }
+      />
+    </>
+  );
+}
 
 function SwapButton({
   variant,
@@ -717,6 +777,51 @@ export const demos: Record<string, DemoExample[]> = {
           <Separator orientation="vertical" />
           <span className="text-foreground">B</span>
         </div>
+      ),
+    },
+  ],
+
+  kbd: [
+    {
+      title: "Sizes",
+      description: "sm, md (default) and lg.",
+      code: `<Kbd size="sm">⌘K</Kbd>
+<Kbd size="md">⌘K</Kbd>
+<Kbd size="lg">⌘K</Kbd>`,
+      render: () => (
+        <PreviewGroup>
+          <Kbd size="sm">⌘K</Kbd>
+          <Kbd size="md">⌘K</Kbd>
+          <Kbd size="lg">⌘K</Kbd>
+        </PreviewGroup>
+      ),
+    },
+    {
+      title: "Group",
+      description: "KbdGroup lines up a shortcut's keys, e.g. Ctrl + K, with a plain-text separator.",
+      code: `<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <span>+</span>
+  <Kbd>K</Kbd>
+</KbdGroup>`,
+      render: () => (
+        <KbdGroup>
+          <Kbd>Ctrl</Kbd>
+          <span>+</span>
+          <Kbd>K</Kbd>
+        </KbdGroup>
+      ),
+    },
+    {
+      title: "Inline with text",
+      description: "Drop a Kbd into a sentence to call out the shortcut for an action.",
+      code: `<p className="text-sm text-muted-foreground">
+  Press <Kbd size="sm">⌘K</Kbd> to open the command menu.
+</p>`,
+      render: () => (
+        <p className="text-sm text-muted-foreground">
+          Press <Kbd size="sm">⌘K</Kbd> to open the command menu.
+        </p>
       ),
     },
   ],
@@ -1736,6 +1841,81 @@ toast.loading({ title: "Uploading...", description: "This can take a moment." })
           </Button>
         </PreviewGroup>
       ),
+    },
+  ],
+
+  command: [
+    {
+      title: "Basic",
+      description:
+        "Command on its own: type to filter, arrow keys to move, Enter to select. Groups hide themselves once none of their items match.",
+      code: `const items = [
+  { value: "calendar", label: "Calendar", group: "Suggestions", icon: <Calendar /> },
+  { value: "emoji", label: "Search Emoji", group: "Suggestions", icon: <Smile /> },
+  { value: "calculator", label: "Calculator", group: "Suggestions", icon: <Calculator /> },
+  { value: "profile", label: "Profile", group: "Settings", icon: <User />, shortcut: "⌘P" },
+  { value: "billing", label: "Billing", group: "Settings", icon: <CreditCard />, shortcut: "⌘B" },
+  { value: "settings", label: "Settings", group: "Settings", icon: <Settings />, shortcut: "⌘S" },
+];
+
+<div className="w-full max-w-sm rounded-lg border border-border">
+  <Command items={items} onSelect={(item) => runCommand(item.value)} />
+</div>`,
+      render: () => (
+        <div className="w-full max-w-sm rounded-lg border border-border">
+          <Command
+            items={COMMAND_ITEMS}
+            onSelect={(item) => toast.info({ title: `Ran "${item.label}"` })}
+          />
+        </div>
+      ),
+    },
+    {
+      title: "Dialog (⌘K)",
+      description:
+        "CommandDialog wraps Command in this library's own Dialog: press ⌘K (or Ctrl+K) to open it, the same pattern this documentation's own search uses.",
+      code: `function CommandMenu() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setOpen((v) => !v);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  return (
+    <>
+      <Button variant="outline" onClick={() => setOpen(true)}>
+        Open command menu <Kbd size="sm">⌘K</Kbd>
+      </Button>
+      <CommandDialog
+        open={open}
+        onOpenChange={(details) => setOpen(details.open)}
+        items={items}
+        onSelect={(item) => {
+          setOpen(false);
+          runCommand(item.value);
+        }}
+        footer={
+          <>
+            <Kbd size="sm">
+              <CornerDownLeft className="size-3" />
+            </Kbd>
+            to select
+            <Kbd size="sm">Esc</Kbd>
+            to close
+          </>
+        }
+      />
+    </>
+  );
+}`,
+      render: () => <CommandDialogDemo />,
     },
   ],
 

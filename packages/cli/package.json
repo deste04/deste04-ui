@@ -1,6 +1,6 @@
 {
   "name": "deste04-ui",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "CLI per installare i componenti di deste04-ui direttamente nel tuo progetto (components/ui/...)",
   "type": "module",
   "license": "MIT",
@@ -63,6 +63,10 @@
     "./components/ui/dialog.tsx": "./templates/components/ui/dialog.tsx",
     "./components/ui/drawer": "./templates/components/ui/drawer.tsx",
     "./components/ui/drawer.tsx": "./templates/components/ui/drawer.tsx",
+    "./components/ui/command": "./templates/components/ui/command.tsx",
+    "./components/ui/command.tsx": "./templates/components/ui/command.tsx",
+    "./components/ui/kbd": "./templates/components/ui/kbd.tsx",
+    "./components/ui/kbd.tsx": "./templates/components/ui/kbd.tsx",
     "./components/theme/theme-provider": "./templates/components/theme/theme-provider.tsx",
     "./components/theme/theme-provider.tsx": "./templates/components/theme/theme-provider.tsx",
     "./components/theme/theme-toggle": "./templates/components/theme/theme-toggle.tsx",

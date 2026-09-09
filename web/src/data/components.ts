@@ -68,6 +68,14 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add toggle-group",
   },
   {
+    slug: "command",
+    name: "Command",
+    category: "Actions",
+    description:
+      "Filterable, groupable list with keyboard navigation (arrow keys, Enter) for command palettes and quick-open menus. CommandDialog wraps it in this library's own Dialog for the ⌘K pattern, the same one used by this site's own search.",
+    install: "npx deste04-ui add command",
+  },
+  {
     slug: "input",
     name: "Input",
     category: "Forms",
@@ -157,6 +165,14 @@ export const components: ComponentMeta[] = [
     category: "Display",
     description: "Horizontal or vertical dividing line.",
     install: "npx deste04-ui add separator",
+  },
+  {
+    slug: "kbd",
+    name: "Kbd",
+    category: "Display",
+    description:
+      "Represents a keyboard key or shortcut (Kbd, KbdGroup), with sizes sm, md and lg. Automatically inverts its own colors inside this library's Tooltip, if you add one. KbdGroup lines up several Kbd in sequence, e.g. Ctrl + K.",
+    install: "npx deste04-ui add kbd",
   },
   {
     slug: "tabs",

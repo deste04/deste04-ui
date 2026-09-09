@@ -4,6 +4,7 @@ import linkSource from "deste04-ui/components/ui/link.tsx?raw";
 import cardLinkSource from "deste04-ui/components/ui/card-link.tsx?raw";
 import toggleSource from "deste04-ui/components/ui/toggle.tsx?raw";
 import toggleGroupSource from "deste04-ui/components/ui/toggle-group.tsx?raw";
+import commandSource from "deste04-ui/components/ui/command.tsx?raw";
 import inputSource from "deste04-ui/components/ui/input.tsx?raw";
 import textareaSource from "deste04-ui/components/ui/textarea.tsx?raw";
 import labelSource from "deste04-ui/components/ui/label.tsx?raw";
@@ -16,6 +17,7 @@ import switchSource from "deste04-ui/components/ui/switch.tsx?raw";
 import checkboxSource from "deste04-ui/components/ui/checkbox.tsx?raw";
 import radioGroupSource from "deste04-ui/components/ui/radio-group.tsx?raw";
 import separatorSource from "deste04-ui/components/ui/separator.tsx?raw";
+import kbdSource from "deste04-ui/components/ui/kbd.tsx?raw";
 import tabsSource from "deste04-ui/components/ui/tabs.tsx?raw";
 import badgeSource from "deste04-ui/components/ui/badge.tsx?raw";
 import cardSource from "deste04-ui/components/ui/card.tsx?raw";
@@ -41,6 +43,7 @@ const sources: Record<string, string> = {
   "card-link": cardLinkSource,
   toggle: toggleSource,
   "toggle-group": toggleGroupSource,
+  command: commandSource,
   input: inputSource,
   textarea: textareaSource,
   label: labelSource,
@@ -53,6 +56,7 @@ const sources: Record<string, string> = {
   checkbox: checkboxSource,
   "radio-group": radioGroupSource,
   separator: separatorSource,
+  kbd: kbdSource,
   tabs: tabsSource,
   badge: badgeSource,
   card: cardSource,

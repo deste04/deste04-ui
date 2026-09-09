@@ -20,7 +20,7 @@ const toaster = createToaster({
 });
 
 const toastVariants = cva(
-  "relative flex w-(--toast-width) max-w-[calc(100vw-2rem)] items-start gap-3 rounded-lg border bg-card p-4 font-sans text-card-foreground shadow-lg outline-none [--toast-width:22rem] translate-x-[var(--x,0)] translate-y-[var(--y,100%)] scale-[var(--scale,1)] opacity-[var(--opacity,0)] transition-[translate,scale,opacity] duration-[var(--remove-delay)] ease-out data-disabled:pointer-events-none",
+  "relative flex w-(--toast-width) max-w-[calc(100vw-2rem)] gap-3 rounded-lg border bg-card p-4 font-sans text-card-foreground shadow-lg outline-none [--toast-width:22rem] translate-x-[var(--x,0)] translate-y-[var(--y,100%)] scale-[var(--scale,1)] opacity-[var(--opacity,0)] transition-[translate,scale,opacity] duration-[var(--remove-delay)] ease-out data-disabled:pointer-events-none",
   {
     variants: {
       type: {
@@ -59,12 +59,23 @@ function isKnownType(type: string): type is ToastType {
 function ToastCard(toast: Readonly<ToastOptions>) {
   const rawType = toast.type ?? "info";
   const type: ToastType = isKnownType(rawType) ? rawType : "info";
+  // A lone title is a single line, so center the icon and close button
+  // against it. A description makes it two lines: align everything to the
+  // top instead, against the title's first line.
+  const hasDescription = Boolean(toast.description);
 
   return (
-    <ArkToast.Root data-slot="toast" className={cn(toastVariants({ type }))}>
+    <ArkToast.Root
+      data-slot="toast"
+      className={cn(toastVariants({ type }), hasDescription ? "items-start" : "items-center")}
+    >
       <span
         data-slot="toast-icon"
-        className={cn("mt-0.5 shrink-0 [&_svg]:size-5", toastIconColorByType[type])}
+        className={cn(
+          "shrink-0 [&_svg]:size-5",
+          hasDescription && "mt-0.5",
+          toastIconColorByType[type]
+        )}
       >
         {type === "loading" ? <Spinner size="sm" /> : (toastIconByType[type] ?? <Info />)}
       </span>

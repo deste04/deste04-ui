@@ -3,6 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Applies the .dark class before the first paint, so the page never
+      // flashes light before next-themes' own effect (which only runs after
+      // mount, once React has committed) can catch up. next-themes injects
+      // an equivalent inline script itself, but only when server-rendered
+      // (Next.js) — this is a plain Vite SPA, so we replicate it by hand.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme = stored === "light" || stored === "dark" ? stored : "system";
+          var isDark =
+            theme === "dark" ||
+            (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", isDark);
+        } catch (e) {
+          // localStorage/matchMedia can throw in locked-down environments
+          // (e.g. private browsing with storage disabled); fall back to
+          // the default light theme rather than block rendering.
+        }
+      })();
+    </script>
     <meta
       name="description"
       content="deste04-ui is a copy and paste React component library styled with Tailwind CSS and built on Ark UI."

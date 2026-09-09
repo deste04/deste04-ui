@@ -7,12 +7,21 @@ import { Switch } from "deste04-ui/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger, TabsIndicator } from "deste04-ui/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "deste04-ui/components/ui/toggle-group";
 import { Input } from "deste04-ui/components/ui/input";
+import { cardVariants } from "deste04-ui/components/ui/card";
+import { cn } from "deste04-ui/lib/utils";
 
-function Tile({ label, path, children }: { label: string; path: string; children: ReactNode }) {
+function Tile({
+  label,
+  path,
+  children,
+}: Readonly<{ label: string; path: string; children: ReactNode }>) {
   return (
     <Link
       to={path}
-      className="group flex flex-col justify-between gap-4 rounded-xl border border-border bg-card p-5 no-underline transition-colors hover:border-primary/40"
+      className={cn(
+        cardVariants({ variant: "outline" }),
+        "group justify-between gap-4 p-5 no-underline transition-colors hover:border-primary/40"
+      )}
     >
       <div className="flex flex-1 items-center justify-center py-4">{children}</div>
       <p className="text-sm text-muted-foreground transition-colors group-hover:text-foreground">
