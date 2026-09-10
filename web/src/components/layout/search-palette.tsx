@@ -1,15 +1,10 @@
-import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, CornerDownLeft } from "lucide-react";
-import { Dialog, DialogContent } from "deste04-ui/components/ui/dialog";
-import { Input } from "deste04-ui/components/ui/input";
-import { Badge } from "deste04-ui/components/ui/badge";
 import { Button } from "deste04-ui/components/ui/button";
+import { CommandDialog, type CommandItemData } from "deste04-ui/components/ui/command";
 import { Kbd } from "deste04-ui/components/ui/kbd";
-import { cn } from "deste04-ui/lib/utils";
 import { getSearchItems } from "../../data/nav";
-
-const items = getSearchItems();
 
 export function SearchTrigger({ onOpen }: Readonly<{ onOpen: () => void }>) {
   return (
@@ -26,102 +21,41 @@ export function SearchTrigger({ onOpen }: Readonly<{ onOpen: () => void }>) {
   );
 }
 
-/** Command palette (⌘K): built on the library's own Dialog. */
+/** Command palette (⌘K): built on the library's own Command/CommandDialog. */
 export function SearchPalette({ open, onClose }: Readonly<{ open: boolean; onClose: () => void }>) {
-  const [query, setQuery] = useState("");
-  const [active, setActive] = useState(0);
   const navigate = useNavigate();
 
-  const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return items;
-    return items.filter(
-      (item) => item.title.toLowerCase().includes(q) || item.group.toLowerCase().includes(q)
-    );
-  }, [query]);
-
-  useEffect(() => {
-    if (open) {
-      setQuery("");
-      setActive(0);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
-
-  function select(path: string) {
-    navigate(path);
-    onClose();
-  }
-
-  function onKeyDown(e: KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setActive((i) => Math.min(i + 1, results.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActive((i) => Math.max(i - 1, 0));
-    } else if (e.key === "Enter" && results[active]) {
-      select(results[active].path);
-    }
-  }
+  const items = useMemo<CommandItemData[]>(
+    () =>
+      getSearchItems().map((item) => ({
+        value: item.path,
+        label: item.title,
+        group: item.group,
+      })),
+    []
+  );
 
   return (
-    <Dialog open={open} onOpenChange={(details) => !details.open && onClose()}>
-      <DialogContent
-        size="lg"
-        hideCloseTrigger
-        aria-label="Search components and guides"
-        className="gap-0 overflow-hidden p-0"
-      >
-        <div className="flex items-center gap-2 border-b border-border px-4">
-          <Search className="size-4 text-muted-foreground" />
-          <Input
-            autoFocus
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={onKeyDown}
-            placeholder="Search components and guides..."
-            variant="outline"
-            className="border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
-          />
-        </div>
-        <div className="thin-scrollbar max-h-80 overflow-y-auto p-2">
-          {results.length === 0 && (
-            <p className="px-3 py-6 text-center text-sm text-muted-foreground">
-              No results for "{query}".
-            </p>
-          )}
-          {results.map((item, index) => (
-            <Button
-              key={item.path}
-              variant="plain"
-              size="sm"
-              onClick={() => select(item.path)}
-              onMouseEnter={() => setActive(index)}
-              className={cn(
-                "w-full justify-between gap-2 px-3 text-start font-normal",
-                index === active ? "bg-primary/10 text-foreground" : "text-foreground/90"
-              )}
-            >
-              <span>{item.title}</span>
-              <Badge variant="subtle" size="sm">
-                {item.group}
-              </Badge>
-            </Button>
-          ))}
-        </div>
-        <div className="flex items-center gap-1.5 border-t border-border px-4 py-2 text-xs text-muted-foreground">
+    <CommandDialog
+      open={open}
+      onOpenChange={(details) => !details.open && onClose()}
+      label="Search components and guides"
+      items={items}
+      placeholder="Search components and guides..."
+      onSelect={(item) => {
+        navigate(item.value);
+        onClose();
+      }}
+      footer={
+        <>
           <Kbd size="sm">
             <CornerDownLeft className="size-3" />
           </Kbd>
           to select
           <Kbd size="sm">Esc</Kbd>
           to close
-        </div>
-      </DialogContent>
-    </Dialog>
+        </>
+      }
+    />
   );
 }

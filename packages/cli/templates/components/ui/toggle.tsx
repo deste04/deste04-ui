@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Toggle as ArkToggle } from "@ark-ui/react/toggle";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -18,6 +17,9 @@ const toggleVariants = cva(
         sm: "h-8 min-w-8 px-2 text-sm [&_svg:not([class*='size-'])]:size-3.5",
         md: "h-9 min-w-9 px-2.5 text-sm",
         lg: "h-10 min-w-10 px-3 text-base [&_svg:not([class*='size-'])]:size-5",
+        "icon-sm": "size-8 p-0 [&_svg:not([class*='size-'])]:size-3.5",
+        "icon-md": "size-9 p-0",
+        "icon-lg": "size-10 p-0 [&_svg:not([class*='size-'])]:size-5",
       },
     },
     defaultVariants: {

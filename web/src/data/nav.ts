@@ -46,6 +46,28 @@ export function getNavGroups(): NavGroup[] {
   return groups;
 }
 
+export interface NavSection {
+  title: string;
+  groups: NavGroup[];
+}
+
+/**
+ * Top-level split of the sidebar into Docs / Components / Blocks, each a
+ * heading above its own {@link NavGroup}s.
+ */
+export function getNavSections(): NavSection[] {
+  const allGroups = getNavGroups();
+  const guides = allGroups.find((g) => g.title === "Get Started")!;
+  const blocks = allGroups.find((g) => g.title === "Blocks")!;
+  const components = allGroups.filter((g) => g !== guides && g !== blocks);
+
+  return [
+    { title: "Docs", groups: [guides] },
+    { title: "Components", groups: components },
+    { title: "Blocks", groups: [blocks] },
+  ];
+}
+
 /** Flat list used by the search palette. */
 export function getSearchItems(): { title: string; group: string; path: string }[] {
   return getNavGroups().flatMap((group) =>

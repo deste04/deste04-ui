@@ -450,36 +450,36 @@ export const demos: Record<string, DemoExample[]> = {
     {
       title: "Variants",
       description: "Outline and subtle variants, unpressed, pressed, and disabled.",
-      code: `<Toggle variant="outline" aria-label="Bold">
+      code: `<Toggle size="icon-md" variant="outline" aria-label="Bold">
   <Bold />
 </Toggle>
-<Toggle variant="outline" defaultPressed aria-label="Italic">
+<Toggle size="icon-md" variant="outline" defaultPressed aria-label="Italic">
   <Italic />
 </Toggle>
-<Toggle variant="subtle" aria-label="Underline">
+<Toggle size="icon-md" variant="subtle" aria-label="Underline">
   <Underline />
 </Toggle>
-<Toggle variant="subtle" defaultPressed aria-label="Underline pressed">
+<Toggle size="icon-md" variant="subtle" defaultPressed aria-label="Underline pressed">
   <Underline />
 </Toggle>
-<Toggle variant="outline" disabled aria-label="Disabled">
+<Toggle size="icon-md" variant="outline" disabled aria-label="Disabled">
   <Bold />
 </Toggle>`,
       render: () => (
         <PreviewGroup>
-          <Toggle variant="outline" aria-label="Bold">
+          <Toggle size="icon-md" variant="outline" aria-label="Bold">
             <Bold />
           </Toggle>
-          <Toggle variant="outline" defaultPressed aria-label="Italic">
+          <Toggle size="icon-md" variant="outline" defaultPressed aria-label="Italic">
             <Italic />
           </Toggle>
-          <Toggle variant="subtle" aria-label="Underline">
+          <Toggle size="icon-md" variant="subtle" aria-label="Underline">
             <Underline />
           </Toggle>
-          <Toggle variant="subtle" defaultPressed aria-label="Underline pressed">
+          <Toggle size="icon-md" variant="subtle" defaultPressed aria-label="Underline pressed">
             <Underline />
           </Toggle>
-          <Toggle variant="outline" disabled aria-label="Disabled">
+          <Toggle size="icon-md" variant="outline" disabled aria-label="Disabled">
             <Bold />
           </Toggle>
         </PreviewGroup>
@@ -487,25 +487,25 @@ export const demos: Record<string, DemoExample[]> = {
     },
     {
       title: "Sizes",
-      description: "Small, medium and large.",
-      code: `<Toggle size="sm" defaultPressed aria-label="Bold small">
+      description: "Icon-only toggles come in small, medium and large — always square.",
+      code: `<Toggle size="icon-sm" defaultPressed aria-label="Bold small">
   <Bold />
 </Toggle>
-<Toggle size="md" defaultPressed aria-label="Bold medium">
+<Toggle size="icon-md" defaultPressed aria-label="Bold medium">
   <Bold />
 </Toggle>
-<Toggle size="lg" defaultPressed aria-label="Bold large">
+<Toggle size="icon-lg" defaultPressed aria-label="Bold large">
   <Bold />
 </Toggle>`,
       render: () => (
         <PreviewGroup>
-          <Toggle size="sm" defaultPressed aria-label="Bold small">
+          <Toggle size="icon-sm" defaultPressed aria-label="Bold small">
             <Bold />
           </Toggle>
-          <Toggle size="md" defaultPressed aria-label="Bold medium">
+          <Toggle size="icon-md" defaultPressed aria-label="Bold medium">
             <Bold />
           </Toggle>
-          <Toggle size="lg" defaultPressed aria-label="Bold large">
+          <Toggle size="icon-lg" defaultPressed aria-label="Bold large">
             <Bold />
           </Toggle>
         </PreviewGroup>
@@ -532,26 +532,26 @@ export const demos: Record<string, DemoExample[]> = {
       title: "Single selection",
       description: "Only one item can be pressed at a time.",
       code: `<ToggleGroup defaultValue={["center"]}>
-  <ToggleGroupItem value="left" aria-label="Align left">
+  <ToggleGroupItem value="left" size="icon-md" aria-label="Align left">
     <AlignLeft />
   </ToggleGroupItem>
-  <ToggleGroupItem value="center" aria-label="Align center">
+  <ToggleGroupItem value="center" size="icon-md" aria-label="Align center">
     <AlignCenter />
   </ToggleGroupItem>
-  <ToggleGroupItem value="right" aria-label="Align right">
+  <ToggleGroupItem value="right" size="icon-md" aria-label="Align right">
     <AlignRight />
   </ToggleGroupItem>
 </ToggleGroup>`,
       render: () => (
         <PreviewGroup>
           <ToggleGroup defaultValue={["center"]}>
-            <ToggleGroupItem value="left" aria-label="Align left">
+            <ToggleGroupItem value="left" size="icon-md" aria-label="Align left">
               <AlignLeft />
             </ToggleGroupItem>
-            <ToggleGroupItem value="center" aria-label="Align center">
+            <ToggleGroupItem value="center" size="icon-md" aria-label="Align center">
               <AlignCenter />
             </ToggleGroupItem>
-            <ToggleGroupItem value="right" aria-label="Align right">
+            <ToggleGroupItem value="right" size="icon-md" aria-label="Align right">
               <AlignRight />
             </ToggleGroupItem>
           </ToggleGroup>
@@ -562,26 +562,26 @@ export const demos: Record<string, DemoExample[]> = {
       title: "Multiple selection",
       description: "Any number of items can be pressed at once.",
       code: `<ToggleGroup multiple defaultValue={["bold"]}>
-  <ToggleGroupItem value="bold" variant="subtle" aria-label="Bold">
+  <ToggleGroupItem value="bold" size="icon-md" variant="subtle" aria-label="Bold">
     <Bold />
   </ToggleGroupItem>
-  <ToggleGroupItem value="italic" variant="subtle" aria-label="Italic">
+  <ToggleGroupItem value="italic" size="icon-md" variant="subtle" aria-label="Italic">
     <Italic />
   </ToggleGroupItem>
-  <ToggleGroupItem value="underline" variant="subtle" aria-label="Underline">
+  <ToggleGroupItem value="underline" size="icon-md" variant="subtle" aria-label="Underline">
     <Underline />
   </ToggleGroupItem>
 </ToggleGroup>`,
       render: () => (
         <PreviewGroup>
           <ToggleGroup multiple defaultValue={["bold"]}>
-            <ToggleGroupItem value="bold" variant="subtle" aria-label="Bold">
+            <ToggleGroupItem value="bold" size="icon-md" variant="subtle" aria-label="Bold">
               <Bold />
             </ToggleGroupItem>
-            <ToggleGroupItem value="italic" variant="subtle" aria-label="Italic">
+            <ToggleGroupItem value="italic" size="icon-md" variant="subtle" aria-label="Italic">
               <Italic />
             </ToggleGroupItem>
-            <ToggleGroupItem value="underline" variant="subtle" aria-label="Underline">
+            <ToggleGroupItem value="underline" size="icon-md" variant="subtle" aria-label="Underline">
               <Underline />
             </ToggleGroupItem>
           </ToggleGroup>
@@ -592,26 +592,26 @@ export const demos: Record<string, DemoExample[]> = {
       title: "Vertical",
       description: "Stacked top to bottom instead of side by side.",
       code: `<ToggleGroup orientation="vertical" defaultValue={["center"]}>
-  <ToggleGroupItem value="left" aria-label="Align left">
+  <ToggleGroupItem value="left" size="icon-md" aria-label="Align left">
     <AlignLeft />
   </ToggleGroupItem>
-  <ToggleGroupItem value="center" aria-label="Align center">
+  <ToggleGroupItem value="center" size="icon-md" aria-label="Align center">
     <AlignCenter />
   </ToggleGroupItem>
-  <ToggleGroupItem value="right" aria-label="Align right">
+  <ToggleGroupItem value="right" size="icon-md" aria-label="Align right">
     <AlignRight />
   </ToggleGroupItem>
 </ToggleGroup>`,
       render: () => (
         <PreviewGroup>
           <ToggleGroup orientation="vertical" defaultValue={["center"]}>
-            <ToggleGroupItem value="left" aria-label="Align left">
+            <ToggleGroupItem value="left" size="icon-md" aria-label="Align left">
               <AlignLeft />
             </ToggleGroupItem>
-            <ToggleGroupItem value="center" aria-label="Align center">
+            <ToggleGroupItem value="center" size="icon-md" aria-label="Align center">
               <AlignCenter />
             </ToggleGroupItem>
-            <ToggleGroupItem value="right" aria-label="Align right">
+            <ToggleGroupItem value="right" size="icon-md" aria-label="Align right">
               <AlignRight />
             </ToggleGroupItem>
           </ToggleGroup>

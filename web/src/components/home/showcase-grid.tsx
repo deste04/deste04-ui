@@ -66,13 +66,13 @@ export function ShowcaseGrid() {
         </Tile>
         <Tile label="Toggle Group" path="/docs/components/toggle-group">
           <ToggleGroup defaultValue={["center"]}>
-            <ToggleGroupItem value="left" aria-label="Align left">
+            <ToggleGroupItem value="left" size="icon-md" aria-label="Align left">
               <AlignLeft />
             </ToggleGroupItem>
-            <ToggleGroupItem value="center" aria-label="Align center">
+            <ToggleGroupItem value="center" size="icon-md" aria-label="Align center">
               <AlignCenter />
             </ToggleGroupItem>
-            <ToggleGroupItem value="right" aria-label="Align right">
+            <ToggleGroupItem value="right" size="icon-md" aria-label="Align right">
               <AlignRight />
             </ToggleGroupItem>
           </ToggleGroup>
