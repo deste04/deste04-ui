@@ -199,6 +199,14 @@ export const components: ComponentMeta[] = [
     install: "npx deste04-ui add card",
   },
   {
+    slug: "code-block",
+    name: "Code Block",
+    category: "Display",
+    description:
+      "Syntax highlighted code block (Shiki) with a header showing the language and a CopyButton. Highlights once for light and once for dark and swaps between them with dark: utilities, no theme CSS needed. Loads only the language grammars it's asked for.",
+    install: "npx deste04-ui add code-block",
+  },
+  {
     slug: "toast",
     name: "Toast",
     category: "Feedback",

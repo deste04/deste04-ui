@@ -9,7 +9,7 @@ import { getBlockEntry } from "../registry/blocks";
 import { getAdjacentPages } from "../data/nav";
 import { PageHeader } from "../components/docs/page-header";
 import { ComponentDemo } from "../components/docs/preview-frame";
-import { CodeBlock } from "../components/docs/code-block";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 import { TableOfContents } from "../components/docs/table-of-contents";
 import { DocsPagination } from "../components/docs/docs-pagination";
 import NotFound from "./not-found";
@@ -128,14 +128,14 @@ export default function BlockPage() {
             top of whatever ui components it needs. It's your code from that point: open it and adapt it, it
             is not meant to be used as-is.
           </p>
-          <CodeBlock code={meta.install} />
+          <CodeBlock code={meta.install} lang="bash" />
         </section>
 
         <section id="source" className="flex scroll-mt-24 flex-col gap-3">
           <h2 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
             Source
           </h2>
-          <CodeBlock code={source} maxHeight="32rem" />
+          <CodeBlock code={source} lang="tsx" maxHeight="32rem" />
         </section>
 
         <DocsPagination />

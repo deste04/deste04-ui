@@ -21,6 +21,7 @@ import kbdSource from "deste04-ui/components/ui/kbd.tsx?raw";
 import tabsSource from "deste04-ui/components/ui/tabs.tsx?raw";
 import badgeSource from "deste04-ui/components/ui/badge.tsx?raw";
 import cardSource from "deste04-ui/components/ui/card.tsx?raw";
+import codeBlockSource from "deste04-ui/components/ui/code-block.tsx?raw";
 import toastSource from "deste04-ui/components/ui/toast.tsx?raw";
 import spinnerSource from "deste04-ui/components/ui/spinner.tsx?raw";
 import fileUploadSource from "deste04-ui/components/ui/file-upload.tsx?raw";
@@ -60,6 +61,7 @@ const sources: Record<string, string> = {
   tabs: tabsSource,
   badge: badgeSource,
   card: cardSource,
+  "code-block": codeBlockSource,
   toast: toastSource,
   spinner: spinnerSource,
   "file-upload": fileUploadSource,

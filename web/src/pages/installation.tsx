@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { linkVariants } from "deste04-ui/components/ui/link";
 import { cn } from "deste04-ui/lib/utils";
 import { PageHeader } from "../components/docs/page-header";
-import { CodeBlock } from "../components/docs/code-block";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 import { TableOfContents } from "../components/docs/table-of-contents";
 import { DocsPagination } from "../components/docs/docs-pagination";
 import { slugify } from "../lib/slugify";
@@ -34,9 +34,10 @@ export default function Installation() {
             per project.
           </p>
           <p className="leading-relaxed text-foreground">With Vite, install the plugin:</p>
-          <CodeBlock code="npm install -D @tailwindcss/vite" />
+          <CodeBlock code="npm install -D @tailwindcss/vite" lang="bash" />
           <p className="leading-relaxed text-foreground">Then add it to your Vite config:</p>
           <CodeBlock
+            lang="ts"
             code={`// vite.config.ts
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -68,6 +69,7 @@ export default defineConfig({
             stylesheet shared by every component. Import it once in your entrypoint:
           </p>
           <CodeBlock
+            lang="tsx"
             code={`// main.tsx
 import "./styles/global.css";`}
           />
@@ -79,7 +81,7 @@ import "./styles/global.css";`}
             Every component installs on its own. Installing one only pulls in the files
             and dependencies it actually needs.
           </p>
-          <CodeBlock code="npx deste04-ui add button" />
+          <CodeBlock code="npx deste04-ui add button" lang="bash" />
           <p className="leading-relaxed text-foreground">
             If a file already exists in your project, the CLI leaves it alone, so you
             never lose changes you already made to an installed component.
@@ -93,6 +95,7 @@ import "./styles/global.css";`}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">styles/global.css</code>:
           </p>
           <CodeBlock
+            lang="css"
             code={`--font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 --font-heading: var(--font-sans);`}
@@ -103,6 +106,7 @@ import "./styles/global.css";`}
             With a Google Font, add the link tags to your HTML head:
           </p>
           <CodeBlock
+            lang="html"
             code={`<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -111,12 +115,13 @@ import "./styles/global.css";`}
 />`}
           />
           <p className="leading-relaxed text-foreground">then update the token:</p>
-          <CodeBlock code={`--font-sans: "Poppins", system-ui, sans-serif;`} />
+          <CodeBlock lang="css" code={`--font-sans: "Poppins", system-ui, sans-serif;`} />
           <p className="leading-relaxed text-foreground">
             For a self hosted font, declare it once above{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">:root</code> in the same file:
           </p>
           <CodeBlock
+            lang="css"
             code={`@font-face {
   font-family: "MyFont";
   src: url("/fonts/my-font.woff2") format("woff2");
@@ -124,7 +129,7 @@ import "./styles/global.css";`}
   font-display: swap;
 }`}
           />
-          <CodeBlock code={`--font-sans: "MyFont", system-ui, sans-serif;`} />
+          <CodeBlock lang="css" code={`--font-sans: "MyFont", system-ui, sans-serif;`} />
         </section>
 
         <section id={slugify(sectionTitles[4])} className="flex scroll-mt-24 flex-col gap-2">

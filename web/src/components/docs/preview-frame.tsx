@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent, TabsIndicator } from "deste04-ui/components/ui/tabs";
-import { CodeBlock } from "./code-block";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 
 /**
  * The main showcase on a component page: a Preview / Code toggle, built
@@ -26,7 +26,7 @@ export function ComponentDemo({ demo, source }: { demo: ReactNode; source: strin
         </div>
       </TabsContent>
       <TabsContent value="code">
-        <CodeBlock code={source} maxHeight="32rem" />
+        <CodeBlock code={source} lang="tsx" maxHeight="32rem" />
       </TabsContent>
     </Tabs>
   );

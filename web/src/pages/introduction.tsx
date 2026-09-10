@@ -3,7 +3,7 @@ import { linkVariants } from "deste04-ui/components/ui/link";
 import { Card, CardContent } from "deste04-ui/components/ui/card";
 import { cn } from "deste04-ui/lib/utils";
 import { PageHeader } from "../components/docs/page-header";
-import { CodeBlock } from "../components/docs/code-block";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 import { TableOfContents } from "../components/docs/table-of-contents";
 import { DocsPagination } from "../components/docs/docs-pagination";
 import { slugify } from "../lib/slugify";
@@ -87,7 +87,7 @@ export default function Introduction() {
             Install a component with the CLI. Dependencies it needs, such as Tailwind CSS
             or Ark UI, are installed automatically.
           </p>
-          <CodeBlock code="npx deste04-ui add button" />
+          <CodeBlock code="npx deste04-ui add button" lang="bash" />
         </section>
 
         <DocsPagination />

@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { buttonVariants } from "deste04-ui/components/ui/button";
 import { Badge } from "deste04-ui/components/ui/badge";
 import { cn } from "deste04-ui/lib/utils";
-import { CodeBlock } from "../docs/code-block";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 import { GithubIcon } from "../icons/github";
 import { ComposedExamples } from "./composed-examples";
 
@@ -28,7 +28,7 @@ export function Hero() {
             </p>
 
             <div className="w-full">
-              <CodeBlock code="npx deste04-ui add button" />
+              <CodeBlock code="npx deste04-ui add button" lang="bash" />
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">

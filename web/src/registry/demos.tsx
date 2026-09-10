@@ -93,6 +93,7 @@ import {
   CardFooter,
 } from "deste04-ui/components/ui/card";
 import { CardLink } from "deste04-ui/components/ui/card-link";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 import { toast } from "deste04-ui/components/ui/toast";
 import {
   Dialog,
@@ -1660,6 +1661,74 @@ export const demos: Record<string, DemoExample[]> = {
               </CardFooter>
             </div>
           </Card>
+        </PreviewGroup>
+      ),
+    },
+  ],
+
+  "code-block": [
+    {
+      title: "Languages",
+      description: "The header shows the language name; pass any Shiki language id to lang.",
+      code: `<CodeBlock code="npx deste04-ui add code-block" lang="bash" />
+<CodeBlock code={\`--font-sans: "Inter", system-ui, sans-serif;\`} lang="css" />
+<CodeBlock code={\`export function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\`} lang="ts" />`,
+      render: () => (
+        <PreviewGroup column className="w-full items-stretch">
+          <CodeBlock code="npx deste04-ui add code-block" lang="bash" className="w-full" />
+          <CodeBlock
+            code={`--font-sans: "Inter", system-ui, sans-serif;`}
+            lang="css"
+            className="w-full"
+          />
+          <CodeBlock
+            code={`export function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}`}
+            lang="ts"
+            className="w-full"
+          />
+        </PreviewGroup>
+      ),
+    },
+    {
+      title: "Scrollable",
+      description: "maxHeight caps the code area and makes it scroll instead of growing the page.",
+      code: `<CodeBlock
+  lang="tsx"
+  maxHeight="12rem"
+  code={\`import { Button } from "deste04-ui/components/ui/button";
+
+export function Example() {
+  return (
+    <div className="flex gap-2">
+      <Button>Save</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="destructive">Delete</Button>
+      <Button variant="subtle">Learn more</Button>
+      <Button variant="plain">Dismiss</Button>
+    </div>
+  );
+}\`}
+/>`,
+      render: () => (
+        <PreviewGroup column className="w-full items-stretch">
+          <CodeBlock
+            lang="tsx"
+            maxHeight="12rem"
+            className="w-full"
+            code={`import { Button } from "deste04-ui/components/ui/button";
+
+export function Example() {
+  return (
+    <div className="flex gap-2">
+      <Button>Save</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="destructive">Delete</Button>
+      <Button variant="subtle">Learn more</Button>
+      <Button variant="plain">Dismiss</Button>
+    </div>
+  );
+}`}
+          />
         </PreviewGroup>
       ),
     },

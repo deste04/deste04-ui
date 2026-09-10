@@ -65,6 +65,8 @@
     "./components/ui/drawer.tsx": "./templates/components/ui/drawer.tsx",
     "./components/ui/command": "./templates/components/ui/command.tsx",
     "./components/ui/command.tsx": "./templates/components/ui/command.tsx",
+    "./components/ui/code-block": "./templates/components/ui/code-block.tsx",
+    "./components/ui/code-block.tsx": "./templates/components/ui/code-block.tsx",
     "./components/ui/kbd": "./templates/components/ui/kbd.tsx",
     "./components/ui/kbd.tsx": "./templates/components/ui/kbd.tsx",
     "./components/blocks/login-form": "./templates/components/blocks/login-form.tsx",
@@ -97,6 +99,9 @@
     "clsx": "^2.1.1",
     "lucide-react": "^1.31.0",
     "next-themes": "^0.4.6",
+    "shiki": "^4.4.3",
+    "@shikijs/langs": "^4.4.3",
+    "@shikijs/themes": "^4.4.3",
     "tailwind-merge": "^3.6.0",
     "torph": "^0.1.0"
   },

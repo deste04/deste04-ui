@@ -10,7 +10,7 @@ import { getAdjacentPages } from "../data/nav";
 import type { DemoExample } from "../registry/demos";
 import { PageHeader } from "../components/docs/page-header";
 import { ComponentDemo } from "../components/docs/preview-frame";
-import { CodeBlock } from "../components/docs/code-block";
+import { CodeBlock } from "deste04-ui/components/ui/code-block";
 import { TableOfContents } from "../components/docs/table-of-contents";
 import { DocsPagination } from "../components/docs/docs-pagination";
 import { slugify } from "../lib/slugify";
@@ -143,14 +143,14 @@ export default function ComponentPage() {
           <h2 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
             Source
           </h2>
-          <CodeBlock code={source} maxHeight="32rem" />
+          <CodeBlock code={source} lang="tsx" maxHeight="32rem" />
         </section>
 
         <section id="installation" className="flex scroll-mt-24 flex-col gap-3">
           <h2 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
             Installation
           </h2>
-          <CodeBlock code={meta.install} />
+          <CodeBlock code={meta.install} lang="bash" />
         </section>
 
         <DocsPagination />
