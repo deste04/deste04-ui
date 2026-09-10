@@ -1,7 +1,7 @@
 {
   "name": "deste04-ui-monorepo",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Monorepo della libreria deste04-ui: CLI per installare i componenti + sito che li mostra",
   "workspaces": [
     "web",
